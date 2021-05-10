@@ -134,7 +134,13 @@ namespace Plugins.GameUIBuilder.Editor.Views
 
         private void AddImage()
         {
-            Debug.Log("[TOOL] Click");
+            var newNodeRect = Data.CurrentNode.GetRectForNewNode();
+            var newNode = new ImageNode(newNodeRect, Data);
+
+            var limitShiftY = newNodeRect.y - 2;
+            Data.SourceNode.CheckPositionYAndShift(limitShiftY);
+            Data.CurrentNode.Add(newNode);
+            Data.IsRepaint = true;
         }
 
         private void AddButton()

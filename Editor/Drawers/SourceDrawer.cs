@@ -30,9 +30,7 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
 
         public override void DrawNode()
         {
-            GUI.color = nodeBackgroundColor;
-            GUI.Box(rect, string.Empty, data._skin.GetStyle("NodeBodyBg"));
-            GUI.color = Color.white;
+            DrawNodeBackground();
 
             var icon = new GUIContent(EditorGUIUtility.IconContent("d_PlayButton On")).image;
             DrawNodeTitle(icon);

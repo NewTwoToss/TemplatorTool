@@ -9,6 +9,8 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
 {
     public abstract class BaseDrawer
     {
+        protected const int MAX_NUMBER_VALUE = 9_999;
+        
         protected Rect rect;
         protected readonly DTestScriptable data;
         protected Color nodeBackgroundColor = new Color(1.0f, 1.0f, 1.0f);
@@ -25,7 +27,14 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
 
         public abstract void DrawNode();
 
-        protected virtual void DrawNodeTitle(Texture icon)
+        protected void DrawNodeBackground()
+        {
+            GUI.color = nodeBackgroundColor;
+            GUI.Box(rect, string.Empty, data._skin.GetStyle("NodeBodyBg"));
+            GUI.color = Color.white;
+        }
+
+        protected void DrawNodeTitle(Texture icon)
         {
             GUI.color = nodeBackgroundColor;
 

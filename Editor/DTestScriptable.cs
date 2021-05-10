@@ -65,12 +65,12 @@ namespace Plugins.GameUIBuilder.Editor
 
             rect = new Rect(_superNodePosition.x + 2 * _nodeShiftHorizontal,
                 _superNodePosition.y + 2 * _nodeShiftVertical, _nodeWidth, _nodeHeight);
-            BaseNodeComponent nodeLevel2 = new RectTransformNode(rect, this);
+            BaseNodeComponent nodeLevel2 = new ButtonNode(rect, this);
             nodeLevel1.Add(nodeLevel2);
 
             rect = new Rect(_superNodePosition.x + 2 * _nodeShiftHorizontal,
                 _superNodePosition.y + 3 * _nodeShiftVertical, _nodeWidth, _nodeHeight);
-            nodeLevel2 = new ButtonNode(rect, this);
+            nodeLevel2 = new ImageNode(rect, this);
             nodeLevel1.Add(nodeLevel2);
 
             rect = new Rect(_superNodePosition.x + _nodeShiftHorizontal,

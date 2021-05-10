@@ -1,6 +1,6 @@
 // =================================================================================================
 //    Author: Tomas "NewTwoToss" Szilagyi
-//    Date: 02.05.2021
+//    Date: 10.05.2021
 // =================================================================================================
 
 using Plugins.GameUIBuilder.Editor.ComponentProperties;
@@ -9,10 +9,8 @@ using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Drawers
 {
-    public class ButtonDrawer : BaseDrawer, IPropertiesButton
+    public class ImageDrawer : BaseDrawer, IPropertiesImage
     {
-        public override string Type => "Button";
-
 #region [INSPECTOR]
 
         public string Name { get; private set; }
@@ -21,23 +19,28 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
 
         public int Height { get; private set; }
 
+        public Color Color { get; private set; }
+
 #endregion
 
-        public ButtonDrawer(Rect rect, DTestScriptable data) : base(rect, data)
+        public override string Type => "Image";
+
+        public ImageDrawer(Rect rect, DTestScriptable data) : base(rect, data)
         {
-            Name = "BtnName";
+            Name = "ImgName";
             Width = 100;
             Height = 40;
-            nodeBackgroundColor = new Color(0.7f, 1.0f, 1.0f);
+            Color = Color.white;
+            nodeBackgroundColor = new Color(0.8f, 0.5f, 0.5f);
         }
 
         public override void DrawNode()
         {
             DrawNodeBackground();
 
-            var icon = new GUIContent(EditorGUIUtility.IconContent("d_Button Icon")).image;
+            var icon = new GUIContent(EditorGUIUtility.IconContent("d_Image Icon")).image;
             DrawNodeTitle(icon);
-            
+
             DrawBody();
         }
 
@@ -49,6 +52,27 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
             GUI.Label(new Rect(rectPosition, rectSize),
                 labelText,
                 data._skin.GetStyle("NodeText"));
+
+            var texture = GetSolidColorTexture(Color);
+
+            GUI.DrawTexture(new Rect(rect.x + 2, rect.y + 20, 16, 16),
+                texture);
+        }
+
+        private Texture2D GetSolidColorTexture(Color color)
+        {
+            var texture = new Texture2D(16, 16);
+            for (var i = 0; i < 16; i++)
+            {
+                for (var j = 0; j < 16; j++)
+                {
+                    texture.SetPixel(i, j, Color);
+                }
+            }
+
+            texture.Apply();
+
+            return texture;
         }
 
         public override void DrawInspector()
@@ -63,8 +87,12 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
             Width = Mathf.Clamp(EditorGUILayout.IntField("Width:", Width), 2, MAX_NUMBER_VALUE);
 
             GUILayout.Space(4);
-            
+
             Height = Mathf.Clamp(EditorGUILayout.IntField("Height:", Height), 2, MAX_NUMBER_VALUE);
+
+            GUILayout.Space(4);
+
+            Color = EditorGUILayout.ColorField("Color:", Color);
         }
     }
 }
