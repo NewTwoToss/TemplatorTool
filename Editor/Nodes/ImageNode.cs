@@ -24,14 +24,14 @@ namespace Plugins.GameUIBuilder.Editor.Nodes
             _creator = new ImageCreator();
         }
         
-        public override void CheckPositionYAndShiftUp(float shiftLimitY)
+        public override void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
         {
             if (_drawer.Rect.y > shiftLimitY)
             {
-                _drawer.ShiftUp();
+                _drawer.ShiftUp(countDeleteNodes);
             }
 
-            base.CheckPositionYAndShiftUp(shiftLimitY);
+            base.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
         }
 
         public override void CheckPositionYAndShiftDown(float shiftLimitY)

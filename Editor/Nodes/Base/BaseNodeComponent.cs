@@ -176,18 +176,18 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
             return Drawer.Rect;
         }
 
-        public virtual void CheckPositionYAndShiftUp(float shiftLimitY)
+        public virtual void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
         {
             if (decorators.Count != 0)
             {
                 foreach (var decorator in decorators)
-                    decorator.CheckPositionYAndShiftUp(shiftLimitY);
+                    decorator.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
             }
 
             if (nodes.Count == 0) return;
 
             foreach (var node in nodes)
-                node.CheckPositionYAndShiftUp(shiftLimitY);
+                node.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
         }
 
         public virtual void CheckPositionYAndShiftDown(float shiftLimitY)
@@ -229,8 +229,9 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
             {
                 if (node.Index == indexDelete)
                 {
+                    var countDeleteNodes = node.GetCountNodes();
                     var shiftLimitY = node.Drawer.Rect.y;
-                    data.SourceNode.CheckPositionYAndShiftUp(shiftLimitY);
+                    data.SourceNode.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
                     nodes.Remove(node);
                     return;
                 }
@@ -242,14 +243,19 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
             {
                 if (decorator.Index == indexDelete)
                 {
-                    var shiftLimitY = decorator.Drawer.Rect.y;
-                    data.SourceNode.CheckPositionYAndShiftUp(shiftLimitY);
                     decorators.Remove(decorator);
                     return;
                 }
 
                 decorator.Delete(indexDelete);
             }
+        }
+
+        public int GetCountNodes()
+        {
+            if (nodes.Count == 0) return 1;
+
+            return 1 + nodes.Sum(node => node.GetCountNodes());
         }
     }
 }

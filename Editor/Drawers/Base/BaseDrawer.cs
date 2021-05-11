@@ -50,9 +50,10 @@ namespace Plugins.GameUIBuilder.Editor.Drawers.Base
             GUI.color = Color.white;
         }
 
-        public void ShiftUp()
+        public void ShiftUp(int countDeleteNodes)
         {
-            var newRectPosition = new Vector2(rect.x, rect.y - data._nodeShiftVertical);
+            var newRectPositionY = rect.y - countDeleteNodes * data._nodeShiftVertical;
+            var newRectPosition = new Vector2(rect.x, newRectPositionY);
             var newRect = new Rect(newRectPosition, rect.size);
             rect = newRect;
         }
