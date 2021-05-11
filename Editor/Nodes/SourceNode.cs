@@ -50,24 +50,5 @@ namespace Plugins.GameUIBuilder.Editor.Nodes
         {
             return false;
         }
-
-        public void Delete(int indexDelete)
-        {
-            foreach (var node in nodes)
-            {
-                if (node.Index != indexDelete) continue;
-                
-                nodes.Remove(node);
-                return;
-            }
-            
-            foreach (var decorator in decorators)
-            {
-                if (decorator.Index != indexDelete) continue;
-                
-                decorators.Remove(decorator);
-                return;
-            }
-        }
     }
 }

@@ -19,7 +19,7 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
         protected readonly List<BaseNodeComponent> nodes;
 
         public int Index { get; set; }
-        
+
         public abstract BaseDrawer Drawer { get; }
 
         public BaseNodeComponent AddNewNode
@@ -90,7 +90,7 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
                 data.CurrentNode = this;
                 return true;
             }
-            
+
             if (decorators.Count != 0)
             {
                 foreach (var decorator in decorators)
@@ -202,6 +202,31 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
         public virtual bool IsDecorator()
         {
             return false;
+        }
+
+        public void Delete(int indexDelete)
+        {
+            foreach (var node in nodes)
+            {
+                if (node.Index == indexDelete)
+                {
+                    nodes.Remove(node);
+                    return;
+                }
+
+                node.Delete(indexDelete);
+            }
+
+            foreach (var decorator in decorators)
+            {
+                if (decorator.Index == indexDelete)
+                {
+                    decorators.Remove(decorator);
+                    return;
+                }
+
+                decorator.Delete(indexDelete);
+            }
         }
     }
 }
