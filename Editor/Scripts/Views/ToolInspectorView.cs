@@ -3,7 +3,6 @@
 //    Date: 01.05.2021
 // =================================================================================================
 
-using Dash;
 using Plugins.GameUIBuilder.Editor.Scripts.Views.Base;
 using UnityEngine;
 
@@ -11,8 +10,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
 {
     public class ToolInspectorView : BaseView
     {
-        //private Vector2 _scrollPosition;
-
         public override void DrawGUI(Rect pRect)
         {
             if (!Data.IsSelection) return;
