@@ -19,6 +19,8 @@ namespace Plugins.GameUIBuilder.Editor.Views
                 _colorCreateButton = new Color(0.4f, 1.0f, 0.4f);
                 _initialized = true;
             }
+            
+            if (Application.isPlaying) return;
 
             var rect = new Rect(pRect.width / 2 - 200, pRect.height - 80, 400, 70);
 

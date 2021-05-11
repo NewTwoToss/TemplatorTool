@@ -56,9 +56,9 @@ namespace Plugins.GameUIBuilder.Editor.Nodes
             }
         }
 
-        public bool SelectionControl(Vector2 mousePosition)
+        public bool SelectionControl(Vector2 mousePosition, Vector2 offset)
         {
-            if (Drawer.Rect.Contains(mousePosition))
+            if (Drawer.Rect.Contains(mousePosition + offset))
             {
                 data.SelectedNode = this;
                 return true;
@@ -68,7 +68,7 @@ namespace Plugins.GameUIBuilder.Editor.Nodes
             {
                 foreach (var decorator in decorators)
                 {
-                    if (decorator.SelectionControl(mousePosition))
+                    if (decorator.SelectionControl(mousePosition, offset))
                     {
                         data.SelectedNode = decorator;
                         return true;
@@ -76,18 +76,18 @@ namespace Plugins.GameUIBuilder.Editor.Nodes
                 }
             }
 
-            return nodes.Count != 0 && nodes.Any(node => node.SelectionControl(mousePosition));
+            return nodes.Count != 0 && nodes.Any(node => node.SelectionControl(mousePosition, offset));
         }
 
-        public bool Contains(Vector2 mousePosition)
+        public bool Contains(Vector2 mousePosition, Vector2 offset)
         {
-            if (Drawer.Rect.Contains(mousePosition))
+            if (Drawer.Rect.Contains(mousePosition + offset))
             {
                 data.CurrentNode = this;
                 return true;
             }
 
-            return nodes.Count != 0 && nodes.Any(node => node.Contains(mousePosition));
+            return nodes.Count != 0 && nodes.Any(node => node.Contains(mousePosition, offset));
         }
 
         public virtual void SetParent(RectTransform parent)

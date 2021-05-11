@@ -13,19 +13,29 @@ namespace Plugins.GameUIBuilder.Editor.Views
     {
         private bool _initialized;
         private Texture _backgroundTexture;
+        private Vector2 _scrollPosition;
 
         public override void DrawGUI(Rect pRect)
         {
             if (!_initialized)
             {
                 _backgroundTexture = Resources.Load<Texture>("Textures/graph_background");
+                _scrollPosition = Vector2.zero;
                 _initialized = true;
-                Debug.Log("ToolView :: DrawGUI()");
             }
 
             DrawBackground(pRect);
+
+            var viewRectY = Data.SourceNode.GetLastChildRectY() + 200;
+            
+            _scrollPosition = GUI.BeginScrollView(new Rect(0, 0, pRect.width, pRect.height), 
+                _scrollPosition, 
+                new Rect(0, 0, pRect.width - 20, viewRectY));
+            
             Data.SourceNode.DrawGUI();
             DrawOutline();
+            
+            GUI.EndScrollView();
         }
 
         private void DrawBackground(Rect pRect)
@@ -69,12 +79,14 @@ namespace Plugins.GameUIBuilder.Editor.Views
         {
             if (pEvent.button != 0 || pEvent.type != EventType.MouseDown) return;
 
-            Debug.Log("Left Click");
+            //Debug.Log("Left Click");
 
             Data.IsSelection = false;
             Data.IsRepaint = false;
 
-            var nodeContain = Data.SourceNode.SelectionControl(pEvent.mousePosition);
+            var nodeContain = Data
+                .SourceNode
+                .SelectionControl(pEvent.mousePosition, _scrollPosition);
 
             if (!nodeContain) return;
 
@@ -86,9 +98,11 @@ namespace Plugins.GameUIBuilder.Editor.Views
         {
             if (pEvent.button != 1 || pEvent.type != EventType.MouseDown) return;
 
-            Debug.Log("Right Click");
+            //Debug.Log("Right Click");
 
-            var nodeContain = Data.SourceNode.Contains(pEvent.mousePosition);
+            var nodeContain = Data
+                .SourceNode
+                .Contains(pEvent.mousePosition, _scrollPosition);
 
             if (!nodeContain) return;
 
@@ -99,20 +113,20 @@ namespace Plugins.GameUIBuilder.Editor.Views
         {
             var menu = new GenericMenu();
             menu.AddItem(new GUIContent("Delete Node"), false, DeleteNode);
+            
             menu.AddSeparator(string.Empty);
+            
             menu.AddItem(new GUIContent("Add RectTransform"), false, AddRectTransform);
             menu.AddItem(new GUIContent("Add Image"), false, AddImage);
             menu.AddItem(new GUIContent("Add Button"), false, AddButton);
+            menu.AddItem(new GUIContent("Add Text"), false, AddButton);
+            
             menu.AddSeparator(string.Empty);
-            /*menu.AddItem(new GUIContent("Decorators/Vertical Layout"),
-                false,
-                AddVerticalLayout);*/
+           
+            menu.AddItem(new GUIContent("Add Grid Layout"), false, AddVerticalLayout);
+            menu.AddItem(new GUIContent("Add Vertical Layout"), false, AddVerticalLayout);
+            menu.AddItem(new GUIContent("Add Horizontal Layout"), false, AddHorizontalLayout);
             
-            menu.AddItem(new GUIContent("Vertical Layout"), false, AddVerticalLayout);
-            
-            menu.AddItem(new GUIContent("Decorators/Horizontal Layout"),
-                false,
-                AddHorizontalLayout);
             menu.ShowAsContext();
         }
 
@@ -125,29 +139,25 @@ namespace Plugins.GameUIBuilder.Editor.Views
         {
             var newNodeRect = Data.CurrentNode.GetRectForNewNode();
             var newNode = new RectTransformNode(newNodeRect, Data);
-
-            var limitShiftY = newNodeRect.y - 2;
-            Data.SourceNode.CheckPositionYAndShift(limitShiftY);
-            Data.CurrentNode.Add(newNode);
-            Data.IsRepaint = true;
+            AddNewNode(newNode, newNodeRect);
         }
 
         private void AddImage()
         {
             var newNodeRect = Data.CurrentNode.GetRectForNewNode();
             var newNode = new ImageNode(newNodeRect, Data);
-
-            var limitShiftY = newNodeRect.y - 2;
-            Data.SourceNode.CheckPositionYAndShift(limitShiftY);
-            Data.CurrentNode.Add(newNode);
-            Data.IsRepaint = true;
+            AddNewNode(newNode, newNodeRect);
         }
 
         private void AddButton()
         {
             var newNodeRect = Data.CurrentNode.GetRectForNewNode();
             var newNode = new ButtonNode(newNodeRect, Data);
+            AddNewNode(newNode, newNodeRect);
+        }
 
+        private void AddNewNode(BaseNodeComponent newNode, Rect newNodeRect)
+        {
             var limitShiftY = newNodeRect.y - 2;
             Data.SourceNode.CheckPositionYAndShift(limitShiftY);
             Data.CurrentNode.Add(newNode);
@@ -160,7 +170,6 @@ namespace Plugins.GameUIBuilder.Editor.Views
             var newNode = new VerticalLayoutDecorator(newNodeRect, Data);
 
             Data.CurrentNode.AddDecorator(newNode);
-
             Data.IsRepaint = true;
         }
 

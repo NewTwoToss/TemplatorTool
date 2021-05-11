@@ -73,10 +73,13 @@ namespace Plugins.GameUIBuilder.Editor
             nodeLevel2 = new ImageNode(rect, this);
             nodeLevel1.Add(nodeLevel2);
 
-            rect = new Rect(_superNodePosition.x + _nodeShiftHorizontal,
-                _superNodePosition.y + 4 * _nodeShiftVertical, _nodeWidth, _nodeHeight);
-            nodeLevel1 = new RectTransformNode(rect, this);
-            SourceNode.Add(nodeLevel1);
+            for (var i = 0; i < 10; i++)
+            {
+                rect = new Rect(_superNodePosition.x + _nodeShiftHorizontal,
+                    _superNodePosition.y + (4 + i) * _nodeShiftVertical, _nodeWidth, _nodeHeight);
+                nodeLevel1 = new RectTransformNode(rect, this);
+                SourceNode.Add(nodeLevel1);
+            }
         }
 
         public void ResetTool()

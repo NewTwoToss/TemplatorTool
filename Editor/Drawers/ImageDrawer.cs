@@ -53,10 +53,10 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
                 labelText,
                 data._skin.GetStyle("NodeText"));
 
-            var texture = GetSolidColorTexture(Color);
+            /*var texture = GetSolidColorTexture(Color);
 
             GUI.DrawTexture(new Rect(rect.x + 2, rect.y + 20, 16, 16),
-                texture);
+                texture);*/
         }
 
         private Texture2D GetSolidColorTexture(Color color)
