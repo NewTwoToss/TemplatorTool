@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ValidatorSettings
   m_EditorClassIdentifier: 
   _skin: {fileID: 11400000, guid: 71a1de132a646eb4ca50cccdbf384ada, type: 2}
-  _superNodePosition: {x: 30, y: 30}
+  _sourceNodePosition: {x: 30, y: 30}
   _nodeWidth: 200
   _nodeHeight: 60
   _nodeShiftVertical: 70

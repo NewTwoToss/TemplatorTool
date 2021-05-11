@@ -1488,7 +1488,7 @@ MonoBehaviour:
     m_StretchHeight: 1
   - m_Name: GraphBox
     m_Normal:
-      m_Background: {fileID: 2800000, guid: b30cd72eb61968a49b70dabcca953fb0, type: 3}
+      m_Background: {fileID: 2800000, guid: 860cb02592aa89241a8b0828ce8babc6, type: 3}
       m_ScaledBackgrounds: []
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
@@ -1554,7 +1554,7 @@ MonoBehaviour:
     m_StretchHeight: 1
   - m_Name: NodeBodyBg
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 7db06be2ef107804f9061f533f632d10, type: 3}
+      m_Background: {fileID: 2800000, guid: 34c2ca48a85601142b11006e5de89228, type: 3}
       m_ScaledBackgrounds: []
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
@@ -1620,7 +1620,7 @@ MonoBehaviour:
     m_StretchHeight: 1
   - m_Name: NodeSelected
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 27e0cfa9901956a4d96b091afe498554, type: 3}
+      m_Background: {fileID: 2800000, guid: 206cb3dca236ad341a8bfd3f09d0d97e, type: 3}
       m_ScaledBackgrounds: []
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
@@ -1882,138 +1882,6 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  - m_Name: NodeConnectorOff
-    m_Normal:
-      m_Background: {fileID: 2800000, guid: fe9acdbd3f8b06a4da34d79e5b91c7a7, type: 3}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 8
-      m_Right: 8
-      m_Top: 8
-      m_Bottom: 8
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 4
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 0
-    m_FontStyle: 1
-    m_Alignment: 1
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
-  - m_Name: NodeConnectorOn
-    m_Normal:
-      m_Background: {fileID: 2800000, guid: ea4263ec7e6574b48ba6a680ffcc955e, type: 3}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 8
-      m_Right: 8
-      m_Top: 8
-      m_Bottom: 8
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 4
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 0
-    m_FontStyle: 1
-    m_Alignment: 1
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
   - m_Name: NodeConnectorLabel
     m_Normal:
       m_Background: {fileID: 0}
@@ -2148,7 +2016,7 @@ MonoBehaviour:
     m_StretchHeight: 0
   - m_Name: ViewBase
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 9e80f53882b0c5a4da44c11342d2f0a5, type: 3}
+      m_Background: {fileID: 2800000, guid: 1b2d42e0927091b4fa3f77229620dcb7, type: 3}
       m_ScaledBackgrounds: []
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
@@ -2216,7 +2084,7 @@ MonoBehaviour:
     m_Normal:
       m_Background: {fileID: 0}
       m_ScaledBackgrounds: []
-      m_TextColor: {r: 1, g: 0.7339252, b: 0, a: 1}
+      m_TextColor: {r: 1, g: 0.7372549, b: 0, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_ScaledBackgrounds: []
@@ -2346,7 +2214,7 @@ MonoBehaviour:
     m_StretchHeight: 0
   - m_Name: NodeTitleBg
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 355efc874dc70544297135fbaca16d6f, type: 3}
+      m_Background: {fileID: 2800000, guid: 1e4431f59ba88f34ca5336dc8907fe55, type: 3}
       m_ScaledBackgrounds: []
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:

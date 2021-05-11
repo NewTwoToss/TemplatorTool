@@ -20,7 +20,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views.Base
         
         protected void DrawBoxGUI(Rect rect, string title, TextAnchor titleAlignment)
         {
-            var style = DashEditorCore.Skin.GetStyle("ViewBase");
+            var style = Data.Skin.GetStyle("ViewBase");
             style.alignment = titleAlignment;
 
             style.contentOffset = titleAlignment switch

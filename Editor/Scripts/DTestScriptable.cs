@@ -14,9 +14,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         order = 0)]
     public class DTestScriptable : ScriptableObject
     {
-        public GUISkin _skin;
+        [SerializeField]
+        private GUISkin _skin;
 
-        public Vector2 _superNodePosition;
+        public Vector2 _sourceNodePosition;
 
         [Range(100, 600)]
         public int _nodeWidth = 200;
@@ -34,6 +35,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         public int _decoratorShiftHorizontal = 10;
 
 #region [GETTERS / SETTERS]
+
+        public GUISkin Skin => _skin;
 
         public int NodeIndex => _nodeIndex++;
 
@@ -70,29 +73,29 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
         private void CreateNodes()
         {
-            var rect = new Rect(_superNodePosition.x, _superNodePosition.y, _nodeWidth,
+            var rect = new Rect(_sourceNodePosition.x, _sourceNodePosition.y, _nodeWidth,
                 _nodeHeight);
             SourceNode = new SourceNode(rect, this);
 
-            rect = new Rect(_superNodePosition.x + _nodeShiftHorizontal,
-                _superNodePosition.y + _nodeShiftVertical, _nodeWidth, _nodeHeight);
+            rect = new Rect(_sourceNodePosition.x + _nodeShiftHorizontal,
+                _sourceNodePosition.y + _nodeShiftVertical, _nodeWidth, _nodeHeight);
             var nodeLevel1 = new RectTransformNode(rect, this);
             SourceNode.AddNode(nodeLevel1);
 
-            rect = new Rect(_superNodePosition.x + 2 * _nodeShiftHorizontal,
-                _superNodePosition.y + 2 * _nodeShiftVertical, _nodeWidth, _nodeHeight);
+            rect = new Rect(_sourceNodePosition.x + 2 * _nodeShiftHorizontal,
+                _sourceNodePosition.y + 2 * _nodeShiftVertical, _nodeWidth, _nodeHeight);
             BaseNodeComponent nodeLevel2 = new TextNode(rect, this);
             nodeLevel1.AddNode(nodeLevel2);
 
-            rect = new Rect(_superNodePosition.x + 2 * _nodeShiftHorizontal,
-                _superNodePosition.y + 3 * _nodeShiftVertical, _nodeWidth, _nodeHeight);
+            rect = new Rect(_sourceNodePosition.x + 2 * _nodeShiftHorizontal,
+                _sourceNodePosition.y + 3 * _nodeShiftVertical, _nodeWidth, _nodeHeight);
             nodeLevel2 = new ButtonNode(rect, this);
             nodeLevel1.AddNode(nodeLevel2);
 
             for (var i = 0; i < 3; i++)
             {
-                rect = new Rect(_superNodePosition.x + _nodeShiftHorizontal,
-                    _superNodePosition.y + (4 + i) * _nodeShiftVertical, _nodeWidth, _nodeHeight);
+                rect = new Rect(_sourceNodePosition.x + _nodeShiftHorizontal,
+                    _sourceNodePosition.y + (4 + i) * _nodeShiftVertical, _nodeWidth, _nodeHeight);
                 nodeLevel1 = new RectTransformNode(rect, this);
                 SourceNode.AddNode(nodeLevel1);
             }

@@ -67,7 +67,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
             GUI.color = Color.green;
             GUI.Box(new Rect(rect.x - 2, rect.y - 2, rect.width + 4, rect.height + 4),
                 string.Empty,
-                Data._skin.GetStyle("NodeSelected"));
+                Data.Skin.GetStyle("NodeSelected"));
             GUI.color = Color.white;
         }
 
@@ -82,8 +82,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
         private void ProcessLeftClick(Event pEvent, Rect pRect)
         {
             if (pEvent.button != 0 || pEvent.type != EventType.MouseDown) return;
-
-            //Debug.Log("Left Click");
 
             Data.IsSelection = false;
             Data.IsRepaint = false;
@@ -101,8 +99,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
         private void ProcessRightClick(Event pEvent, Rect pRect)
         {
             if (pEvent.button != 1 || pEvent.type != EventType.MouseDown) return;
-
-            //Debug.Log("Right Click");
 
             var nodeContain = Data
                 .SourceNode

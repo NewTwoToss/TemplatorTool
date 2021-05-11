@@ -31,16 +31,15 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
 
             GUI.Label(new Rect(rect.x + 5, rect.y, 100, 100),
                 currentNode.Drawer.Type,
-                DashEditorCore.Skin.GetStyle("NodePropertiesTitle"));
+                Data.Skin.GetStyle("NodePropertiesTitle"));
 
-            GUILayout.BeginArea(
-                new Rect(rect.x + 5, rect.y + 40, rect.width - 10, rect.height - 35));
-
-            //_scrollPosition = GUILayout.BeginScrollView(_scrollPosition, false, false);
+            GUILayout.BeginArea(new Rect(rect.x + 5,
+                rect.y + 40,
+                rect.width - 10,
+                rect.height - 35));
 
             currentNode.Drawer.DrawInspector();
 
-            //GUILayout.EndScrollView();
             GUILayout.EndArea();
 
             UseEvent(rect);
@@ -48,8 +47,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
 
         private void UseEvent(Rect pRect)
         {
-            if (pRect.Contains(Event.current.mousePosition) &&
-                Event.current.type == EventType.MouseDown)
+            var rectContains = pRect.Contains(Event.current.mousePosition);
+            var isMouseDown = Event.current.type == EventType.MouseDown;
+
+            if (rectContains && isMouseDown)
             {
                 Event.current.type = EventType.Used;
             }

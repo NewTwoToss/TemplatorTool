@@ -10,7 +10,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
     public abstract class BaseDrawer
     {
         protected const int MAX_NUMBER_VALUE = 9_999;
-        protected const int MAX_TEXT_FIELD_LENGTH = 20;
+        protected const int MAX_TEXT_FIELD_LENGTH = 28;
 
         protected Rect rect;
         protected readonly DTestScriptable data;
@@ -33,7 +33,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
         protected void DrawNodeBackground()
         {
             GUI.color = nodeBackgroundColor;
-            GUI.Box(rect, string.Empty, data._skin.GetStyle("NodeBodyBg"));
+            GUI.Box(rect, string.Empty, data.Skin.GetStyle("NodeBodyBg"));
             GUI.color = Color.white;
         }
 
@@ -47,7 +47,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
                     new Vector2(rect.width - 24, 20)),
                 //$"{Type} - [{index}] [{level}]",
                 Type,
-                data._skin.GetStyle("NodeTitle"));
+                data.Skin.GetStyle("NodeTitle"));
 
             GUI.color = Color.white;
         }
@@ -58,7 +58,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
             var rectSize = new Vector2(180, 40);
             GUI.Label(new Rect(rectPosition, rectSize),
                 labelText,
-                data._skin.GetStyle("NodeText"));
+                data.Skin.GetStyle("NodeText"));
         }
 
         public void ShiftUp(int countDeleteNodes)

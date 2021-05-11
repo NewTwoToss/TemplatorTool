@@ -41,16 +41,22 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
         protected override void DrawBody(string labelText)
         {
+            var styleNodeText = data.Skin.GetStyle("NodeText");
+            var labelPosition = new Vector2(rect.x + 10, rect.y + 20);
+            var labelSize = new Vector2(180, 40);
+
             if (Source is null)
             {
                 GUI.color = _errorColor;
-                GUI.Label(new Rect(new Vector2(rect.x + 10, rect.y + 20),
-                    new Vector2(180, 40)), labelText, data._skin.GetStyle("NodeText"));
+                GUI.Label(new Rect(labelPosition, labelSize),
+                    labelText,
+                    styleNodeText);
             }
             else
             {
-                GUI.Label(new Rect(new Vector2(rect.x + 10, rect.y + 20),
-                    new Vector2(180, 40)), $"Ref.: {Source.name}", data._skin.GetStyle("NodeText"));
+                GUI.Label(new Rect(labelPosition, labelSize),
+                    $"Ref.: {Source.name}",
+                    styleNodeText);
             }
 
             GUI.color = Color.white;
