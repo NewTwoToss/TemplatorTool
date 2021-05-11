@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a182532574124d0aa9ac426d51775f0a, type: 3}
   m_Name: ValidatorSettings
   m_EditorClassIdentifier: 
-  _skin: {fileID: 11400000, guid: c9dfeb2709db7b5408cede302f5bf569, type: 2}
+  _skin: {fileID: 11400000, guid: 71a1de132a646eb4ca50cccdbf384ada, type: 2}
   _superNodePosition: {x: 30, y: 30}
   _nodeWidth: 200
   _nodeHeight: 60
