@@ -35,6 +35,8 @@ namespace Plugins.GameUIBuilder.Editor
 
 #region [GETTERS / SETTERS]
 
+        public int NodeIndex => _nodeIndex++;
+
         public SourceNode SourceNode { get; private set; }
 
         public BaseNodeComponent SelectedNode { get; set; }
@@ -47,14 +49,27 @@ namespace Plugins.GameUIBuilder.Editor
 
 #endregion
 
+#region [PRIVATE]
+
+        private int _nodeIndex;
+
+#endregion
+
         public void Init()
         {
-            Debug.Log("DATA :: Init()");
+            Debug.Log("DATA :: CORE :: Init()");
 
+            _nodeIndex = 0;
+            SelectedNode = null;
+            CurrentNode = null;
             IsSelection = false;
             IsRepaint = false;
-            CurrentNode = null;
 
+            CreateNodes();
+        }
+
+        private void CreateNodes()
+        {
             var rect = new Rect(_superNodePosition.x, _superNodePosition.y, _nodeWidth,
                 _nodeHeight);
             SourceNode = new SourceNode(rect, this);

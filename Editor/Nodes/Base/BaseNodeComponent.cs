@@ -18,6 +18,8 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
         protected readonly List<BaseNodeComponent> decorators;
         protected readonly List<BaseNodeComponent> nodes;
 
+        public int Index { get; set; }
+        
         public abstract BaseDrawer Drawer { get; }
 
         public BaseNodeComponent AddNewNode
@@ -28,6 +30,7 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
         protected BaseNodeComponent(DTestScriptable data)
         {
             this.data = data;
+            Index = data.NodeIndex;
             decorators = new List<BaseNodeComponent>();
             nodes = new List<BaseNodeComponent>();
         }
@@ -38,7 +41,7 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
 
         public void DrawGUI()
         {
-            Drawer.DrawNode();
+            Drawer.DrawNode(Index);
 
             if (decorators.Count != 0)
             {
@@ -76,7 +79,8 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
                 }
             }
 
-            return nodes.Count != 0 && nodes.Any(node => node.SelectionControl(mousePosition, offset));
+            return nodes.Count != 0
+                   && nodes.Any(node => node.SelectionControl(mousePosition, offset));
         }
 
         public bool Contains(Vector2 mousePosition, Vector2 offset)
@@ -85,6 +89,18 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
             {
                 data.CurrentNode = this;
                 return true;
+            }
+            
+            if (decorators.Count != 0)
+            {
+                foreach (var decorator in decorators)
+                {
+                    if (decorator.Contains(mousePosition, offset))
+                    {
+                        data.CurrentNode = decorator;
+                        return true;
+                    }
+                }
             }
 
             return nodes.Count != 0 && nodes.Any(node => node.Contains(mousePosition, offset));
@@ -144,27 +160,29 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
 
             if (decorators.Count == 0)
             {
-                var vector = new Vector2(baseRect.x + baseRect.width + data._decoratorShiftHorizontal,
+                var vector = new Vector2(
+                    baseRect.x + baseRect.width + data._decoratorShiftHorizontal,
                     baseRect.y);
-                var rect1 = new Rect(vector, new Vector2(baseRect.width - 40, baseRect.height - 10));
+                var rect1 = new Rect(vector,
+                    new Vector2(baseRect.width - 40, baseRect.height - 10));
                 return rect1;
             }
 
             return Drawer.Rect;
         }
 
-        public virtual void CheckPositionYAndShift(float shiftLimitY)
+        public virtual void CheckPositionYAndShiftDown(float shiftLimitY)
         {
             if (decorators.Count != 0)
             {
                 foreach (var decorator in decorators)
-                    decorator.CheckPositionYAndShift(shiftLimitY);
+                    decorator.CheckPositionYAndShiftDown(shiftLimitY);
             }
 
             if (nodes.Count == 0) return;
 
             foreach (var node in nodes)
-                node.CheckPositionYAndShift(shiftLimitY);
+                node.CheckPositionYAndShiftDown(shiftLimitY);
         }
 
         public float GetLastChildRectY()
@@ -179,6 +197,11 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
         public virtual bool CanBeDeleted()
         {
             return true;
+        }
+
+        public virtual bool IsDecorator()
+        {
+            return false;
         }
     }
 }

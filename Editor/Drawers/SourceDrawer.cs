@@ -13,7 +13,7 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
     public class SourceDrawer : BaseDrawer, IPropertiesSource
     {
         private readonly Color _errorColor;
-        
+
 #region [INSPECTOR]
 
         public RectTransform Source { get; private set; }
@@ -29,13 +29,13 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
             _errorColor = new Color(1.0f, 0.16f, 0.16f);
         }
 
-        public override void DrawNode()
+        public override void DrawNode(int index)
         {
             DrawNodeBackground();
 
             var icon = new GUIContent(EditorGUIUtility.IconContent("d_PlayButton On")).image;
-            DrawNodeTitle(icon);
-            
+            DrawNodeTitle(icon, index);
+
             DrawBody();
         }
 

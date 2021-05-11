@@ -25,7 +25,7 @@ namespace Plugins.GameUIBuilder.Editor.Drawers.Base
             this.data = data;
         }
 
-        public abstract void DrawNode();
+        public abstract void DrawNode(int index);
 
         protected void DrawNodeBackground()
         {
@@ -34,7 +34,7 @@ namespace Plugins.GameUIBuilder.Editor.Drawers.Base
             GUI.color = Color.white;
         }
 
-        protected void DrawNodeTitle(Texture icon)
+        protected void DrawNodeTitle(Texture icon, int index)
         {
             GUI.color = nodeBackgroundColor;
 
@@ -42,7 +42,7 @@ namespace Plugins.GameUIBuilder.Editor.Drawers.Base
 
             GUI.Label(new Rect(new Vector2(rect.x + 24, rect.y),
                     new Vector2(rect.width - 24, 20)),
-                Type,
+                $"{Type} - {index}",
                 data._skin.GetStyle("NodeTitle"));
 
             GUI.color = Color.white;

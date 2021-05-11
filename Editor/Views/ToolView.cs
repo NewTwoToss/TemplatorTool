@@ -121,16 +121,19 @@ namespace Plugins.GameUIBuilder.Editor.Views
                 menu.AddSeparator(string.Empty);
             }
 
-            menu.AddItem(new GUIContent("Add RectTransform"), false, AddRectTransform);
-            menu.AddItem(new GUIContent("Add Image"), false, AddImage);
-            menu.AddItem(new GUIContent("Add Button"), false, AddButton);
-            menu.AddItem(new GUIContent("Add Text"), false, AddButton);
+            if (!Data.CurrentNode.IsDecorator())
+            {
+                menu.AddItem(new GUIContent("Add RectTransform"), false, AddRectTransform);
+                menu.AddItem(new GUIContent("Add Image"), false, AddImage);
+                menu.AddItem(new GUIContent("Add Button"), false, AddButton);
+                menu.AddItem(new GUIContent("Add Text"), false, AddButton);
 
-            menu.AddSeparator(string.Empty);
+                menu.AddSeparator(string.Empty);
 
-            menu.AddItem(new GUIContent("Add Grid Layout"), false, AddVerticalLayout);
-            menu.AddItem(new GUIContent("Add Vertical Layout"), false, AddVerticalLayout);
-            menu.AddItem(new GUIContent("Add Horizontal Layout"), false, AddHorizontalLayout);
+                menu.AddItem(new GUIContent("Add Grid Layout"), false, AddVerticalLayout);
+                menu.AddItem(new GUIContent("Add Vertical Layout"), false, AddVerticalLayout);
+                menu.AddItem(new GUIContent("Add Horizontal Layout"), false, AddHorizontalLayout);
+            }
 
             menu.ShowAsContext();
         }
@@ -138,6 +141,8 @@ namespace Plugins.GameUIBuilder.Editor.Views
         private void DeleteNode()
         {
             Debug.Log("[TOOL] Click DeleteNode");
+            var indexDelete = Data.CurrentNode.Index;
+            Data.SourceNode.Delete(indexDelete);
         }
 
         private void AddRectTransform()
@@ -164,7 +169,7 @@ namespace Plugins.GameUIBuilder.Editor.Views
         private void AddNewNode(BaseNodeComponent newNode, Rect newNodeRect)
         {
             var limitShiftY = newNodeRect.y - 2;
-            Data.SourceNode.CheckPositionYAndShift(limitShiftY);
+            Data.SourceNode.CheckPositionYAndShiftDown(limitShiftY);
             Data.CurrentNode.Add(newNode);
             Data.IsRepaint = true;
         }
