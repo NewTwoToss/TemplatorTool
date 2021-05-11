@@ -22,6 +22,7 @@ namespace Plugins.GameUIBuilder.Editor.Nodes
 
         public SourceNode(Rect rect, DTestScriptable data) : base(data)
         {
+            Level = 0;
             _drawer = new SourceDrawer(rect, data);
             _creator = new SourceCreator();
         }

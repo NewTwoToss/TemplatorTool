@@ -13,6 +13,8 @@ namespace Plugins.GameUIBuilder.Editor.Views
 {
     public class ToolView : BaseView
     {
+        private const int MAX_LEVEL_CREATE_COMPONENTS = 5;
+
         private bool _initialized;
         private Texture _backgroundTexture;
         private Vector2 _scrollPosition;
@@ -123,16 +125,33 @@ namespace Plugins.GameUIBuilder.Editor.Views
 
             if (!Data.CurrentNode.IsDecorator())
             {
-                menu.AddItem(new GUIContent("Add RectTransform"), false, AddRectTransform);
-                menu.AddItem(new GUIContent("Add Image"), false, AddImage);
-                menu.AddItem(new GUIContent("Add Button"), false, AddButton);
-                menu.AddItem(new GUIContent("Add Text"), false, AddButton);
+                if (Data.CurrentNode.Level < MAX_LEVEL_CREATE_COMPONENTS)
+                {
+                    menu.AddItem(new GUIContent("Add RectTransform"),
+                        false, AddRectTransform);
+                    menu.AddItem(new GUIContent("Add Image"),
+                        false, AddImage);
+                    menu.AddItem(new GUIContent("Add Button"),
+                        false, AddButton);
+                    menu.AddItem(new GUIContent("Add Text"),
+                        false, AddButton);
+                }
+                else
+                {
+                    menu.AddDisabledItem(new GUIContent("Add RectTransform"));
+                    menu.AddDisabledItem(new GUIContent("Add Image"));
+                    menu.AddDisabledItem(new GUIContent("Add Button"));
+                    menu.AddDisabledItem(new GUIContent("Add Text"));
+                }
 
                 menu.AddSeparator(string.Empty);
 
-                menu.AddItem(new GUIContent("Add Grid Layout"), false, AddVerticalLayout);
-                menu.AddItem(new GUIContent("Add Vertical Layout"), false, AddVerticalLayout);
-                menu.AddItem(new GUIContent("Add Horizontal Layout"), false, AddHorizontalLayout);
+                menu.AddItem(new GUIContent("Add Grid Layout"),
+                    false, AddVerticalLayout);
+                menu.AddItem(new GUIContent("Add Vertical Layout"),
+                    false, AddVerticalLayout);
+                menu.AddItem(new GUIContent("Add Horizontal Layout"),
+                    false, AddHorizontalLayout);
             }
 
             menu.ShowAsContext();
@@ -140,7 +159,6 @@ namespace Plugins.GameUIBuilder.Editor.Views
 
         private void DeleteNode()
         {
-            Debug.Log("[TOOL] Click DeleteNode");
             var indexDelete = Data.CurrentNode.Index;
             Data.SourceNode.Delete(indexDelete);
         }
@@ -166,6 +184,10 @@ namespace Plugins.GameUIBuilder.Editor.Views
             AddNewNode(newNode, newNodeRect);
         }
 
+        private void AddText()
+        {
+        }
+
         private void AddNewNode(BaseNodeComponent newNode, Rect newNodeRect)
         {
             var limitShiftY = newNodeRect.y - 2;
@@ -176,16 +198,21 @@ namespace Plugins.GameUIBuilder.Editor.Views
 
         private void AddVerticalLayout()
         {
-            var newNodeRect = Data.CurrentNode.GetRectForNewDecorator();
-            var newNode = new VerticalLayoutDecorator(newNodeRect, Data);
+            var newDecoratorRect = Data.CurrentNode.GetRectForNewDecorator();
+            var newDecorator = new VerticalLayoutDecorator(newDecoratorRect, Data);
 
-            Data.CurrentNode.AddDecorator(newNode);
-            Data.IsRepaint = true;
+            AddNewDecorator(newDecorator);
         }
 
         private void AddHorizontalLayout()
         {
             Debug.Log("[TOOL] Click");
+        }
+
+        private void AddNewDecorator(BaseNodeComponent newDecorator)
+        {
+            Data.CurrentNode.AddDecorator(newDecorator);
+            Data.IsRepaint = true;
         }
     }
 }

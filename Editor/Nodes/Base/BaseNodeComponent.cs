@@ -20,6 +20,8 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
 
         public int Index { get; set; }
 
+        public int Level { get; set; }
+
         public abstract BaseDrawer Drawer { get; }
 
         protected BaseNodeComponent(DTestScriptable data)
@@ -30,13 +32,21 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
             nodes = new List<BaseNodeComponent>();
         }
 
-        public void AddNode(BaseNodeComponent node) => nodes.Add(node);
+        public void AddNode(BaseNodeComponent node)
+        {
+            node.Level = Level + 1;
+            nodes.Add(node);
+        }
 
-        public void AddDecorator(BaseNodeComponent decorator) => decorators.Add(decorator);
+        public void AddDecorator(BaseNodeComponent decorator)
+        {
+            decorator.Level = Level + 1;
+            decorators.Add(decorator);
+        }
 
         public void DrawGUI()
         {
-            Drawer.DrawNode(Index);
+            Drawer.DrawNode(Index, Level);
 
             if (decorators.Count != 0)
             {

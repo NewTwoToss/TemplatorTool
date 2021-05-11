@@ -25,13 +25,13 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
             Spacing = 0;
         }
 
-        public override void DrawNode(int index)
+        public override void DrawNode(int index, int level)
         {
             DrawNodeBackground();
 
             const string ICON_NAME = "d_VerticalLayoutGroup Icon";
             var icon = new GUIContent(EditorGUIUtility.IconContent(ICON_NAME)).image;
-            DrawNodeTitle(icon, index);
+            DrawNodeTitle(icon, index, level);
         }
 
         public override void DrawInspector()

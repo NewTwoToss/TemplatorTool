@@ -32,12 +32,12 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
             nodeBackgroundColor = new Color(0.7f, 1.0f, 1.0f);
         }
 
-        public override void DrawNode(int index)
+        public override void DrawNode(int index, int level)
         {
             DrawNodeBackground();
 
             var icon = new GUIContent(EditorGUIUtility.IconContent("d_Button Icon")).image;
-            DrawNodeTitle(icon, index);
+            DrawNodeTitle(icon, index, level);
             
             DrawBody();
         }
