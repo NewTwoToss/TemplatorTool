@@ -170,7 +170,7 @@ namespace Plugins.GameUIBuilder.Editor.Views
         {
             var limitShiftY = newNodeRect.y - 2;
             Data.SourceNode.CheckPositionYAndShiftDown(limitShiftY);
-            Data.CurrentNode.Add(newNode);
+            Data.CurrentNode.AddNode(newNode);
             Data.IsRepaint = true;
         }
 

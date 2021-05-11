@@ -27,6 +27,8 @@ namespace Plugins.GameUIBuilder.Editor.Drawers.Base
 
         public abstract void DrawNode(int index);
 
+        public abstract void DrawInspector();
+
         protected void DrawNodeBackground()
         {
             GUI.color = nodeBackgroundColor;
@@ -48,9 +50,14 @@ namespace Plugins.GameUIBuilder.Editor.Drawers.Base
             GUI.color = Color.white;
         }
 
-        public abstract void DrawInspector();
+        public void ShiftUp()
+        {
+            var newRectPosition = new Vector2(rect.x, rect.y - data._nodeShiftVertical);
+            var newRect = new Rect(newRectPosition, rect.size);
+            rect = newRect;
+        }
 
-        public void ShiftY()
+        public void ShiftDown()
         {
             var newRectPosition = new Vector2(rect.x, rect.y + data._nodeShiftVertical);
             var newRect = new Rect(newRectPosition, rect.size);

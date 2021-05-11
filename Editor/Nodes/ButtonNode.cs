@@ -23,12 +23,22 @@ namespace Plugins.GameUIBuilder.Editor.Nodes
             _drawer = new ButtonDrawer(rect, data);
             _creator = new ButtonCreator();
         }
+        
+        public override void CheckPositionYAndShiftUp(float shiftLimitY)
+        {
+            if (_drawer.Rect.y > shiftLimitY)
+            {
+                _drawer.ShiftUp();
+            }
+
+            base.CheckPositionYAndShiftUp(shiftLimitY);
+        }
 
         public override void CheckPositionYAndShiftDown(float shiftLimitY)
         {
             if (_drawer.Rect.y > shiftLimitY)
             {
-                _drawer.ShiftY();
+                _drawer.ShiftDown();
             }
 
             base.CheckPositionYAndShiftDown(shiftLimitY);

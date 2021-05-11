@@ -22,11 +22,6 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
 
         public abstract BaseDrawer Drawer { get; }
 
-        public BaseNodeComponent AddNewNode
-        {
-            set => nodes.Add(value);
-        }
-
         protected BaseNodeComponent(DTestScriptable data)
         {
             this.data = data;
@@ -35,7 +30,7 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
             nodes = new List<BaseNodeComponent>();
         }
 
-        public void Add(BaseNodeComponent node) => nodes.Add(node);
+        public void AddNode(BaseNodeComponent node) => nodes.Add(node);
 
         public void AddDecorator(BaseNodeComponent decorator) => decorators.Add(decorator);
 
@@ -171,6 +166,20 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
             return Drawer.Rect;
         }
 
+        public virtual void CheckPositionYAndShiftUp(float shiftLimitY)
+        {
+            if (decorators.Count != 0)
+            {
+                foreach (var decorator in decorators)
+                    decorator.CheckPositionYAndShiftUp(shiftLimitY);
+            }
+
+            if (nodes.Count == 0) return;
+
+            foreach (var node in nodes)
+                node.CheckPositionYAndShiftUp(shiftLimitY);
+        }
+
         public virtual void CheckPositionYAndShiftDown(float shiftLimitY)
         {
             if (decorators.Count != 0)
@@ -210,6 +219,8 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
             {
                 if (node.Index == indexDelete)
                 {
+                    var shiftLimitY = node.Drawer.Rect.y;
+                    data.SourceNode.CheckPositionYAndShiftUp(shiftLimitY);
                     nodes.Remove(node);
                     return;
                 }
@@ -221,6 +232,8 @@ namespace Plugins.GameUIBuilder.Editor.Nodes.Base
             {
                 if (decorator.Index == indexDelete)
                 {
+                    var shiftLimitY = decorator.Drawer.Rect.y;
+                    data.SourceNode.CheckPositionYAndShiftUp(shiftLimitY);
                     decorators.Remove(decorator);
                     return;
                 }
