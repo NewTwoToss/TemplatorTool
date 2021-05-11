@@ -176,7 +176,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
             return Drawer.Rect;
         }
 
-        public virtual void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
+        /*public virtual void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
         {
             if (decorators.Count != 0)
             {
@@ -188,9 +188,9 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
 
             foreach (var node in nodes)
                 node.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
-        }
+        }*/
 
-        public virtual void CheckPositionYAndShiftDown(float shiftLimitY)
+        /*public virtual void CheckPositionYAndShiftDown(float shiftLimitY)
         {
             if (decorators.Count != 0)
             {
@@ -202,7 +202,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
 
             foreach (var node in nodes)
                 node.CheckPositionYAndShiftDown(shiftLimitY);
-        }
+        }*/
 
         public float GetLastChildRectY()
         {
@@ -256,6 +256,44 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
             if (nodes.Count == 0) return 1;
 
             return 1 + nodes.Sum(node => node.GetCountNodes());
+        }
+        
+        public void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
+        {
+            if (Drawer.Rect.y > shiftLimitY)
+            {
+                Drawer.ShiftUp(countDeleteNodes);
+            }
+
+            if (decorators.Count != 0)
+            {
+                foreach (var decorator in decorators)
+                    decorator.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
+            }
+
+            if (nodes.Count == 0) return;
+
+            foreach (var node in nodes)
+                node.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
+        }
+        
+        public void CheckPositionYAndShiftDown(float shiftLimitY)
+        {
+            if (Drawer.Rect.y > shiftLimitY)
+            {
+                Drawer.ShiftDown();
+            }
+
+            if (decorators.Count != 0)
+            {
+                foreach (var decorator in decorators)
+                    decorator.CheckPositionYAndShiftDown(shiftLimitY);
+            }
+
+            if (nodes.Count == 0) return;
+
+            foreach (var node in nodes)
+                node.CheckPositionYAndShiftDown(shiftLimitY);
         }
     }
 }

@@ -46,17 +46,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             var icon = new GUIContent(EditorGUIUtility.IconContent("d_Image Icon")).image;
             DrawNodeTitle(icon, index, level);
 
-            DrawBody();
-        }
-
-        private void DrawBody()
-        {
             var labelText = $"{Name} [{Width}x{Height}]";
-            var rectPosition = new Vector2(rect.x + 10, rect.y + 20);
-            var rectSize = new Vector2(180, 40);
-            GUI.Label(new Rect(rectPosition, rectSize),
-                labelText,
-                data._skin.GetStyle("NodeText"));
+            DrawBody(labelText);
         }
 
         public override void DrawInspector()

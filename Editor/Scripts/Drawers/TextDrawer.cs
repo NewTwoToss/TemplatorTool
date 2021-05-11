@@ -1,6 +1,6 @@
 // =================================================================================================
 //    Author: Tomas "NewTwoToss" Szilagyi
-//    Date: 02.05.2021
+//    Date: 11.05.2021
 // =================================================================================================
 
 using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
@@ -10,9 +10,9 @@ using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 {
-    public class ButtonDrawer : BaseDrawer, IPropertiesButton
+    public class TextDrawer : BaseDrawer, IPropertiesText
     {
-        public override string Type => "Button";
+        public override string Type => "Text (TMP)";
 
 #region [INSPECTOR]
 
@@ -22,13 +22,16 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
         public int Height { get; private set; }
 
+        public string Text { get; private set; }
+
 #endregion
 
-        public ButtonDrawer(Rect rect, DTestScriptable data) : base(rect, data)
+        public TextDrawer(Rect rect, DTestScriptable data) : base(rect, data)
         {
-            Name = "BtnName";
+            Name = "TxtName";
             Width = 100;
             Height = 40;
+            Text = "New Text";
             nodeBackgroundColor = new Color(0.7f, 1.0f, 1.0f);
         }
 
@@ -57,6 +60,13 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             GUISpaceSmall();
 
             Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
+
+            GUISpaceSmall();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("Text");
+            Text = GUILayout.TextField(Text, MAX_TEXT_FIELD_LENGTH);
+            GUILayout.EndHorizontal();
         }
     }
 }

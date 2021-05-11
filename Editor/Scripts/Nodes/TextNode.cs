@@ -1,6 +1,6 @@
 // =================================================================================================
 //    Author: Tomas "NewTwoToss" Szilagyi
-//    Date: 02.05.2021
+//    Date: 11.05.2021
 // =================================================================================================
 
 using Plugins.GameUIBuilder.Editor.Scripts.Creators;
@@ -11,38 +11,18 @@ using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 {
-    public class RectTransformNode : BaseNodeComponent
+    public class TextNode : BaseNodeComponent
     {
-        private readonly RectTransformDrawer _drawer;
-        private readonly RectTransformCreator _creator;
+        private readonly TextDrawer _drawer;
+        private readonly TextCreator _creator;
 
         public override BaseDrawer Drawer => _drawer;
 
-        public RectTransformNode(Rect rect, DTestScriptable data) : base(data)
+        public TextNode(Rect rect, DTestScriptable data) : base(data)
         {
-            _drawer = new RectTransformDrawer(rect, data);
-            _creator = new RectTransformCreator();
+            _drawer = new TextDrawer(rect, data);
+            _creator = new TextCreator();
         }
-
-        /*public override void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
-        {
-            if (_drawer.Rect.y > shiftLimitY)
-            {
-                _drawer.ShiftUp(countDeleteNodes);
-            }
-
-            base.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
-        }
-
-        public override void CheckPositionYAndShiftDown(float shiftLimitY)
-        {
-            if (_drawer.Rect.y > shiftLimitY)
-            {
-                _drawer.ShiftDown();
-            }
-
-            base.CheckPositionYAndShiftDown(shiftLimitY);
-        }*/
 
         public override void SetParent(RectTransform parent)
         {

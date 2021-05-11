@@ -23,8 +23,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             _drawer = new ButtonDrawer(rect, data);
             _creator = new ButtonCreator();
         }
-        
-        public override void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
+
+        /*public override void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
         {
             if (_drawer.Rect.y > shiftLimitY)
             {
@@ -42,7 +42,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             }
 
             base.CheckPositionYAndShiftDown(shiftLimitY);
-        }
+        }*/
 
         public override void SetParent(RectTransform parent)
         {

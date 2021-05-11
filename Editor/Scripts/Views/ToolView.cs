@@ -134,7 +134,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
                     menu.AddItem(new GUIContent("Add Button"),
                         false, AddButton);
                     menu.AddItem(new GUIContent("Add Text"),
-                        false, AddButton);
+                        false, AddText);
                 }
                 else
                 {
@@ -146,12 +146,12 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
 
                 menu.AddSeparator(string.Empty);
 
-                menu.AddItem(new GUIContent("Add Grid Layout"),
-                    false, AddVerticalLayout);
                 menu.AddItem(new GUIContent("Add Vertical Layout"),
                     false, AddVerticalLayout);
                 menu.AddItem(new GUIContent("Add Horizontal Layout"),
                     false, AddHorizontalLayout);
+                menu.AddItem(new GUIContent("Add Grid Layout"),
+                    false, AddGridLayout);
             }
 
             menu.ShowAsContext();
@@ -191,6 +191,9 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
 
         private void AddText()
         {
+            var newNodeRect = Data.CurrentNode.GetRectForNewNode();
+            var newNode = new TextNode(newNodeRect, Data);
+            AddNewNode(newNode, newNodeRect);
         }
 
         private void AddNewNode(BaseNodeComponent newNode, Rect newNodeRect)
@@ -205,13 +208,21 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
         {
             var newDecoratorRect = Data.CurrentNode.GetRectForNewDecorator();
             var newDecorator = new VerticalLayoutDecorator(newDecoratorRect, Data);
-
             AddNewDecorator(newDecorator);
         }
 
         private void AddHorizontalLayout()
         {
-            Debug.Log("[TOOL] Click");
+            var newDecoratorRect = Data.CurrentNode.GetRectForNewDecorator();
+            var newDecorator = new HorizontalLayoutDecorator(newDecoratorRect, Data);
+            AddNewDecorator(newDecorator);
+        }
+        
+        private void AddGridLayout()
+        {
+            var newDecoratorRect = Data.CurrentNode.GetRectForNewDecorator();
+            var newDecorator = new GridLayoutDecorator(newDecoratorRect, Data);
+            AddNewDecorator(newDecorator);
         }
 
         private void AddNewDecorator(BaseNodeComponent newDecorator)

@@ -81,15 +81,15 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
             rect = new Rect(_superNodePosition.x + 2 * _nodeShiftHorizontal,
                 _superNodePosition.y + 2 * _nodeShiftVertical, _nodeWidth, _nodeHeight);
-            BaseNodeComponent nodeLevel2 = new ButtonNode(rect, this);
+            BaseNodeComponent nodeLevel2 = new ImageNode(rect, this);
             nodeLevel1.AddNode(nodeLevel2);
 
             rect = new Rect(_superNodePosition.x + 2 * _nodeShiftHorizontal,
                 _superNodePosition.y + 3 * _nodeShiftVertical, _nodeWidth, _nodeHeight);
-            nodeLevel2 = new ImageNode(rect, this);
+            nodeLevel2 = new ButtonNode(rect, this);
             nodeLevel1.AddNode(nodeLevel2);
 
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < 3; i++)
             {
                 rect = new Rect(_superNodePosition.x + _nodeShiftHorizontal,
                     _superNodePosition.y + (4 + i) * _nodeShiftVertical, _nodeWidth, _nodeHeight);

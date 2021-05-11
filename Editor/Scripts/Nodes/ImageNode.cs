@@ -23,8 +23,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             _drawer = new ImageDrawer(rect, data);
             _creator = new ImageCreator();
         }
-        
-        public override void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
+
+        /*public override void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
         {
             if (_drawer.Rect.y > shiftLimitY)
             {
@@ -42,7 +42,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             }
 
             base.CheckPositionYAndShiftDown(shiftLimitY);
-        }
+        }*/
 
         public override void SetParent(RectTransform parent)
         {
@@ -58,7 +58,5 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             CreateDecorators(getProduct);
             CreateGameUINodes(getProduct);
         }
-        
-
     }
 }

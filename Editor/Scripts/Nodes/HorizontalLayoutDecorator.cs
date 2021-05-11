@@ -1,6 +1,6 @@
 // =================================================================================================
 //    Author: Tomas "NewTwoToss" Szilagyi
-//    Date: 06.05.2021
+//    Date: 11.05.2021
 // =================================================================================================
 
 using Plugins.GameUIBuilder.Editor.Scripts.Creators;
@@ -11,38 +11,18 @@ using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 {
-    public class VerticalLayoutDecorator : BaseNodeComponent
+    public class HorizontalLayoutDecorator : BaseNodeComponent
     {
-        private readonly VerticalLayoutDrawer _drawer;
-        private readonly VerticalLayoutCreator _creator;
+        private readonly HorizontalLayoutDrawer _drawer;
+        private readonly HorizontalLayoutCreator _creator;
         
         public override BaseDrawer Drawer => _drawer;
 
-        public VerticalLayoutDecorator(Rect rect, DTestScriptable data) : base(data)
+        public HorizontalLayoutDecorator(Rect rect, DTestScriptable data) : base(data)
         {
-            _drawer = new VerticalLayoutDrawer(rect, data);
-            _creator = new VerticalLayoutCreator();
+            _drawer = new HorizontalLayoutDrawer(rect, data);
+            _creator = new HorizontalLayoutCreator();
         }
-        
-        /*public override void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
-        {
-            if (_drawer.Rect.y > shiftLimitY)
-            {
-                _drawer.ShiftUp(countDeleteNodes);
-            }
-
-            base.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
-        }
-
-        public override void CheckPositionYAndShiftDown(float shiftLimitY)
-        {
-            if (_drawer.Rect.y > shiftLimitY)
-            {
-                _drawer.ShiftDown();
-            }
-
-            base.CheckPositionYAndShiftDown(shiftLimitY);
-        }*/
         
         public override void SetParent(RectTransform parent)
         {

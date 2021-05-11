@@ -11,13 +11,15 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
     public class ControlPanelView : BaseView
     {
         private bool _initialized;
-        private Color _colorCreateButton = new Color(72.0f, 208.0f, 72.0f);
+        private Color _colorClearButton;
+        private Color _colorCreateButton;
 
         public override void DrawGUI(Rect pRect)
         {
             if (!_initialized)
             {
-                _colorCreateButton = new Color(0.1f, 1.0f, 0.1f);
+                _colorClearButton = new Color(1.0f, 0.2f, 0.2f);
+                _colorCreateButton = new Color(0.0f, 1.0f, 0.0f);
                 _initialized = true;
             }
             
@@ -36,7 +38,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
         private void DrawClearButton(Rect rect)
         {
             GUI.enabled = true;
-            GUI.color = Color.red;
+            GUI.color = _colorClearButton;
             if (GUI.Button(new Rect(rect.x + 4, rect.y + 32, 100, 30), "Clear"))
             {
                 Data.ResetTool();

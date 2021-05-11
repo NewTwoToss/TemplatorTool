@@ -10,6 +10,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
     public abstract class BaseDrawer
     {
         protected const int MAX_NUMBER_VALUE = 9_999;
+        protected const int MAX_TEXT_FIELD_LENGTH = 20;
 
         protected Rect rect;
         protected readonly DTestScriptable data;
@@ -49,6 +50,15 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
                 data._skin.GetStyle("NodeTitle"));
 
             GUI.color = Color.white;
+        }
+        
+        protected virtual void DrawBody(string labelText)
+        {
+            var rectPosition = new Vector2(rect.x + 10, rect.y + 20);
+            var rectSize = new Vector2(180, 40);
+            GUI.Label(new Rect(rectPosition, rectSize),
+                labelText,
+                data._skin.GetStyle("NodeText"));
         }
 
         public void ShiftUp(int countDeleteNodes)

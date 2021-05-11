@@ -36,16 +36,16 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             var icon = new GUIContent(EditorGUIUtility.IconContent("d_PlayButton On")).image;
             DrawNodeTitle(icon, index, level);
 
-            DrawBody();
+            DrawBody("Ref.: NULL!");
         }
 
-        private void DrawBody()
+        protected override void DrawBody(string labelText)
         {
             if (Source is null)
             {
                 GUI.color = _errorColor;
                 GUI.Label(new Rect(new Vector2(rect.x + 10, rect.y + 20),
-                    new Vector2(180, 40)), "Ref.: NULL!", data._skin.GetStyle("NodeText"));
+                    new Vector2(180, 40)), labelText, data._skin.GetStyle("NodeText"));
             }
             else
             {
