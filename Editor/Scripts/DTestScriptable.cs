@@ -103,5 +103,11 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
             SourceNode.Clear();
             Init();
         }
+
+        public void ResetSelection()
+        {
+            IsSelection = false;
+            SelectedNode = null;
+        }
     }
 }

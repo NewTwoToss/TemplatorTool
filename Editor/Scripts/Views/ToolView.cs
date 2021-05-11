@@ -161,6 +161,11 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
         {
             var indexDelete = Data.CurrentNode.Index;
             Data.SourceNode.Delete(indexDelete);
+
+            if (Data.SelectedNode.Index == indexDelete)
+            {
+                Data.ResetSelection();
+            }
         }
 
         private void AddRectTransform()
