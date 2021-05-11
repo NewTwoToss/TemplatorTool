@@ -4,6 +4,7 @@
 // =================================================================================================
 
 using Plugins.GameUIBuilder.Editor.ComponentProperties;
+using Plugins.GameUIBuilder.Editor.Drawers.Base;
 using UnityEditor;
 using UnityEngine;
 
@@ -25,7 +26,7 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
         {
             Source = null;
             nodeBackgroundColor = new Color(0.8f, 0.6f, 0.0f);
-            _errorColor = new Color(0.8f, 0.16f, 0.16f);
+            _errorColor = new Color(1.0f, 0.16f, 0.16f);
         }
 
         public override void DrawNode()
@@ -58,7 +59,7 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
         public override void DrawInspector()
         {
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Parent:");
+            GUILayout.Label("Parent");
             Source = (RectTransform) EditorGUILayout
                 .ObjectField(Source, typeof(RectTransform), true);
             GUILayout.EndHorizontal();

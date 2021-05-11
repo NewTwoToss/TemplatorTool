@@ -6,6 +6,8 @@
 using System;
 using Plugins.GameUIBuilder.Editor.Creators;
 using Plugins.GameUIBuilder.Editor.Drawers;
+using Plugins.GameUIBuilder.Editor.Drawers.Base;
+using Plugins.GameUIBuilder.Editor.Nodes.Base;
 using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Nodes
@@ -42,6 +44,11 @@ namespace Plugins.GameUIBuilder.Editor.Nodes
             var isChildCountZero = nodes.Count == 0;
 
             return !isSourceNull && !isChildCountZero;
+        }
+
+        public override bool CanBeDeleted()
+        {
+            return false;
         }
     }
 }

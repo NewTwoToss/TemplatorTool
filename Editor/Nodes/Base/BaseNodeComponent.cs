@@ -6,10 +6,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Plugins.GameUIBuilder.Editor.Drawers;
+using Plugins.GameUIBuilder.Editor.Drawers.Base;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Nodes
+namespace Plugins.GameUIBuilder.Editor.Nodes.Base
 {
     [Serializable]
     public abstract class BaseNodeComponent
@@ -174,6 +174,11 @@ namespace Plugins.GameUIBuilder.Editor.Nodes
             var lastNode = nodes[nodes.Count - 1];
 
             return lastNode.GetLastChildRectY();
+        }
+
+        public virtual bool CanBeDeleted()
+        {
+            return true;
         }
     }
 }

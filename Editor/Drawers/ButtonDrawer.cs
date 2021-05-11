@@ -4,6 +4,7 @@
 // =================================================================================================
 
 using Plugins.GameUIBuilder.Editor.ComponentProperties;
+using Plugins.GameUIBuilder.Editor.Drawers.Base;
 using UnityEditor;
 using UnityEngine;
 
@@ -54,17 +55,17 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
         public override void DrawInspector()
         {
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Name:");
+            GUILayout.Label("Name");
             Name = GUILayout.TextField(Name, 25);
             GUILayout.EndHorizontal();
 
-            GUILayout.Space(10);
+            GUISpaceBig();
 
-            Width = Mathf.Clamp(EditorGUILayout.IntField("Width:", Width), 2, MAX_NUMBER_VALUE);
+            Width = Mathf.Clamp(EditorGUILayout.IntField("Width", Width), 2, MAX_NUMBER_VALUE);
 
-            GUILayout.Space(4);
+            GUISpaceSmall();
             
-            Height = Mathf.Clamp(EditorGUILayout.IntField("Height:", Height), 2, MAX_NUMBER_VALUE);
+            Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
         }
     }
 }

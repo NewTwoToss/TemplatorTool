@@ -4,6 +4,7 @@
 // =================================================================================================
 
 using Plugins.GameUIBuilder.Editor.ComponentProperties;
+using Plugins.GameUIBuilder.Editor.Drawers.Base;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,8 +20,12 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
 
         public int Height { get; private set; }
 
+        public Sprite SourceImage { get; private set; }
+
         public Color Color { get; private set; }
 
+        public bool SetNativeSize { get; private set; }
+        
 #endregion
 
         public override string Type => "Image";
@@ -52,47 +57,37 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
             GUI.Label(new Rect(rectPosition, rectSize),
                 labelText,
                 data._skin.GetStyle("NodeText"));
-
-            /*var texture = GetSolidColorTexture(Color);
-
-            GUI.DrawTexture(new Rect(rect.x + 2, rect.y + 20, 16, 16),
-                texture);*/
-        }
-
-        private Texture2D GetSolidColorTexture(Color color)
-        {
-            var texture = new Texture2D(16, 16);
-            for (var i = 0; i < 16; i++)
-            {
-                for (var j = 0; j < 16; j++)
-                {
-                    texture.SetPixel(i, j, Color);
-                }
-            }
-
-            texture.Apply();
-
-            return texture;
         }
 
         public override void DrawInspector()
         {
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Name:");
+            GUILayout.Label("Name");
             Name = GUILayout.TextField(Name, 25);
             GUILayout.EndHorizontal();
 
-            GUILayout.Space(10);
+            GUISpaceBig();
 
-            Width = Mathf.Clamp(EditorGUILayout.IntField("Width:", Width), 2, MAX_NUMBER_VALUE);
+            Width = Mathf.Clamp(EditorGUILayout.IntField("Width", Width), 2, MAX_NUMBER_VALUE);
 
-            GUILayout.Space(4);
+            GUISpaceSmall();
 
-            Height = Mathf.Clamp(EditorGUILayout.IntField("Height:", Height), 2, MAX_NUMBER_VALUE);
+            Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
 
-            GUILayout.Space(4);
+            GUISpaceSmall();
 
-            Color = EditorGUILayout.ColorField("Color:", Color);
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("Source Image");
+            SourceImage = (Sprite) EditorGUILayout.ObjectField(SourceImage, typeof(Sprite), true);
+            GUILayout.EndHorizontal();
+
+            GUISpaceSmall();
+
+            Color = EditorGUILayout.ColorField("Color", Color);
+
+            GUISpaceSmall();
+
+            SetNativeSize = EditorGUILayout.Toggle("Set Native Size", SetNativeSize);
         }
     }
 }

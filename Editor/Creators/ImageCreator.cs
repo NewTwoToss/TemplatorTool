@@ -29,7 +29,11 @@ namespace Plugins.GameUIBuilder.Editor.Creators
             rt.sizeDelta = new Vector2(Properties.Width, Properties.Height);
 
             var img = go.AddComponent<Image>();
+            img.sprite = Properties.SourceImage;
             img.color = Properties.Color;
+
+            if (Properties.SetNativeSize)
+                img.SetNativeSize();
 
             Product = rt;
         }

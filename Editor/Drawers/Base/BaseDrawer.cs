@@ -5,12 +5,12 @@
 
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Drawers
+namespace Plugins.GameUIBuilder.Editor.Drawers.Base
 {
     public abstract class BaseDrawer
     {
         protected const int MAX_NUMBER_VALUE = 9_999;
-        
+
         protected Rect rect;
         protected readonly DTestScriptable data;
         protected Color nodeBackgroundColor = new Color(1.0f, 1.0f, 1.0f);
@@ -56,5 +56,9 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
             var newRect = new Rect(newRectPosition, rect.size);
             rect = newRect;
         }
+
+        protected void GUISpaceSmall() => GUILayout.Space(4);
+
+        protected void GUISpaceBig() => GUILayout.Space(10);
     }
 }

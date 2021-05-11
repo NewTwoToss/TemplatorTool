@@ -6,7 +6,7 @@
 using Dash;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Views
+namespace Plugins.GameUIBuilder.Editor.Views.Base
 {
     public abstract class BaseView
     {

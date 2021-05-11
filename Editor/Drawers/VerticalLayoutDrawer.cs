@@ -4,6 +4,7 @@
 // =================================================================================================
 
 using Plugins.GameUIBuilder.Editor.ComponentProperties;
+using Plugins.GameUIBuilder.Editor.Drawers.Base;
 using UnityEditor;
 using UnityEngine;
 
@@ -35,7 +36,8 @@ namespace Plugins.GameUIBuilder.Editor.Drawers
 
         public override void DrawInspector()
         {
-            Spacing = Mathf.Clamp(EditorGUILayout.IntField("Spacing:", Spacing), 0, 10_000);
+            Spacing = Mathf
+                .Clamp(EditorGUILayout.IntField("Spacing", Spacing), 0, MAX_NUMBER_VALUE);
         }
     }
 }

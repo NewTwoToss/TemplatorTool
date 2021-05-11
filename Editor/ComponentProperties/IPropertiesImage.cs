@@ -15,6 +15,10 @@ namespace Plugins.GameUIBuilder.Editor.ComponentProperties
 
         int Height { get; }
 
+        Sprite SourceImage { get; }
+
         Color Color { get; }
+
+        bool SetNativeSize { get; }
     }
 }

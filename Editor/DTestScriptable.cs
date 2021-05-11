@@ -4,6 +4,7 @@
 // =================================================================================================
 
 using Plugins.GameUIBuilder.Editor.Nodes;
+using Plugins.GameUIBuilder.Editor.Nodes.Base;
 using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor

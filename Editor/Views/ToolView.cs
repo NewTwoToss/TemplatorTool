@@ -4,6 +4,8 @@
 // =================================================================================================
 
 using Plugins.GameUIBuilder.Editor.Nodes;
+using Plugins.GameUIBuilder.Editor.Nodes.Base;
+using Plugins.GameUIBuilder.Editor.Views.Base;
 using UnityEditor;
 using UnityEngine;
 
@@ -27,14 +29,14 @@ namespace Plugins.GameUIBuilder.Editor.Views
             DrawBackground(pRect);
 
             var viewRectY = Data.SourceNode.GetLastChildRectY() + 200;
-            
-            _scrollPosition = GUI.BeginScrollView(new Rect(0, 0, pRect.width, pRect.height), 
-                _scrollPosition, 
+
+            _scrollPosition = GUI.BeginScrollView(new Rect(0, 0, pRect.width, pRect.height),
+                _scrollPosition,
                 new Rect(0, 0, pRect.width - 20, viewRectY));
-            
+
             Data.SourceNode.DrawGUI();
             DrawOutline();
-            
+
             GUI.EndScrollView();
         }
 
@@ -112,27 +114,30 @@ namespace Plugins.GameUIBuilder.Editor.Views
         private void ContextMenu()
         {
             var menu = new GenericMenu();
-            menu.AddItem(new GUIContent("Delete Node"), false, DeleteNode);
-            
-            menu.AddSeparator(string.Empty);
-            
+
+            if (Data.CurrentNode.CanBeDeleted())
+            {
+                menu.AddItem(new GUIContent("Delete Node"), false, DeleteNode);
+                menu.AddSeparator(string.Empty);
+            }
+
             menu.AddItem(new GUIContent("Add RectTransform"), false, AddRectTransform);
             menu.AddItem(new GUIContent("Add Image"), false, AddImage);
             menu.AddItem(new GUIContent("Add Button"), false, AddButton);
             menu.AddItem(new GUIContent("Add Text"), false, AddButton);
-            
+
             menu.AddSeparator(string.Empty);
-           
+
             menu.AddItem(new GUIContent("Add Grid Layout"), false, AddVerticalLayout);
             menu.AddItem(new GUIContent("Add Vertical Layout"), false, AddVerticalLayout);
             menu.AddItem(new GUIContent("Add Horizontal Layout"), false, AddHorizontalLayout);
-            
+
             menu.ShowAsContext();
         }
 
         private void DeleteNode()
         {
-            Debug.Log("[TOOL] Click");
+            Debug.Log("[TOOL] Click DeleteNode");
         }
 
         private void AddRectTransform()

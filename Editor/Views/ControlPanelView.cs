@@ -3,6 +3,7 @@
 //    Date: 02.05.2021
 // =================================================================================================
 
+using Plugins.GameUIBuilder.Editor.Views.Base;
 using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Views
@@ -16,7 +17,7 @@ namespace Plugins.GameUIBuilder.Editor.Views
         {
             if (!_initialized)
             {
-                _colorCreateButton = new Color(0.4f, 1.0f, 0.4f);
+                _colorCreateButton = new Color(0.1f, 1.0f, 0.1f);
                 _initialized = true;
             }
             

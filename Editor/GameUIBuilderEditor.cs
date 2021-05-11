@@ -5,6 +5,7 @@
 
 using System.Collections.Generic;
 using Plugins.GameUIBuilder.Editor.Views;
+using Plugins.GameUIBuilder.Editor.Views.Base;
 using UnityEditor;
 using UnityEngine;
 

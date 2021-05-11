@@ -3,6 +3,7 @@
 //    Date: 10.05.2021
 // =================================================================================================
 
+using Plugins.GameUIBuilder.Editor.Views.Base;
 using UnityEditor;
 using UnityEngine;
 
