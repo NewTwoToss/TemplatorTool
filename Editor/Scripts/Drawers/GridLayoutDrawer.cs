@@ -20,7 +20,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
         public override string Type => "Grid Layout";
 
-        public GridLayoutDrawer(Rect rect, DTestScriptable data) : base(rect, data)
+        public GridLayoutDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Spacing = Vector2.zero;
         }

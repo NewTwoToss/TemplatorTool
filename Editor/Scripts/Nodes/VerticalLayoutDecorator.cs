@@ -18,7 +18,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
         
         public override BaseDrawer Drawer => _drawer;
 
-        public VerticalLayoutDecorator(Rect rect, DTestScriptable data) : base(data)
+        public VerticalLayoutDecorator(Rect rect, DTossCreator data) : base(data)
         {
             _drawer = new VerticalLayoutDrawer(rect, data);
             _creator = new VerticalLayoutCreator();

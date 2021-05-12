@@ -24,10 +24,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
 #endregion
 
-        public ButtonDrawer(Rect rect, DTestScriptable data) : base(rect, data)
+        public ButtonDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Name = "BtnName";
-            Width = 100;
+            Width = data.DefaultValues.ButtonWidth;
             Height = 40;
             nodeBackgroundColor = new Color(0.7f, 1.0f, 1.0f);
         }

@@ -18,7 +18,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public TextNode(Rect rect, DTestScriptable data) : base(data)
+        public TextNode(Rect rect, DTossCreator data) : base(data)
         {
             _drawer = new TextDrawer(rect, data);
             _creator = new TextCreator();

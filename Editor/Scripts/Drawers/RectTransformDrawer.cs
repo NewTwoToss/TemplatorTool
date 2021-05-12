@@ -20,7 +20,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
         public int Height { get; private set; }
 
-        public RectTransformDrawer(Rect rect, DTestScriptable data) : base(rect, data)
+        public RectTransformDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Name = "RtName";
             Width = 220;

@@ -14,7 +14,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
     [Serializable]
     public abstract class BaseNodeComponent
     {
-        protected readonly DTestScriptable data;
+        protected readonly DTossCreator data;
         protected readonly List<BaseNodeComponent> decorators;
         protected readonly List<BaseNodeComponent> nodes;
 
@@ -24,7 +24,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
 
         public abstract BaseDrawer Drawer { get; }
 
-        protected BaseNodeComponent(DTestScriptable data)
+        protected BaseNodeComponent(DTossCreator data)
         {
             this.data = data;
             Index = data.NodeIndex;
@@ -165,44 +165,15 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
 
             if (decorators.Count == 0)
             {
-                var vector = new Vector2(
+                var position = new Vector2(
                     baseRect.x + baseRect.width + data._decoratorShiftHorizontal,
                     baseRect.y);
-                var rect1 = new Rect(vector,
-                    new Vector2(baseRect.width - 40, baseRect.height - 10));
-                return rect1;
+                var rectNewDecorator = new Rect(position, data.DrawValues.DecoratorSize);
+                return rectNewDecorator;
             }
 
             return Drawer.Rect;
         }
-
-        /*public virtual void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
-        {
-            if (decorators.Count != 0)
-            {
-                foreach (var decorator in decorators)
-                    decorator.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
-            }
-
-            if (nodes.Count == 0) return;
-
-            foreach (var node in nodes)
-                node.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
-        }*/
-
-        /*public virtual void CheckPositionYAndShiftDown(float shiftLimitY)
-        {
-            if (decorators.Count != 0)
-            {
-                foreach (var decorator in decorators)
-                    decorator.CheckPositionYAndShiftDown(shiftLimitY);
-            }
-
-            if (nodes.Count == 0) return;
-
-            foreach (var node in nodes)
-                node.CheckPositionYAndShiftDown(shiftLimitY);
-        }*/
 
         public float GetLastChildRectY()
         {

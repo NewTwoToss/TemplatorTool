@@ -43,7 +43,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
             mainWindow.Show();
         }
 
-        private static DTestScriptable _rules;
+        private static DTossCreator _rules;
 
         private static void InitializeTool()
         {
@@ -64,9 +64,9 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
             /*var pathImages = pathValidatorSettings.Replace("ValidatorSettings.asset", "Images/");
             InitializeIconsAndStyles(pathImages);*/
 
-            _rules = (DTestScriptable) AssetDatabase.LoadAssetAtPath(
+            _rules = (DTossCreator) AssetDatabase.LoadAssetAtPath(
                 pathValidatorSettings,
-                typeof(DTestScriptable));
+                typeof(DTossCreator));
             _rules.Init();
         }
 

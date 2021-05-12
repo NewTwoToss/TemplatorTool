@@ -20,7 +20,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public SourceNode(Rect rect, DTestScriptable data) : base(data)
+        public SourceNode(Rect rect, DTossCreator data) : base(data)
         {
             Level = 0;
             _drawer = new SourceDrawer(rect, data);

@@ -26,7 +26,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
 #endregion
 
-        public TextDrawer(Rect rect, DTestScriptable data) : base(rect, data)
+        public TextDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Name = "TxtName";
             Width = 100;

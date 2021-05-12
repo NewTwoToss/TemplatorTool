@@ -30,7 +30,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
         public override string Type => "Image";
 
-        public ImageDrawer(Rect rect, DTestScriptable data) : base(rect, data)
+        public ImageDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Name = "ImgName";
             Width = 100;

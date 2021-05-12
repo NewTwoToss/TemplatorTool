@@ -13,14 +13,14 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
         protected const int MAX_TEXT_FIELD_LENGTH = 28;
 
         protected Rect rect;
-        protected readonly DTestScriptable data;
+        protected readonly DTossCreator data;
         protected Color nodeBackgroundColor = new Color(1.0f, 1.0f, 1.0f);
 
         public abstract string Type { get; }
 
         public Rect Rect => rect;
 
-        protected BaseDrawer(Rect rect, DTestScriptable data)
+        protected BaseDrawer(Rect rect, DTossCreator data)
         {
             this.rect = rect;
             this.data = data;

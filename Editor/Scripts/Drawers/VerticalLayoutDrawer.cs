@@ -20,7 +20,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
         public override string Type => "Vertical Layout";
 
-        public VerticalLayoutDrawer(Rect rect, DTestScriptable data) : base(rect, data)
+        public VerticalLayoutDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Spacing = 0;
         }

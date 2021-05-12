@@ -18,7 +18,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public ImageNode(Rect rect, DTestScriptable data) : base(data)
+        public ImageNode(Rect rect, DTossCreator data) : base(data)
         {
             _drawer = new ImageDrawer(rect, data);
             _creator = new ImageCreator();

@@ -18,7 +18,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public GridLayoutDecorator(Rect rect, DTestScriptable data) : base(data)
+        public GridLayoutDecorator(Rect rect, DTossCreator data) : base(data)
         {
             _drawer = new GridLayoutDrawer(rect, data);
             _creator = new GridLayoutCreator();

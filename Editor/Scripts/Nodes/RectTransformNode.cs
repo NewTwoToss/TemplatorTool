@@ -18,7 +18,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public RectTransformNode(Rect rect, DTestScriptable data) : base(data)
+        public RectTransformNode(Rect rect, DTossCreator data) : base(data)
         {
             _drawer = new RectTransformDrawer(rect, data);
             _creator = new RectTransformCreator();

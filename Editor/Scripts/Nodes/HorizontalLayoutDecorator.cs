@@ -18,7 +18,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
         
         public override BaseDrawer Drawer => _drawer;
 
-        public HorizontalLayoutDecorator(Rect rect, DTestScriptable data) : base(data)
+        public HorizontalLayoutDecorator(Rect rect, DTossCreator data) : base(data)
         {
             _drawer = new HorizontalLayoutDrawer(rect, data);
             _creator = new HorizontalLayoutCreator();

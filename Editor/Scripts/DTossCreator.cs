@@ -3,16 +3,17 @@
 //    Date: 28.04.2021
 // =================================================================================================
 
+using Plugins.GameUIBuilder.Editor.Scripts.Core;
 using Plugins.GameUIBuilder.Editor.Scripts.Nodes;
 using Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base;
 using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Scripts
 {
-    [CreateAssetMenu(fileName = "TossTool",
+    [CreateAssetMenu(fileName = "TossCreatorTool",
         menuName = "TossTool/Create Tool",
         order = 0)]
-    public class DTestScriptable : ScriptableObject
+    public class DTossCreator : ScriptableObject
     {
         [SerializeField]
         private GUISkin _skin;
@@ -34,6 +35,14 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         [Range(10, 100)]
         public int _decoratorShiftHorizontal = 10;
 
+        [Space]
+        [SerializeField]
+        private DrawValues _drawValues;
+
+        [Space]
+        [SerializeField]
+        private DefaultValues _defaultValues;
+
 #region [GETTERS / SETTERS]
 
         public GUISkin Skin => _skin;
@@ -49,6 +58,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         public bool IsSelection { get; set; }
 
         public bool IsRepaint { get; set; }
+
+        public DrawValues DrawValues => _drawValues;
+
+        public DefaultValues DefaultValues => _defaultValues;
 
 #endregion
 
@@ -73,11 +86,9 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
         private void CreateNodes()
         {
-            var rect = new Rect(_sourceNodePosition.x, _sourceNodePosition.y, _nodeWidth,
-                _nodeHeight);
-            SourceNode = new SourceNode(rect, this);
+            SourceNode = new SourceNode(_drawValues.SourceNodeRect, this);
 
-            rect = new Rect(_sourceNodePosition.x + _nodeShiftHorizontal,
+            var rect = new Rect(_sourceNodePosition.x + _nodeShiftHorizontal,
                 _sourceNodePosition.y + _nodeShiftVertical, _nodeWidth, _nodeHeight);
             var nodeLevel1 = new RectTransformNode(rect, this);
             SourceNode.AddNode(nodeLevel1);

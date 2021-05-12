@@ -20,7 +20,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
         public override string Type => "Horizontal Layout";
 
-        public HorizontalLayoutDrawer(Rect rect, DTestScriptable data) : base(rect, data)
+        public HorizontalLayoutDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Spacing = 0;
         }

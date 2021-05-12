@@ -22,7 +22,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
         public override string Type => "Source (Main Parent)";
 
-        public SourceDrawer(Rect rect, DTestScriptable data) : base(rect, data)
+        public SourceDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Source = null;
             nodeBackgroundColor = new Color(0.8f, 0.6f, 0.0f);

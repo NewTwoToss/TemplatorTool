@@ -10,7 +10,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views.Base
 {
     public abstract class BaseView
     {
-        public DTestScriptable Data { get; set; }
+        public DTossCreator Data { get; set; }
 
         public abstract void DrawGUI(Rect pRect);
 
