@@ -22,7 +22,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
         public RectTransformDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
-            Name = "RtName";
+            SerialNumber = data.Counter.GetCount();
+            Name = $"Panel-{SerialNumber:00}";
             Width = data.DefaultValues.RectTransform.Width;
             Height = data.DefaultValues.RectTransform.Height;
             nodeBackgroundColor = data.DefaultValues.RectTransform.NodeColor;
@@ -34,7 +35,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
             var icon = new GUIContent(EditorGUIUtility.IconContent("d_RectTransform Icon")).image;
             DrawNodeTitle(icon, index, level);
-            
+
             var labelText = $"{Name} [{Width}x{Height}]";
             DrawBody(labelText);
         }
@@ -51,7 +52,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             Width = Mathf.Clamp(EditorGUILayout.IntField("Width", Width), 2, MAX_NUMBER_VALUE);
 
             GUISpaceSmall();
-            
+
             Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
         }
     }

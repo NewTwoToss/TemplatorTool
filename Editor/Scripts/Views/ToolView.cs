@@ -112,16 +112,12 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
         private void ContextMenu()
         {
             var menu = new GenericMenu();
+            var currentNode = Data.CurrentNode;
+            var isDecorator = currentNode.IsDecorator();
 
-            if (Data.CurrentNode.CanBeDeleted())
+            if (!isDecorator)
             {
-                menu.AddItem(new GUIContent("Delete Node"), false, DeleteNode);
-                menu.AddSeparator(string.Empty);
-            }
-
-            if (!Data.CurrentNode.IsDecorator())
-            {
-                if (Data.CurrentNode.Level < MAX_LEVEL_CREATE_COMPONENTS)
+                if (currentNode.Level < MAX_LEVEL_CREATE_COMPONENTS)
                 {
                     menu.AddItem(new GUIContent("Add RectTransform"),
                         false, AddRectTransform);
@@ -150,6 +146,16 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
                     false, AddGridLayout);
             }
 
+            if (currentNode.CanBeDeleted())
+            {
+                if (!isDecorator)
+                {
+                    menu.AddSeparator(string.Empty);
+                }
+
+                menu.AddItem(new GUIContent("Delete Node"), false, DeleteNode);
+            }
+
             menu.ShowAsContext();
         }
 
@@ -157,6 +163,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
         {
             var indexDelete = Data.CurrentNode.Index;
             Data.SourceNode.Delete(indexDelete);
+
+            if (!Data.IsSelection) return;
 
             if (Data.SelectedNode.Index == indexDelete)
             {
@@ -213,7 +221,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
             var newDecorator = new HorizontalLayoutDecorator(newDecoratorRect, Data);
             AddNewDecorator(newDecorator);
         }
-        
+
         private void AddGridLayout()
         {
             var newDecoratorRect = Data.CurrentNode.GetRectForNewDecorator();

@@ -44,6 +44,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
         public DefaultValues DefaultValues => _defaultValues;
 
+        public ComponentCounter Counter { get; private set; }
+
 #endregion
 
 #region [PRIVATE]
@@ -61,6 +63,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
             CurrentNode = null;
             IsSelection = false;
             IsRepaint = false;
+
+            Counter = new ComponentCounter();
 
             CreateNodes();
         }

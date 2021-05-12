@@ -24,26 +24,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             _creator = new RectTransformCreator();
         }
 
-        /*public override void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
-        {
-            if (_drawer.Rect.y > shiftLimitY)
-            {
-                _drawer.ShiftUp(countDeleteNodes);
-            }
-
-            base.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
-        }
-
-        public override void CheckPositionYAndShiftDown(float shiftLimitY)
-        {
-            if (_drawer.Rect.y > shiftLimitY)
-            {
-                _drawer.ShiftDown();
-            }
-
-            base.CheckPositionYAndShiftDown(shiftLimitY);
-        }*/
-
         public override void SetParent(RectTransform parent)
         {
             _creator.Parent = parent;
@@ -57,6 +37,14 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
             CreateDecorators(getProduct);
             CreateGameUINodes(getProduct);
+        }
+
+        public override void Delete(int indexDelete)
+        {
+            var serialNumber = _drawer.SerialNumber; // TODO: Tu je problem!
+            data.Counter.DecreaseCountRectTransform(serialNumber);
+
+            base.Delete(indexDelete);
         }
     }
 }

@@ -197,7 +197,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
             return false;
         }
 
-        public void Delete(int indexDelete)
+        public virtual void Delete(int indexDelete)
         {
             foreach (var node in nodes)
             {
@@ -231,7 +231,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
 
             return 1 + nodes.Sum(node => node.GetCountNodes());
         }
-        
+
         public void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
         {
             if (Drawer.Rect.y > shiftLimitY)
@@ -250,7 +250,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
             foreach (var node in nodes)
                 node.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
         }
-        
+
         public void CheckPositionYAndShiftDown(float shiftLimitY)
         {
             if (Drawer.Rect.y > shiftLimitY)
