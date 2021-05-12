@@ -13,15 +13,32 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Core
     {
 #region [INSPECTOR]
 
-        [SerializeField, Range(10, 1_000)]
-        private int _buttonWidth = 100;
+        [SerializeField]
+        private ComponentDefaultValues _rectTransform;
+        
+        [SerializeField]
+        private ComponentDefaultValues _image;
+
+        [SerializeField]
+        private ComponentDefaultValues _text;
+        
+        [SerializeField]
+        private ComponentDefaultValues _button;
 
 #endregion
 
 #region [GETTERS]
 
-        public int ButtonWidth => _buttonWidth;
+
 
 #endregion
+
+        public ComponentDefaultValues RectTransform => _rectTransform;
+
+        public ComponentDefaultValues Image => _image;
+
+        public ComponentDefaultValues Text => _text;
+
+        public ComponentDefaultValues Button => _button;
     }
 }

@@ -21,6 +21,15 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Core
         
         [SerializeField]
         private Vector2Int _decoratorSize;
+        
+        [Space, SerializeField, Range(40, 100)]
+        public int _nodeShiftVertical = 80;
+
+        [SerializeField, Range(40, 100)]
+        public int _nodeShiftHorizontal = 40;
+
+        [SerializeField, Range(10, 100)]
+        public int _decoratorShiftHorizontal = 20;
 
 #endregion
 
@@ -32,9 +41,14 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Core
 
         public Vector2Int DecoratorSize => _decoratorSize;
         
+        public int NodeShiftVertical => _nodeShiftVertical;
+
+        public int NodeShiftHorizontal => _nodeShiftHorizontal;
+
+        public int DecoratorShiftHorizontal => _decoratorShiftHorizontal;
+        
 #endregion
 
         public Rect SourceNodeRect => new Rect(_sourceNodePosition, _nodeSize);
-
     }
 }

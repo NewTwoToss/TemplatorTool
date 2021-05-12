@@ -51,11 +51,11 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
 
             GUI.color = Color.white;
         }
-        
+
         protected virtual void DrawBody(string labelText)
         {
             var rectPosition = new Vector2(rect.x + 10, rect.y + 20);
-            var rectSize = new Vector2(180, 40);
+            var rectSize = new Vector2(rect.width - 20, 40);
             GUI.Label(new Rect(rectPosition, rectSize),
                 labelText,
                 data.Skin.GetStyle("NodeText"));
@@ -63,7 +63,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
 
         public void ShiftUp(int countDeleteNodes)
         {
-            var newRectPositionY = rect.y - countDeleteNodes * data._nodeShiftVertical;
+            var newRectPositionY = rect.y - countDeleteNodes * data.DrawValues.NodeShiftVertical;
             var newRectPosition = new Vector2(rect.x, newRectPositionY);
             var newRect = new Rect(newRectPosition, rect.size);
             rect = newRect;
@@ -71,7 +71,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
 
         public void ShiftDown()
         {
-            var newRectPosition = new Vector2(rect.x, rect.y + data._nodeShiftVertical);
+            var newRectPosition = new Vector2(rect.x, rect.y + data.DrawValues.NodeShiftVertical);
             var newRect = new Rect(newRectPosition, rect.size);
             rect = newRect;
         }

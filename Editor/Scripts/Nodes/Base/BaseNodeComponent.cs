@@ -44,7 +44,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
             decorators.Add(decorator);
         }
 
-        public void DrawGUI()
+        public void Draw()
         {
             Drawer.DrawNode(Index, Level);
 
@@ -52,7 +52,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
             {
                 foreach (var decorator in decorators)
                 {
-                    decorator.DrawGUI();
+                    decorator.Draw();
                 }
             }
 
@@ -60,7 +60,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
 
             foreach (var node in nodes)
             {
-                node.DrawGUI();
+                node.Draw();
             }
         }
 
@@ -142,18 +142,20 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
         public Rect GetRectForNewNode()
         {
             var baseRect = Drawer.Rect;
+            var nodeShiftHorizontal = data.DrawValues.NodeShiftHorizontal;
+            var nodeShiftVertical = data.DrawValues.NodeShiftVertical;
 
             if (nodes.Count == 0)
             {
-                var vector = new Vector2(baseRect.x + data._nodeShiftHorizontal,
-                    baseRect.y + data._nodeShiftVertical);
+                var vector = new Vector2(baseRect.x + nodeShiftHorizontal,
+                    baseRect.y + nodeShiftVertical);
                 var rect1 = new Rect(vector, baseRect.size);
                 return rect1;
             }
 
             var lastNode = nodes[nodes.Count - 1];
             var lastNodeRect = lastNode.Drawer.Rect;
-            var test = GetLastChildRectY() + data._nodeShiftVertical;
+            var test = GetLastChildRectY() + nodeShiftVertical;
             var rect2 = new Rect(new Vector2(lastNodeRect.x, test), baseRect.size);
 
             return rect2;
@@ -162,11 +164,12 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
         public Rect GetRectForNewDecorator()
         {
             var baseRect = Drawer.Rect;
+            var decoratorShiftHorizontal = data.DrawValues.DecoratorShiftHorizontal;
 
             if (decorators.Count == 0)
             {
                 var position = new Vector2(
-                    baseRect.x + baseRect.width + data._decoratorShiftHorizontal,
+                    baseRect.x + baseRect.width + decoratorShiftHorizontal,
                     baseRect.y);
                 var rectNewDecorator = new Rect(position, data.DrawValues.DecoratorSize);
                 return rectNewDecorator;

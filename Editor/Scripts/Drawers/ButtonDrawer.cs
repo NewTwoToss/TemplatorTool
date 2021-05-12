@@ -27,9 +27,9 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
         public ButtonDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Name = "BtnName";
-            Width = data.DefaultValues.ButtonWidth;
-            Height = 40;
-            nodeBackgroundColor = new Color(0.7f, 1.0f, 1.0f);
+            Width = data.DefaultValues.Button.Width;
+            Height = data.DefaultValues.Button.Height;
+            nodeBackgroundColor = data.DefaultValues.Button.NodeColor;
         }
 
         public override void DrawNode(int index, int level)

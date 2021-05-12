@@ -36,7 +36,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
                 _scrollPosition,
                 new Rect(0, 0, pRect.width - 20, viewRectY));
 
-            Data.SourceNode.DrawGUI();
+            Data.SourceNode.Draw();
             DrawOutline();
 
             GUI.EndScrollView();
