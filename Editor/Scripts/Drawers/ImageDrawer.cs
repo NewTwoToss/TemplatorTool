@@ -33,10 +33,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
         public ImageDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Name = "ImgName";
-            Width = 100;
-            Height = 40;
+            Width = data.DefaultValues.Image.Width;
+            Height = data.DefaultValues.Image.Height;
             Color = Color.white;
-            nodeBackgroundColor = new Color(0.8f, 0.5f, 0.5f);
+            nodeBackgroundColor = data.DefaultValues.Image.NodeColor;
         }
 
         public override void DrawNode(int index, int level)

@@ -29,10 +29,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
         public TextDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Name = "TxtName";
-            Width = 100;
-            Height = 40;
+            Width = data.DefaultValues.Text.Width;
+            Height = data.DefaultValues.Text.Height;
             Text = "New Text";
-            nodeBackgroundColor = new Color(0.2f, 0.8f, 1.0f);
+            nodeBackgroundColor = data.DefaultValues.Text.NodeColor;
         }
 
         public override void DrawNode(int index, int level)

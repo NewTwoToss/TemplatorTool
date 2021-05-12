@@ -23,9 +23,9 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
         public RectTransformDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Name = "RtName";
-            Width = 220;
-            Height = 100;
-            nodeBackgroundColor = new Color(0.7f, 0.7f, 1.0f);
+            Width = data.DefaultValues.RectTransform.Width;
+            Height = data.DefaultValues.RectTransform.Height;
+            nodeBackgroundColor = data.DefaultValues.RectTransform.NodeColor;
         }
 
         public override void DrawNode(int index, int level)
