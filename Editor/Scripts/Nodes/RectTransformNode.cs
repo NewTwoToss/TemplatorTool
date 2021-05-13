@@ -39,12 +39,5 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             CreateGameUINodes(getProduct);
         }
 
-        public override void Delete(int indexDelete)
-        {
-            var serialNumber = _drawer.SerialNumber; // TODO: Tu je problem!
-            data.Counter.DecreaseCountRectTransform(serialNumber);
-
-            base.Delete(indexDelete);
-        }
     }
 }

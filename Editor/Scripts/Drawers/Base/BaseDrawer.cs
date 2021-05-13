@@ -15,8 +15,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
         protected Rect rect;
         protected readonly DTossCreator data;
         protected Color nodeBackgroundColor = new Color(1.0f, 1.0f, 1.0f);
-
-        public int SerialNumber { get; protected set; }
         
         public abstract string Type { get; }
 

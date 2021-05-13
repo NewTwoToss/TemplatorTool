@@ -61,13 +61,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
             var pathValidatorSettings = AssetDatabase.GUIDToAssetPath(guidValidatorSettings[0]);
 
-            /*var pathImages = pathValidatorSettings.Replace("ValidatorSettings.asset", "Images/");
-            InitializeIconsAndStyles(pathImages);*/
-
             _rules = (DTossCreator) AssetDatabase.LoadAssetAtPath(
                 pathValidatorSettings,
                 typeof(DTossCreator));
-            _rules.Init();
+            _rules.Initialize();
         }
 
         private void OnGUI()

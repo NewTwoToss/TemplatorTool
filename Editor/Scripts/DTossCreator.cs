@@ -18,10 +18,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         [SerializeField]
         private GUISkin _skin;
 
-        [Space, SerializeField]
+        [Space, Header("[DRAW VALUES]"), SerializeField]
         private DrawValues _drawValues;
 
-        [Space, SerializeField]
+        [Space, Header("[DEFAULT VALUES]"), SerializeField]
         private DefaultValues _defaultValues;
 
 #region [GETTERS / SETTERS]
@@ -44,8 +44,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
         public DefaultValues DefaultValues => _defaultValues;
 
-        public ComponentCounter Counter { get; private set; }
-
 #endregion
 
 #region [PRIVATE]
@@ -54,7 +52,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
 #endregion
 
-        public void Init()
+        public void Initialize()
         {
             Debug.Log("DATA :: CORE :: Init()");
 
@@ -63,8 +61,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
             CurrentNode = null;
             IsSelection = false;
             IsRepaint = false;
-
-            Counter = new ComponentCounter();
 
             CreateNodes();
         }
@@ -106,7 +102,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         public void ResetTool()
         {
             SourceNode.Clear();
-            Init();
+            Initialize();
         }
 
         public void ResetSelection()

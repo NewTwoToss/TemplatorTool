@@ -20,10 +20,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
         public int Height { get; private set; }
 
-        public RectTransformDrawer(Rect rect, DTossCreator data) : base(rect, data)
+        public RectTransformDrawer(Rect rect, DTossCreator data)
+            : base(rect, data)
         {
-            SerialNumber = data.Counter.GetCount();
-            Name = $"Panel-{SerialNumber:00}";
+            Name = "RTName";
             Width = data.DefaultValues.RectTransform.Width;
             Height = data.DefaultValues.RectTransform.Height;
             nodeBackgroundColor = data.DefaultValues.RectTransform.NodeColor;
