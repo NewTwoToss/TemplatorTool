@@ -19,6 +19,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties
 
         Color Color { get; }
 
+        bool RaycastTarget { get; }
+        
+        bool Maskable { get; }
+        
         bool SetNativeSize { get; }
     }
 }

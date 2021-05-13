@@ -26,6 +26,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
         public Color Color { get; private set; }
 
+        public bool RaycastTarget { get; private set; }
+        
+        public bool Maskable { get; private set; }
+        
         public bool SetNativeSize { get; private set; }
 
 #endregion
@@ -76,6 +80,14 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
             Color = EditorGUILayout.ColorField("Color", Color);
 
+            GUISpaceSmall();
+
+            RaycastTarget = EditorGUILayout.Toggle("Raycast Target", RaycastTarget);
+            
+            GUISpaceSmall();
+
+            Maskable = EditorGUILayout.Toggle("Maskable", Maskable);
+            
             GUISpaceSmall();
 
             SetNativeSize = EditorGUILayout.Toggle("Set Native Size", SetNativeSize);

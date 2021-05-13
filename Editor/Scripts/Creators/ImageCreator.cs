@@ -31,6 +31,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Creators
             var img = go.AddComponent<Image>();
             img.sprite = Properties.SourceImage;
             img.color = Properties.Color;
+            img.raycastTarget = Properties.RaycastTarget;
+            img.maskable = Properties.Maskable;
 
             if (Properties.SetNativeSize)
                 img.SetNativeSize();
