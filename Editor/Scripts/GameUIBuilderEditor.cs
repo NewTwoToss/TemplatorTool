@@ -43,11 +43,11 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
             mainWindow.Show();
         }
 
-        private static DTossCreator _rules;
+        private static DTossCreator _core;
 
         private static void InitializeTool()
         {
-            if (!(_rules is null)) return;
+            if (!(_core is null)) return;
 
             Debug.Log("[TOOL] InitializeTool()");
             Initialize();
@@ -61,15 +61,15 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
             var pathValidatorSettings = AssetDatabase.GUIDToAssetPath(guidValidatorSettings[0]);
 
-            _rules = (DTossCreator) AssetDatabase.LoadAssetAtPath(
+            _core = (DTossCreator) AssetDatabase.LoadAssetAtPath(
                 pathValidatorSettings,
                 typeof(DTossCreator));
-            _rules.Initialize();
+            _core.Initialize();
         }
 
         private void OnGUI()
         {
-            if (_views == null || _rules == null)
+            if (_views == null || _core == null)
             {
                 CreateViews();
                 InitializeViews();
@@ -80,7 +80,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
             _views.ForEach(v => v.DrawGUI(rectEditor));
             _views.ForEach(v => v.ProcessEvent(Event.current, rectEditor));
 
-            if (!_rules.IsRepaint) return;
+            if (!_core.IsRepaint) return;
 
             Repaint();
             // TODO: Doriesit _rules.IsRepaint = false;
@@ -90,7 +90,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         {
             foreach (var view in _views)
             {
-                view.Data = _rules;
+                view.Data = _core;
             }
         }
 

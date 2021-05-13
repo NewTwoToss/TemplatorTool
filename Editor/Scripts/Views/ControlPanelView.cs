@@ -3,14 +3,19 @@
 //    Date: 02.05.2021
 // =================================================================================================
 
+using System.Text;
 using Plugins.GameUIBuilder.Editor.Scripts.Views.Base;
+using UnityEditor;
 using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Scripts.Views
 {
     public class ControlPanelView : BaseView
     {
+        private const int PANEL_WIDTH = 500;
+
         private bool _initialized;
+        private StringBuilder _sb;
         private Color _colorClearButton;
         private Color _colorCreateButton;
 
@@ -20,47 +25,72 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
             {
                 _colorClearButton = new Color(1.0f, 0.2f, 0.2f);
                 _colorCreateButton = new Color(0.0f, 1.0f, 0.0f);
+                _sb = new StringBuilder();
                 _initialized = true;
             }
-            
+
             if (Application.isPlaying) return;
 
-            var rect = new Rect(pRect.width / 2 - 200, pRect.height - 80, 400, 70);
+            var rectPosition = new Vector2(pRect.width / 2 - PANEL_WIDTH / 2.0f, pRect.height - 80);
+            var rectSize = new Vector2(PANEL_WIDTH, 70);
+            var rect = new Rect(rectPosition, rectSize);
 
             DrawBoxGUI(rect, "Control Panel", TextAnchor.UpperLeft);
             DrawClearButton(rect);
+            DrawInfoLabels(rect);
             DrawCreateButton(rect);
 
             GUI.color = Color.white;
             GUI.enabled = true;
         }
 
-        private void DrawClearButton(Rect rect)
+        private void DrawClearButton(Rect pRect)
         {
-            GUI.enabled = true;
+            GUI.enabled = !Data.SourceNode.IsChildCountZero;
             GUI.color = _colorClearButton;
-            if (GUI.Button(new Rect(rect.x + 4, rect.y + 32, 100, 30), "Clear"))
+            if (GUI.Button(new Rect(pRect.x + 4, pRect.y + 32, 100, 30), "Clear"))
             {
                 Data.ResetTool();
             }
         }
 
-        private void DrawCreateButton(Rect rect)
+        private void DrawInfoLabels(Rect pRect)
         {
             var sourceNode = Data.SourceNode;
-            
-            GUI.enabled = sourceNode.IsPossibleCreateProcess();
-            GUI.color = _colorCreateButton;
-            if (GUI.Button(new Rect(rect.x + rect.width - 104, rect.y + 32, 100, 30), "CREATE"))
+            var isFirstError = false;
+            _sb.Clear();
+
+            if (sourceNode.IsSourceNull)
             {
-                if (sourceNode.IsPossibleCreateProcess())
+                _sb.Append("Source Node Parent = Null !");
+                isFirstError = true;
+            }
+
+            if (sourceNode.IsChildCountZero)
+            {
+                if (isFirstError)
                 {
-                    sourceNode.Create();
+                    _sb.Append("\n");
                 }
-                else
-                {
-                    Debug.Log("NULL OR CHILD COUNT = 0");
-                }
+
+                _sb.Append("Source Node Child Count = 0 !");
+            }
+
+            GUI.enabled = true;
+            GUI.color = Color.white;
+            var rect = new Rect(pRect.x + 104, pRect.y + 32, PANEL_WIDTH - 208, 30);
+            GUI.Label(rect, _sb.ToString(), Data.Skin.GetStyle("ControlPanelLabel"));
+        }
+
+        private void DrawCreateButton(Rect pRect)
+        {
+            var sourceNode = Data.SourceNode;
+
+            GUI.enabled = sourceNode.IsPossibleCreateProcess;
+            GUI.color = _colorCreateButton;
+            if (GUI.Button(new Rect(pRect.x + pRect.width - 104, pRect.y + 32, 100, 30), "CREATE"))
+            {
+                sourceNode.Create();
             }
         }
     }

@@ -18,7 +18,18 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
         private readonly SourceDrawer _drawer;
         private readonly SourceCreator _creator;
 
+#region [GETTERS]
+
         public override BaseDrawer Drawer => _drawer;
+
+        public bool IsSourceNull => _drawer.Source is null;
+
+        public bool IsChildCountZero => nodes.Count == 0;
+
+        public bool IsPossibleCreateProcess => !IsSourceNull && !IsChildCountZero;
+
+#endregion
+        
 
         public SourceNode(Rect rect, DTossCreator data) : base(data)
         {
@@ -38,14 +49,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
         }
 
         public void Clear() => nodes.Clear();
-
-        public bool IsPossibleCreateProcess()
-        {
-            var isSourceNull = _drawer.Source is null;
-            var isChildCountZero = nodes.Count == 0;
-
-            return !isSourceNull && !isChildCountZero;
-        }
 
         public override bool CanBeDeleted()
         {
