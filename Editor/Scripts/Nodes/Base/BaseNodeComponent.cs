@@ -46,7 +46,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
 
         public void Draw()
         {
-            Drawer.DrawNode(Index, Level);
+            Drawer.DrawNode();
 
             if (decorators.Count != 0)
             {

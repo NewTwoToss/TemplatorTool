@@ -32,12 +32,12 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             nodeBackgroundColor = data.DefaultValues.Button.NodeColor;
         }
 
-        public override void DrawNode(int index, int level)
+        public override void DrawNode()
         {
             DrawNodeBackground();
 
             var icon = new GUIContent(EditorGUIUtility.IconContent("d_Button Icon")).image;
-            DrawNodeTitle(icon, index, level);
+            DrawNodeTitle(icon);
 
             var labelText = $"{Name} [{Width}x{Height}]";
             DrawBody(labelText);

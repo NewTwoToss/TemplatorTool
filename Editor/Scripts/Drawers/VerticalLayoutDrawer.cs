@@ -12,26 +12,27 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 {
     public class VerticalLayoutDrawer : BaseDrawer, IPropertiesVerticalLayout
     {
+        public override string Type => "Vertical Layout";
+
 #region [INSPECTOR]
 
         public int Spacing { get; private set; }
 
 #endregion
 
-        public override string Type => "Vertical Layout";
 
         public VerticalLayoutDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Spacing = 0;
         }
 
-        public override void DrawNode(int index, int level)
+        public override void DrawNode()
         {
             DrawNodeBackground();
 
             const string ICON_NAME = "d_VerticalLayoutGroup Icon";
             var icon = new GUIContent(EditorGUIUtility.IconContent(ICON_NAME)).image;
-            DrawNodeTitle(icon, index, level);
+            DrawNodeTitle(icon);
         }
 
         public override void DrawInspector()

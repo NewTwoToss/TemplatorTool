@@ -14,13 +14,14 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
     {
         private readonly Color _errorColor;
 
+        public override string Type => "Source (Main Parent)";
+
 #region [INSPECTOR]
 
         public RectTransform Source { get; private set; }
 
 #endregion
 
-        public override string Type => "Source (Main Parent)";
 
         public SourceDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
@@ -29,12 +30,12 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             _errorColor = new Color(1.0f, 0.16f, 0.16f);
         }
 
-        public override void DrawNode(int index, int level)
+        public override void DrawNode()
         {
             DrawNodeBackground();
 
             var icon = new GUIContent(EditorGUIUtility.IconContent("d_PlayButton On")).image;
-            DrawNodeTitle(icon, index, level);
+            DrawNodeTitle(icon);
 
             DrawBody("Ref.: NULL!");
         }

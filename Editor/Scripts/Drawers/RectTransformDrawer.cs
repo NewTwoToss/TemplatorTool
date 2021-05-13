@@ -14,11 +14,15 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
     {
         public override string Type => "Rect Transform";
 
+#region [INSPECTOR]
+
         public string Name { get; private set; }
 
         public int Width { get; private set; }
 
         public int Height { get; private set; }
+
+#endregion
 
         public RectTransformDrawer(Rect rect, DTossCreator data)
             : base(rect, data)
@@ -29,12 +33,12 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             nodeBackgroundColor = data.DefaultValues.RectTransform.NodeColor;
         }
 
-        public override void DrawNode(int index, int level)
+        public override void DrawNode()
         {
             DrawNodeBackground();
 
             var icon = new GUIContent(EditorGUIUtility.IconContent("d_RectTransform Icon")).image;
-            DrawNodeTitle(icon, index, level);
+            DrawNodeTitle(icon);
 
             var labelText = $"{Name} [{Width}x{Height}]";
             DrawBody(labelText);

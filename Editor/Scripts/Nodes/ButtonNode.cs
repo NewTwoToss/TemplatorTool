@@ -24,26 +24,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             _creator = new ButtonCreator();
         }
 
-        /*public override void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
-        {
-            if (_drawer.Rect.y > shiftLimitY)
-            {
-                _drawer.ShiftUp(countDeleteNodes);
-            }
-
-            base.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
-        }
-
-        public override void CheckPositionYAndShiftDown(float shiftLimitY)
-        {
-            if (_drawer.Rect.y > shiftLimitY)
-            {
-                _drawer.ShiftDown();
-            }
-
-            base.CheckPositionYAndShiftDown(shiftLimitY);
-        }*/
-
         public override void SetParent(RectTransform parent)
         {
             _creator.Parent = parent;

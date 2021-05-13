@@ -75,11 +75,11 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
         {
             if (!pRect.Contains(pEvent.mousePosition)) return;
 
-            ProcessLeftClick(pEvent, pRect);
-            ProcessRightClick(pEvent, pRect);
+            ProcessLeftClick(pEvent);
+            ProcessRightClick(pEvent);
         }
 
-        private void ProcessLeftClick(Event pEvent, Rect pRect)
+        private void ProcessLeftClick(Event pEvent)
         {
             if (pEvent.button != 0 || pEvent.type != EventType.MouseDown) return;
 
@@ -96,7 +96,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
             Data.IsRepaint = true;
         }
 
-        private void ProcessRightClick(Event pEvent, Rect pRect)
+        private void ProcessRightClick(Event pEvent)
         {
             if (pEvent.button != 1 || pEvent.type != EventType.MouseDown) return;
 

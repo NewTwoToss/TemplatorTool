@@ -12,6 +12,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 {
     public class ImageDrawer : BaseDrawer, IPropertiesImage
     {
+        public override string Type => "Image";
+
 #region [INSPECTOR]
 
         public string Name { get; private set; }
@@ -25,10 +27,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
         public Color Color { get; private set; }
 
         public bool SetNativeSize { get; private set; }
-        
-#endregion
 
-        public override string Type => "Image";
+#endregion
 
         public ImageDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
@@ -39,12 +39,12 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             nodeBackgroundColor = data.DefaultValues.Image.NodeColor;
         }
 
-        public override void DrawNode(int index, int level)
+        public override void DrawNode()
         {
             DrawNodeBackground();
 
             var icon = new GUIContent(EditorGUIUtility.IconContent("d_Image Icon")).image;
-            DrawNodeTitle(icon, index, level);
+            DrawNodeTitle(icon);
 
             var labelText = $"{Name} [{Width}x{Height}]";
             DrawBody(labelText);

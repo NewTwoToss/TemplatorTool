@@ -12,26 +12,26 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 {
     public class GridLayoutDrawer : BaseDrawer, IPropertiesGridLayout
     {
+        public override string Type => "Grid Layout";
+
 #region [INSPECTOR]
 
         public Vector2 Spacing { get; private set; }
 
 #endregion
 
-        public override string Type => "Grid Layout";
-
         public GridLayoutDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Spacing = Vector2.zero;
         }
 
-        public override void DrawNode(int index, int level)
+        public override void DrawNode()
         {
             DrawNodeBackground();
 
             const string ICON_NAME = "d_GridLayoutGroup Icon";
             var icon = new GUIContent(EditorGUIUtility.IconContent(ICON_NAME)).image;
-            DrawNodeTitle(icon, index, level);
+            DrawNodeTitle(icon);
         }
 
         public override void DrawInspector()
