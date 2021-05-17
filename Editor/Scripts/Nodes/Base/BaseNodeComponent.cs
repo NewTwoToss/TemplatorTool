@@ -209,7 +209,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
                     var countDeleteNodes = node.GetCountNodes();
                     var shiftLimitY = node.Drawer.Rect.y;
 
-                    data.UndoRedo.Register();
+                    data.UndoRedo.RegisterSnapshot();
                     nodes.Remove(node);
 
                     data.SourceNode.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);

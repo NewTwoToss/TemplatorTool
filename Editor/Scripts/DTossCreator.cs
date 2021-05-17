@@ -109,6 +109,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
         public void ResetTool()
         {
+            UndoRedo.ResetMechanics();
             SourceNode.Clear();
             Initialize();
         }

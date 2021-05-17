@@ -15,7 +15,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
     [Serializable]
     public class TextNode : BaseNodeComponent
     {
-        private readonly TextDrawer _drawer;
+        private TextDrawer _drawer;
         private readonly TextCreator _creator;
 
         public override BaseDrawer Drawer => _drawer;
@@ -39,6 +39,27 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
             CreateDecorators(getProduct);
             CreateGameUINodes(getProduct);
+        }
+        
+        private void DrawerForClone(TextDrawer drawer)
+        {
+            _drawer = drawer;
+        }
+        
+        public override void MyCloneTwo(BaseNodeComponent cloneParent)
+        {
+            var oldRect = Drawer.Rect;
+            var parent = new TextNode(new Rect(oldRect.x, oldRect.y, 200, 60), data);
+            parent.DrawerForClone(_drawer);
+
+            cloneParent.nodes.Add(parent);
+
+            if (nodes.Count == 0) return;
+
+            foreach (var node in nodes)
+            {
+                node.MyCloneTwo(parent);
+            }
         }
     }
 }

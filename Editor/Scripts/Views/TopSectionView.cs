@@ -26,15 +26,15 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
             GUI.DrawTexture(topSectionRect, _whiteTexture);
             GUI.color = Color.white;
 
+            GUI.enabled = Data.UndoRedo.IsUndoStack;
             if (GUI.Button(new Rect(10, 1, 60, 22), "Undo"))
             {
-                Debug.Log("Undo Undo!");
                 Data.UndoRedo.Undo();
             }
 
+            GUI.enabled = Data.UndoRedo.IsRedoStack;
             if (GUI.Button(new Rect(80, 1, 60, 22), "Redo"))
             {
-                Debug.Log("Redo Redo!");
                 Data.UndoRedo.Redo();
             }
         }
