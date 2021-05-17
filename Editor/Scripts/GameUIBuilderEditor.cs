@@ -99,6 +99,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
             _views = new List<BaseView>();
             CreateView<ToolView>();
             CreateView<ToolInspectorView>();
+            CreateView<TopSectionView>();
             CreateView<ControlPanelView>();
             //CreateView<TestingView>();
         }

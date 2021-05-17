@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Scripts.Views
 {
-    public class DrawTopSection : BaseView
+    public class TopSectionView : BaseView
     {
         private bool _initialized;
         private Texture _whiteTexture;
@@ -22,15 +22,15 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
             }
             
             var topSectionRect = new Rect(0, 0, pRect.width, 24);
-            GUI.color = new Color(0.1f, 0.1f, 0.1f, 0.8f);
+            GUI.color = new Color(0.1f, 0.1f, 0.1f, 1.0f);
             GUI.DrawTexture(topSectionRect, _whiteTexture);
             GUI.color = Color.white;
             
-            if (GUI.Button(new Rect(0, 1, 100, 22), "File"))
+            if (GUI.Button(new Rect(10, 1, 60, 22), "Undo"))
             {
             }
             
-            if (GUI.Button(new Rect(102, 1, 120, 22), "Preferences"))
+            if (GUI.Button(new Rect(80, 1, 60, 22), "Redo"))
             {
             }
         }
