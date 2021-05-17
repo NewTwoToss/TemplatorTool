@@ -15,6 +15,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         order = 0)]
     public class DTossCreator : ScriptableObject
     {
+#region [INSPECTOR]
+
         [SerializeField]
         private GUISkin _skin;
 
@@ -24,13 +26,15 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         [Space, Header("[DEFAULT VALUES]"), SerializeField]
         private DefaultValues _defaultValues;
 
+#endregion
+
 #region [GETTERS / SETTERS]
 
         public GUISkin Skin => _skin;
 
         public int NodeIndex => _nodeIndex++;
 
-        public SourceNode SourceNode { get; private set; }
+        public SourceNode SourceNode { get; set; }
 
         public BaseNodeComponent SelectedNode { get; set; }
 
@@ -43,6 +47,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         public DrawValues DrawValues => _drawValues;
 
         public DefaultValues DefaultValues => _defaultValues;
+        
+        public UndoRedoController UndoRedo { get; private set; }
 
 #endregion
 
@@ -61,6 +67,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
             CurrentNode = null;
             IsSelection = false;
             IsRepaint = false;
+
+            UndoRedo = new UndoRedoController(this);
 
             CreateNodes();
         }

@@ -15,8 +15,11 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
     public abstract class BaseNodeComponent
     {
         protected readonly DTossCreator data;
+
         protected readonly List<BaseNodeComponent> decorators;
-        protected readonly List<BaseNodeComponent> nodes;
+
+        //protected readonly List<BaseNodeComponent> nodes;
+        public List<BaseNodeComponent> nodes;
 
         public int Index { get; set; }
 
@@ -205,8 +208,11 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
                 {
                     var countDeleteNodes = node.GetCountNodes();
                     var shiftLimitY = node.Drawer.Rect.y;
-                    data.SourceNode.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
+
+                    data.UndoRedo.Register();
                     nodes.Remove(node);
+
+                    data.SourceNode.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
                     return;
                 }
 
@@ -268,6 +274,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
 
             foreach (var node in nodes)
                 node.CheckPositionYAndShiftDown(shiftLimitY);
+        }
+
+        public virtual void MyCloneTwo(BaseNodeComponent cloneParent)
+        {
         }
     }
 }

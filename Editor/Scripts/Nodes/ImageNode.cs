@@ -3,6 +3,7 @@
 //    Date: 10.05.2021
 // =================================================================================================
 
+using System;
 using Plugins.GameUIBuilder.Editor.Scripts.Creators;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
@@ -11,6 +12,7 @@ using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 {
+    [Serializable]
     public class ImageNode : BaseNodeComponent
     {
         private readonly ImageDrawer _drawer;

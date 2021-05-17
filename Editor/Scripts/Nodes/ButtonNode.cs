@@ -13,7 +13,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 {
     public class ButtonNode : BaseNodeComponent
     {
-        private readonly ButtonDrawer _drawer;
+        private ButtonDrawer _drawer;
         private readonly ButtonCreator _creator;
 
         public override BaseDrawer Drawer => _drawer;
@@ -37,6 +37,27 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
             CreateDecorators(getProduct);
             CreateGameUINodes(getProduct);
+        }
+
+        private void DrawerForClone(ButtonDrawer drawer)
+        {
+            _drawer = drawer;
+        }
+
+        public override void MyCloneTwo(BaseNodeComponent cloneParent)
+        {
+            var oldRect = Drawer.Rect;
+            var parent = new ButtonNode(new Rect(oldRect.x, oldRect.y, 200, 60), data);
+            parent.DrawerForClone(_drawer);
+
+            cloneParent.nodes.Add(parent);
+
+            if (nodes.Count == 0) return;
+
+            foreach (var node in nodes)
+            {
+                node.MyCloneTwo(parent);
+            }
         }
     }
 }

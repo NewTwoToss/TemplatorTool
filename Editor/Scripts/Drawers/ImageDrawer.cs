@@ -3,6 +3,7 @@
 //    Date: 10.05.2021
 // =================================================================================================
 
+using System;
 using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
 using UnityEditor;
@@ -10,6 +11,7 @@ using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 {
+    [Serializable]
     public class ImageDrawer : BaseDrawer, IPropertiesImage
     {
         public override string Type => "Image";

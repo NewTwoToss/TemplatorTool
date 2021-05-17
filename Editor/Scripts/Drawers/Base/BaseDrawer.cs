@@ -3,10 +3,12 @@
 //    Date: 01.05.2021
 // =================================================================================================
 
+using System;
 using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
 {
+    [Serializable]
     public abstract class BaseDrawer
     {
         protected const int MAX_NUMBER_VALUE = 9_999;
@@ -18,7 +20,13 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
         
         public abstract string Type { get; }
 
-        public Rect Rect => rect;
+        //public Rect Rect => rect;
+
+        public Rect Rect
+        {
+            get => rect;
+            set => rect = value;
+        }
 
         protected BaseDrawer(Rect rect, DTossCreator data)
         {

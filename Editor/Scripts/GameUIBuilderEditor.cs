@@ -69,7 +69,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
         private void OnGUI()
         {
-            if (_views == null || _core == null)
+            if (_views is null || _core is null)
             {
                 CreateViews();
                 InitializeViews();

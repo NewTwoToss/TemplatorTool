@@ -12,7 +12,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
     {
         private bool _initialized;
         private Texture _whiteTexture;
-        
+
         public override void DrawGUI(Rect pRect)
         {
             if (!_initialized)
@@ -20,18 +20,22 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
                 _whiteTexture = Resources.Load<Texture>("Textures/white_rect_64");
                 _initialized = true;
             }
-            
+
             var topSectionRect = new Rect(0, 0, pRect.width, 24);
-            GUI.color = new Color(0.1f, 0.1f, 0.1f, 1.0f);
+            GUI.color = new Color(0.1f, 0.1f, 0.1f, 0.8f);
             GUI.DrawTexture(topSectionRect, _whiteTexture);
             GUI.color = Color.white;
-            
+
             if (GUI.Button(new Rect(10, 1, 60, 22), "Undo"))
             {
+                Debug.Log("Undo Undo!");
+                Data.UndoRedo.Undo();
             }
-            
+
             if (GUI.Button(new Rect(80, 1, 60, 22), "Redo"))
             {
+                Debug.Log("Redo Redo!");
+                Data.UndoRedo.Redo();
             }
         }
     }

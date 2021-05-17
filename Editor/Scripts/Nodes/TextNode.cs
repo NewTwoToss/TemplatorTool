@@ -3,6 +3,7 @@
 //    Date: 11.05.2021
 // =================================================================================================
 
+using System;
 using Plugins.GameUIBuilder.Editor.Scripts.Creators;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
@@ -11,6 +12,7 @@ using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 {
+    [Serializable]
     public class TextNode : BaseNodeComponent
     {
         private readonly TextDrawer _drawer;
