@@ -33,10 +33,12 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
             }
 
             GUI.enabled = Data.UndoRedo.IsRedoStack;
-            if (GUI.Button(new Rect(80, 1, 60, 22), "Redo"))
+            if (GUI.Button(new Rect(76, 1, 60, 22), "Redo"))
             {
                 Data.UndoRedo.Redo();
             }
+
+            GUI.enabled = true;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views.Base
                 _ => Vector2.zero
             };
 
-            GUI.Box(rect, "", style);
+            GUI.Box(rect, string.Empty, style);
             GUI.Box(new Rect(rect.x, rect.y, rect.width, 32), title, style);
         }
     }
