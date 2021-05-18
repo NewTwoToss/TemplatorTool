@@ -310,10 +310,18 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
                 node.ShiftDownNodeWithChildren(countNodes);
         }
 
-        private void ShiftDown(int countNodes = 0) => Drawer.ShiftDown(countNodes);
+        private void ShiftDown(int countNodes = 1) => Drawer.ShiftDown(countNodes);
 
-        public virtual void MyCloneTwo(BaseNodeComponent cloneParent)
+        public virtual void MyClone(BaseNodeComponent cloneParent)
         {
+        }
+
+        protected Rect GetCloneRect()
+        {
+            var currentRect = Drawer.Rect;
+            var cloneRectPosition = new Vector2(currentRect.x, currentRect.y);
+            var cloneRectSize = new Vector2(currentRect.width, currentRect.height);
+            return new Rect(cloneRectPosition, cloneRectSize);
         }
 
         public void MoveNode(int indexCurrentNode, bool isMoveUp)
@@ -333,26 +341,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
                 node.MoveNode(indexCurrentNode, isMoveUp);
             }
         }
-
-        /*public void NodeMoveDown(int indexCurrentNode)
-        {
-            foreach (var node in nodes)
-            {
-                if (node.Index != indexCurrentNode) continue;
-
-                var indexNodeInList = nodes.IndexOf(node);
-
-                if (indexNodeInList == 0) return;
-
-                SwapNodes(nodes, indexNodeInList);
-                return;
-            }
-
-            foreach (var node in nodes)
-            {
-                node.NodeMoveDown(indexCurrentNode);
-            }
-        }*/
 
         public bool IsFirst(int indexCurrentNode)
         {

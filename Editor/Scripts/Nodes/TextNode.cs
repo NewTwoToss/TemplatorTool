@@ -41,24 +41,20 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             CreateGameUINodes(getProduct);
         }
         
-        private void DrawerForClone(TextDrawer drawer)
-        {
-            _drawer = drawer;
-        }
+        private void DrawerForClone(TextDrawer drawer) => _drawer = drawer;
         
-        public override void MyCloneTwo(BaseNodeComponent cloneParent)
+        public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var oldRect = Drawer.Rect;
-            var parent = new TextNode(new Rect(oldRect.x, oldRect.y, 200, 60), data);
-            parent.DrawerForClone(_drawer);
+            var cloneNode = new TextNode(GetCloneRect(), data);
+            cloneNode.DrawerForClone(_drawer);
 
-            cloneParent.nodes.Add(parent);
+            cloneParent.nodes.Add(cloneNode);
 
             if (nodes.Count == 0) return;
 
             foreach (var node in nodes)
             {
-                node.MyCloneTwo(parent);
+                node.MyClone(cloneNode);
             }
         }
     }

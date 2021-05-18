@@ -15,7 +15,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
     [Serializable]
     public class ImageNode : BaseNodeComponent
     {
-        private readonly ImageDrawer _drawer;
+        private ImageDrawer _drawer;
         private readonly ImageCreator _creator;
 
         public override BaseDrawer Drawer => _drawer;
@@ -39,6 +39,23 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
             CreateDecorators(getProduct);
             CreateGameUINodes(getProduct);
+        }
+
+        private void DrawerForClone(ImageDrawer drawer) => _drawer = drawer;
+
+        public override void MyClone(BaseNodeComponent cloneParent)
+        {
+            var cloneNode = new ImageNode(GetCloneRect(), data);
+            cloneNode.DrawerForClone(_drawer);
+
+            cloneParent.nodes.Add(cloneNode);
+
+            if (nodes.Count == 0) return;
+
+            foreach (var node in nodes)
+            {
+                node.MyClone(cloneNode);
+            }
         }
     }
 }

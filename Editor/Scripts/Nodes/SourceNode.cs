@@ -5,7 +5,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Plugins.GameUIBuilder.Editor.Scripts.Creators;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
@@ -15,7 +14,7 @@ using UnityEngine;
 namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 {
     [Serializable]
-    public class SourceNode : BaseNodeComponent, ICloneable
+    public class SourceNode : BaseNodeComponent
     {
         private readonly SourceDrawer _drawer;
         private readonly SourceCreator _creator;
@@ -56,16 +55,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             return false;
         }
 
-        public object Clone()
-        {
-            var clone = (SourceNode) MemberwiseClone();
-            var helper = nodes.ToList();
-
-            clone.nodes = helper;
-
-            return clone;
-        }
-
         public SourceNode GetClone()
         {
             var clone = new SourceNode(_drawer.Rect, data)
@@ -75,12 +64,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
             foreach (var node in nodes)
             {
-                node.MyCloneTwo(clone);
+                node.MyClone(clone);
             }
 
             return clone;
         }
-
-
     }
 }

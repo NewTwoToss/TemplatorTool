@@ -15,7 +15,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
     [Serializable]
     public class RectTransformNode : BaseNodeComponent
     {
-        private readonly RectTransformDrawer _drawer;
+        private RectTransformDrawer _drawer;
         private readonly RectTransformCreator _creator;
 
         public override BaseDrawer Drawer => _drawer;
@@ -41,18 +41,25 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             CreateGameUINodes(getProduct);
         }
 
-        public override void MyCloneTwo(BaseNodeComponent cloneParent)
+        private void DrawerForClone(RectTransformDrawer drawer) => _drawer = drawer;
+
+        public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var oldRect = Drawer.Rect;
-            var parent = new RectTransformNode(new Rect(oldRect.x, oldRect.y, 200, 60), data);
-            
-            cloneParent.nodes.Add(parent);
+            var currentRect = Drawer.Rect;
+            //var cloneRectPosition = new Vector2(currentRect.x, currentRect.y);
+            //var cloneRectSize = new Vector2(currentRect.width, currentRect.height);
+            //var cloneRect = new Rect(cloneRectPosition, cloneRectSize);
+            //var cloneNode = new RectTransformNode(cloneRect, data);
+            var cloneNode = new RectTransformNode(new Rect(currentRect.x, currentRect.y, 200, 60), data);
+            cloneNode.DrawerForClone(_drawer);
+
+            cloneParent.nodes.Add(cloneNode);
 
             if (nodes.Count == 0) return;
 
             foreach (var node in nodes)
             {
-                node.MyCloneTwo(parent);
+                node.MyClone(cloneNode);
             }
         }
     }

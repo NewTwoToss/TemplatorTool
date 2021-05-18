@@ -29,7 +29,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
         {
             Source = null;
             nodeBackgroundColor = new Color(0.8f, 0.6f, 0.0f);
-            _errorColor = new Color(1.0f, 0.16f, 0.16f);
+            //_errorColor = new Color(1.0f, 0.16f, 0.16f);
+            _errorColor = Color.yellow;
         }
 
         public override void DrawNode()

@@ -3,6 +3,7 @@
 //    Date: 02.05.2021
 // =================================================================================================
 
+using System;
 using Plugins.GameUIBuilder.Editor.Scripts.Creators;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
@@ -11,6 +12,7 @@ using UnityEngine;
 
 namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 {
+    [Serializable]
     public class ButtonNode : BaseNodeComponent
     {
         private ButtonDrawer _drawer;
@@ -39,24 +41,20 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             CreateGameUINodes(getProduct);
         }
 
-        private void DrawerForClone(ButtonDrawer drawer)
-        {
-            _drawer = drawer;
-        }
+        private void DrawerForClone(ButtonDrawer drawer) => _drawer = drawer;
 
-        public override void MyCloneTwo(BaseNodeComponent cloneParent)
+        public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var oldRect = Drawer.Rect;
-            var parent = new ButtonNode(new Rect(oldRect.x, oldRect.y, 200, 60), data);
-            parent.DrawerForClone(_drawer);
+            var cloneNode = new ButtonNode(GetCloneRect(), data);
+            cloneNode.DrawerForClone(_drawer);
 
-            cloneParent.nodes.Add(parent);
+            cloneParent.nodes.Add(cloneNode);
 
             if (nodes.Count == 0) return;
 
             foreach (var node in nodes)
             {
-                node.MyCloneTwo(parent);
+                node.MyClone(cloneNode);
             }
         }
     }
