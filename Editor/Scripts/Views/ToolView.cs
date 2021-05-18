@@ -117,6 +117,13 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
 
             if (!isDecorator)
             {
+                menu.AddItem(new GUIContent("Move Up"),
+                    false, MoveNodeUp);
+                menu.AddItem(new GUIContent("Move Down"),
+                    false, MoveNodeDown);
+                
+                menu.AddSeparator(string.Empty);
+
                 if (currentNode.Level < MAX_LEVEL_CREATE_COMPONENTS)
                 {
                     menu.AddItem(new GUIContent("Add RectTransform"),
@@ -159,17 +166,18 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
             menu.ShowAsContext();
         }
 
-        private void DeleteNode()
+#region [CONTEXT MENU METHODS]
+
+        private void MoveNodeUp()
         {
-            var indexDelete = Data.CurrentNode.Index;
-            Data.SourceNode.Delete(indexDelete);
-
-            if (!Data.IsSelection) return;
-
-            if (Data.SelectedNode.Index == indexDelete)
-            {
-                Data.ResetSelection();
-            }
+            var indexCurrentNode = Data.CurrentNode.Index;
+            Data.SourceNode.NodeMoveUp(indexCurrentNode);
+            Data.IsRepaint = true;
+        }
+        
+        private void MoveNodeDown()
+        {
+            
         }
 
         private void AddRectTransform()
@@ -234,5 +242,20 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
             Data.CurrentNode.AddDecorator(newDecorator);
             Data.IsRepaint = true;
         }
+
+        private void DeleteNode()
+        {
+            var indexDelete = Data.CurrentNode.Index;
+            Data.SourceNode.Delete(indexDelete);
+
+            if (!Data.IsSelection) return;
+
+            if (Data.SelectedNode.Index == indexDelete)
+            {
+                Data.ResetSelection();
+            }
+        }
+
+#endregion
     }
 }

@@ -32,7 +32,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
 #endregion
 
-
         public SourceNode(Rect rect, DTossCreator data) : base(data)
         {
             Level = 0;
@@ -67,26 +66,13 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             return clone;
         }
 
-        public SourceNode MyClone()
+        public SourceNode GetClone()
         {
-            //var clone = (SourceNode) MemberwiseClone();
             var clone = new SourceNode(_drawer.Rect, data)
             {
                 nodes = new List<BaseNodeComponent>()
             };
-            //var helper = new List<BaseNodeComponent>();
-            //helper[helper.Count - 1].Drawer.Rect = new Rect(0, 0, 200, 60);
 
-            /*foreach (var node in nodes)
-            {
-                clone.nodes.Add(node);
-            }
-            
-            clone.nodes[nodes.Count - 1].Drawer.Rect = new Rect(0, 0, 200, 60);*/
-
-            /*var oldRect = nodes[nodes.Count - 1].Drawer.Rect;
-            clone.nodes.Add(new RectTransformNode(new Rect(oldRect.x, oldRect.y, 200, 60), data));*/
-            
             foreach (var node in nodes)
             {
                 node.MyCloneTwo(clone);
@@ -94,5 +80,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
             return clone;
         }
+
+
     }
 }

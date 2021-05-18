@@ -257,6 +257,22 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
                 node.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
         }
 
+        public void CheckPositionYAndShiftUpTest(int countDeleteNodes)
+        {
+            Drawer.ShiftUp(countDeleteNodes);
+
+            if (decorators.Count != 0)
+            {
+                foreach (var decorator in decorators)
+                    decorator.CheckPositionYAndShiftUpTest(countDeleteNodes);
+            }
+
+            if (nodes.Count == 0) return;
+
+            foreach (var node in nodes)
+                node.CheckPositionYAndShiftUpTest(countDeleteNodes);
+        }
+
         public void CheckPositionYAndShiftDown(float shiftLimitY)
         {
             if (Drawer.Rect.y > shiftLimitY)
@@ -276,8 +292,65 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
                 node.CheckPositionYAndShiftDown(shiftLimitY);
         }
 
+        public void CheckPositionYAndShiftDownTest(int countNodes)
+        {
+            Drawer.ShiftDown(countNodes);
+
+            if (decorators.Count != 0)
+            {
+                foreach (var decorator in decorators)
+                    decorator.CheckPositionYAndShiftDownTest(countNodes);
+            }
+
+            if (nodes.Count == 0) return;
+
+            foreach (var node in nodes)
+                node.CheckPositionYAndShiftDownTest(countNodes);
+        }
+
         public virtual void MyCloneTwo(BaseNodeComponent cloneParent)
         {
+        }
+
+        public void NodeMoveUp(int indexCurrentNode)
+        {
+            foreach (var node in nodes)
+            {
+                if (node.Index != indexCurrentNode) continue;
+
+                var indexNodeInList = nodes.IndexOf(node);
+
+                if (indexNodeInList == 0) return;
+
+                SwapNodes(nodes, indexNodeInList);
+                return;
+            }
+
+            foreach (var node in nodes)
+            {
+                node.NodeMoveUp(indexCurrentNode);
+            }
+        }
+
+        private void SwapNodes(IList<BaseNodeComponent> pNodes, int index)
+        {
+            var swapNodeIndex = index - 1;
+            var selectedNode = pNodes[index];
+            var swapNode = pNodes[swapNodeIndex];
+            var selectedNodeRect = selectedNode.Drawer.Rect;
+
+            var countNodesOfSelectedNode = selectedNode.GetCountNodes();
+            var countNodesOfSwapNode = swapNode.GetCountNodes();
+
+            selectedNode.CheckPositionYAndShiftUpTest(countNodesOfSwapNode);
+            swapNode.CheckPositionYAndShiftDownTest(countNodesOfSelectedNode);
+            //var swapNodeRect = swapNode.Drawer.Rect;
+
+            //pNodes[index].Drawer.Rect = swapNodeRect;
+            //pNodes[swapNodeIndex].Drawer.Rect = selectedNodeRect;
+
+            pNodes[index] = swapNode;
+            pNodes[swapNodeIndex] = selectedNode;
         }
     }
 }

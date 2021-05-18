@@ -31,7 +31,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         public void RegisterSnapshot()
         {
             _redoStack.Clear();
-            var clone = _data.SourceNode.MyClone();
+            var clone = _data.SourceNode.GetClone();
             _undoStack.Push(clone);
             Debug.Log($"_undoStack: {_undoStack.Count}");
         }
@@ -40,7 +40,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         {
             if (_undoStack.Count == 0) return;
             
-            var clone = _data.SourceNode.MyClone();
+            var clone = _data.SourceNode.GetClone();
             _redoStack.Push(clone);
             _data.SourceNode = _undoStack.Pop();
         }
@@ -49,7 +49,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         {
             if (_redoStack.Count == 0) return;
 
-            var clone = _data.SourceNode.MyClone();
+            var clone = _data.SourceNode.GetClone();
             _undoStack.Push(clone);
             _data.SourceNode = _redoStack.Pop();
         }

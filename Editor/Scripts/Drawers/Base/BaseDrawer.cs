@@ -76,9 +76,10 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base
             rect = newRect;
         }
 
-        public void ShiftDown()
+        public void ShiftDown(int countNodes = 0)
         {
-            var newRectPosition = new Vector2(rect.x, rect.y + data.DrawValues.NodeShiftVertical);
+            var newRectPositionY = rect.y + countNodes * data.DrawValues.NodeShiftVertical;
+            var newRectPosition = new Vector2(rect.x, newRectPositionY);
             var newRect = new Rect(newRectPosition, rect.size);
             rect = newRect;
         }
