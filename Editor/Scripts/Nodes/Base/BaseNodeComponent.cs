@@ -309,14 +309,32 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
             foreach (var node in nodes)
                 node.ShiftDownNodeWithChildren(countNodes);
         }
-        
+
         private void ShiftDown(int countNodes = 0) => Drawer.ShiftDown(countNodes);
 
         public virtual void MyCloneTwo(BaseNodeComponent cloneParent)
         {
         }
 
-        public void NodeMoveUp(int indexCurrentNode)
+        public void MoveNode(int indexCurrentNode, bool isMoveUp)
+        {
+            foreach (var node in nodes)
+            {
+                if (node.Index != indexCurrentNode) continue;
+
+                var indexNodeInList = nodes.IndexOf(node);
+
+                SwapNodes(nodes, indexNodeInList, isMoveUp);
+                return;
+            }
+
+            foreach (var node in nodes)
+            {
+                node.MoveNode(indexCurrentNode, isMoveUp);
+            }
+        }
+
+        /*public void NodeMoveDown(int indexCurrentNode)
         {
             foreach (var node in nodes)
             {
@@ -332,20 +350,72 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
 
             foreach (var node in nodes)
             {
-                node.NodeMoveUp(indexCurrentNode);
+                node.NodeMoveDown(indexCurrentNode);
             }
+        }*/
+
+        public bool IsFirst(int indexCurrentNode)
+        {
+            foreach (var node in nodes)
+            {
+                if (node.Index != indexCurrentNode) continue;
+
+                var indexNodeInList = nodes.IndexOf(node);
+
+                if (indexNodeInList == 0) return true;
+            }
+
+            foreach (var node in nodes)
+            {
+                if (node.IsFirst(indexCurrentNode)) return true;
+            }
+
+            return false;
         }
 
-        private void SwapNodes(IList<BaseNodeComponent> pNodes, int index)
+        public bool IsLast(int indexCurrentNode)
+        {
+            foreach (var node in nodes)
+            {
+                if (node.Index != indexCurrentNode) continue;
+
+                var indexNodeInList = nodes.IndexOf(node);
+                var countNodesInList = nodes.Count;
+
+                if (indexNodeInList == countNodesInList - 1) return true;
+            }
+
+            foreach (var node in nodes)
+            {
+                if (node.IsLast(indexCurrentNode)) return true;
+            }
+
+            return false;
+        }
+
+        private void SwapNodes(IList<BaseNodeComponent> pNodes, int index, bool isMoveUp)
         {
             var swapNodeIndex = index - 1;
+            if (!isMoveUp)
+            {
+                swapNodeIndex = index + 1;
+            }
+
             var selectedNode = pNodes[index];
             var swapNode = pNodes[swapNodeIndex];
             var selectedNodeCountNodes = selectedNode.GetCountNodes();
             var swapNodeCountNodes = swapNode.GetCountNodes();
 
-            selectedNode.ShiftUpNodeWithChildren(swapNodeCountNodes);
-            swapNode.ShiftDownNodeWithChildren(selectedNodeCountNodes);
+            if (isMoveUp)
+            {
+                selectedNode.ShiftUpNodeWithChildren(swapNodeCountNodes);
+                swapNode.ShiftDownNodeWithChildren(selectedNodeCountNodes);
+            }
+            else
+            {
+                selectedNode.ShiftDownNodeWithChildren(swapNodeCountNodes);
+                swapNode.ShiftUpNodeWithChildren(selectedNodeCountNodes);
+            }
 
             pNodes[index] = swapNode;
             pNodes[swapNodeIndex] = selectedNode;

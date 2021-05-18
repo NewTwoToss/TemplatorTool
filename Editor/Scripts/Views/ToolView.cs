@@ -15,6 +15,11 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
     {
         private const int MAX_LEVEL_CREATE_COMPONENTS = 5;
 
+        private const string TEXT_MOVE_UP = "Move Up";
+        private const string TEXT_MOVE_DOWN = "Move Down";
+        private const string TEXT_ADD_RT = "Add RectTransform";
+        private const string TEXT_ADD_IMG = "Add Image";
+
         private bool _initialized;
         private Texture _backgroundTexture;
         private Vector2 _scrollPosition;
@@ -113,22 +118,40 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
         {
             var menu = new GenericMenu();
             var currentNode = Data.CurrentNode;
+            var currentNodeIndex = currentNode.Index;
             var isDecorator = currentNode.IsDecorator();
 
             if (!isDecorator)
             {
-                menu.AddItem(new GUIContent("Move Up"),
-                    false, MoveNodeUp);
-                menu.AddItem(new GUIContent("Move Down"),
-                    false, MoveNodeDown);
-                
-                menu.AddSeparator(string.Empty);
+                if (currentNode.Level != 0)
+                {
+                    if (Data.SourceNode.IsFirst(currentNodeIndex))
+                    {
+                        menu.AddDisabledItem(new GUIContent(TEXT_MOVE_UP));
+                    }
+                    else
+                    {
+                        menu.AddItem(new GUIContent(TEXT_MOVE_UP), false, MoveNodeUp);
+                    }
+
+                    if (Data.SourceNode.IsLast(currentNodeIndex))
+                    {
+                        menu.AddDisabledItem(new GUIContent(TEXT_MOVE_DOWN));
+                    }
+                    else
+                    {
+                        menu.AddItem(new GUIContent(TEXT_MOVE_DOWN),
+                            false, MoveNodeDown);
+                    }
+
+                    menu.AddSeparator(string.Empty);
+                }
 
                 if (currentNode.Level < MAX_LEVEL_CREATE_COMPONENTS)
                 {
-                    menu.AddItem(new GUIContent("Add RectTransform"),
+                    menu.AddItem(new GUIContent(TEXT_ADD_RT),
                         false, AddRectTransform);
-                    menu.AddItem(new GUIContent("Add Image"),
+                    menu.AddItem(new GUIContent(TEXT_ADD_IMG),
                         false, AddImage);
                     menu.AddItem(new GUIContent("Add Button"),
                         false, AddButton);
@@ -137,8 +160,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
                 }
                 else
                 {
-                    menu.AddDisabledItem(new GUIContent("Add RectTransform"));
-                    menu.AddDisabledItem(new GUIContent("Add Image"));
+                    menu.AddDisabledItem(new GUIContent(TEXT_ADD_RT));
+                    menu.AddDisabledItem(new GUIContent(TEXT_ADD_IMG));
                     menu.AddDisabledItem(new GUIContent("Add Button"));
                     menu.AddDisabledItem(new GUIContent("Add Text"));
                 }
@@ -171,13 +194,14 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
         private void MoveNodeUp()
         {
             var indexCurrentNode = Data.CurrentNode.Index;
-            Data.SourceNode.NodeMoveUp(indexCurrentNode);
+            Data.SourceNode.MoveNode(indexCurrentNode, true);
             Data.IsRepaint = true;
         }
-        
+
         private void MoveNodeDown()
         {
-            
+            var indexCurrentNode = Data.CurrentNode.Index;
+            Data.SourceNode.MoveNode(indexCurrentNode, false);
         }
 
         private void AddRectTransform()
