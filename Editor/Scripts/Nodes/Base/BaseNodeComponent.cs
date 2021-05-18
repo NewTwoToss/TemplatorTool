@@ -242,7 +242,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
         {
             if (Drawer.Rect.y > shiftLimitY)
             {
-                Drawer.ShiftUp(countDeleteNodes);
+                ShiftUp(countDeleteNodes);
             }
 
             if (decorators.Count != 0)
@@ -257,27 +257,29 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
                 node.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
         }
 
-        public void CheckPositionYAndShiftUpTest(int countDeleteNodes)
+        public void ShiftUpNodeWithChildren(int countNodes)
         {
-            Drawer.ShiftUp(countDeleteNodes);
+            ShiftUp(countNodes);
 
             if (decorators.Count != 0)
             {
                 foreach (var decorator in decorators)
-                    decorator.CheckPositionYAndShiftUpTest(countDeleteNodes);
+                    decorator.ShiftUpNodeWithChildren(countNodes);
             }
 
             if (nodes.Count == 0) return;
 
             foreach (var node in nodes)
-                node.CheckPositionYAndShiftUpTest(countDeleteNodes);
+                node.ShiftUpNodeWithChildren(countNodes);
         }
+
+        private void ShiftUp(int countNodes) => Drawer.ShiftUp(countNodes);
 
         public void CheckPositionYAndShiftDown(float shiftLimitY)
         {
             if (Drawer.Rect.y > shiftLimitY)
             {
-                Drawer.ShiftDown();
+                ShiftDown();
             }
 
             if (decorators.Count != 0)
@@ -292,21 +294,23 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
                 node.CheckPositionYAndShiftDown(shiftLimitY);
         }
 
-        public void CheckPositionYAndShiftDownTest(int countNodes)
+        public void ShiftDownNodeWithChildren(int countNodes)
         {
-            Drawer.ShiftDown(countNodes);
+            ShiftDown(countNodes);
 
             if (decorators.Count != 0)
             {
                 foreach (var decorator in decorators)
-                    decorator.CheckPositionYAndShiftDownTest(countNodes);
+                    decorator.ShiftDownNodeWithChildren(countNodes);
             }
 
             if (nodes.Count == 0) return;
 
             foreach (var node in nodes)
-                node.CheckPositionYAndShiftDownTest(countNodes);
+                node.ShiftDownNodeWithChildren(countNodes);
         }
+        
+        private void ShiftDown(int countNodes = 0) => Drawer.ShiftDown(countNodes);
 
         public virtual void MyCloneTwo(BaseNodeComponent cloneParent)
         {
@@ -337,17 +341,11 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
             var swapNodeIndex = index - 1;
             var selectedNode = pNodes[index];
             var swapNode = pNodes[swapNodeIndex];
-            var selectedNodeRect = selectedNode.Drawer.Rect;
+            var selectedNodeCountNodes = selectedNode.GetCountNodes();
+            var swapNodeCountNodes = swapNode.GetCountNodes();
 
-            var countNodesOfSelectedNode = selectedNode.GetCountNodes();
-            var countNodesOfSwapNode = swapNode.GetCountNodes();
-
-            selectedNode.CheckPositionYAndShiftUpTest(countNodesOfSwapNode);
-            swapNode.CheckPositionYAndShiftDownTest(countNodesOfSelectedNode);
-            //var swapNodeRect = swapNode.Drawer.Rect;
-
-            //pNodes[index].Drawer.Rect = swapNodeRect;
-            //pNodes[swapNodeIndex].Drawer.Rect = selectedNodeRect;
+            selectedNode.ShiftUpNodeWithChildren(swapNodeCountNodes);
+            swapNode.ShiftDownNodeWithChildren(selectedNodeCountNodes);
 
             pNodes[index] = swapNode;
             pNodes[swapNodeIndex] = selectedNode;
