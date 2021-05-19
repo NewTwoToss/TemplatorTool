@@ -26,12 +26,20 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
 #endregion
 
-        public RectTransformDrawer(Rect rect, DTossCreator data)
-            : base(rect, data)
+        public RectTransformDrawer(Rect rect, DTossCreator data) : base(rect, data)
         {
             Name = "RTName";
             Width = data.DefaultValues.RectTransform.Width;
             Height = data.DefaultValues.RectTransform.Height;
+            nodeBackgroundColor = data.DefaultValues.RectTransform.NodeColor;
+        }
+        
+        public RectTransformDrawer(Rect rect, DTossCreator data, IPropertiesRectTransform drawer) 
+            : base(rect, data)
+        {
+            Name = drawer.Name;
+            Width = drawer.Width;
+            Height = drawer.Height;
             nodeBackgroundColor = data.DefaultValues.RectTransform.NodeColor;
         }
 

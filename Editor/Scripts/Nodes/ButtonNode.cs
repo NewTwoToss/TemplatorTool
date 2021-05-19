@@ -4,6 +4,7 @@
 // =================================================================================================
 
 using System;
+using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
 using Plugins.GameUIBuilder.Editor.Scripts.Creators;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
@@ -26,6 +27,13 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             _creator = new ButtonCreator();
         }
 
+        private ButtonNode(Rect rect, DTossCreator data, IPropertiesButton drawer) 
+            : base(data)
+        {
+            _drawer = new ButtonDrawer(rect, data, drawer);
+            _creator = new ButtonCreator();
+        }
+
         public override void SetParent(RectTransform parent)
         {
             _creator.Parent = parent;
@@ -45,8 +53,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
         public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var cloneNode = new ButtonNode(GetCloneRect(), data);
-            cloneNode.DrawerForClone(_drawer);
+            var cloneNode = new ButtonNode(GetCloneRect(), data, _drawer);
+            //cloneNode.DrawerForClone(_drawer);
 
             cloneParent.nodes.Add(cloneNode);
 

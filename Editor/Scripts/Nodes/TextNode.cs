@@ -4,6 +4,7 @@
 // =================================================================================================
 
 using System;
+using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
 using Plugins.GameUIBuilder.Editor.Scripts.Creators;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
@@ -25,6 +26,13 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             _drawer = new TextDrawer(rect, data);
             _creator = new TextCreator();
         }
+        
+        private TextNode(Rect rect, DTossCreator data, IPropertiesText drawer) 
+            : base(data)
+        {
+            _drawer = new TextDrawer(rect, data, drawer);
+            _creator = new TextCreator();
+        }
 
         public override void SetParent(RectTransform parent)
         {
@@ -41,12 +49,9 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             CreateGameUINodes(getProduct);
         }
         
-        private void DrawerForClone(TextDrawer drawer) => _drawer = drawer;
-        
         public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var cloneNode = new TextNode(GetCloneRect(), data);
-            cloneNode.DrawerForClone(_drawer);
+            var cloneNode = new TextNode(GetCloneRect(), data, _drawer);
 
             cloneParent.nodes.Add(cloneNode);
 

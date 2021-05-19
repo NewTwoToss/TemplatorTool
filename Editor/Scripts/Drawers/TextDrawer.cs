@@ -36,6 +36,16 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             Text = "New Text";
             nodeBackgroundColor = data.DefaultValues.Text.NodeColor;
         }
+        
+        public TextDrawer(Rect rect, DTossCreator data, IPropertiesText drawer) 
+            : base(rect, data)
+        {
+            Name = drawer.Name;
+            Width = drawer.Width;
+            Height = drawer.Height;
+            Text = drawer.Text;
+            nodeBackgroundColor = data.DefaultValues.Text.NodeColor;
+        }
 
         public override void DrawNode()
         {

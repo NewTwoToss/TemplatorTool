@@ -4,6 +4,7 @@
 // =================================================================================================
 
 using System;
+using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
 using Plugins.GameUIBuilder.Editor.Scripts.Creators;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
@@ -25,6 +26,13 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             _drawer = new RectTransformDrawer(rect, data);
             _creator = new RectTransformCreator();
         }
+        
+        public RectTransformNode(Rect rect, DTossCreator data, IPropertiesRectTransform drawer) 
+            : base(data)
+        {
+            _drawer = new RectTransformDrawer(rect, data, drawer);
+            _creator = new RectTransformCreator();
+        }
 
         public override void SetParent(RectTransform parent)
         {
@@ -41,17 +49,9 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             CreateGameUINodes(getProduct);
         }
 
-        private void DrawerForClone(RectTransformDrawer drawer) => _drawer = drawer;
-
         public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var currentRect = Drawer.Rect;
-            //var cloneRectPosition = new Vector2(currentRect.x, currentRect.y);
-            //var cloneRectSize = new Vector2(currentRect.width, currentRect.height);
-            //var cloneRect = new Rect(cloneRectPosition, cloneRectSize);
-            //var cloneNode = new RectTransformNode(cloneRect, data);
-            var cloneNode = new RectTransformNode(new Rect(currentRect.x, currentRect.y, 200, 60), data);
-            cloneNode.DrawerForClone(_drawer);
+            var cloneNode = new RectTransformNode(GetCloneRect(), data, _drawer);
 
             cloneParent.nodes.Add(cloneNode);
 

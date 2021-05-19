@@ -44,6 +44,19 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             Color = Color.white;
             nodeBackgroundColor = data.DefaultValues.Image.NodeColor;
         }
+        
+        public ImageDrawer(Rect rect, DTossCreator data, IPropertiesImage drawer) 
+            : base(rect, data)
+        {
+            Name = drawer.Name;
+            Width = drawer.Width;
+            Height = drawer.Height;
+            Color = drawer.Color;
+            RaycastTarget = drawer.RaycastTarget;
+            Maskable = drawer.Maskable;
+            SetNativeSize = drawer.SetNativeSize;
+            nodeBackgroundColor = data.DefaultValues.Image.NodeColor;
+        }
 
         public override void DrawNode()
         {

@@ -34,6 +34,15 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             nodeBackgroundColor = data.DefaultValues.Button.NodeColor;
         }
 
+        public ButtonDrawer(Rect rect, DTossCreator data, IPropertiesButton drawer) 
+            : base(rect, data)
+        {
+            Name = drawer.Name;
+            Width = drawer.Width;
+            Height = drawer.Height;
+            nodeBackgroundColor = data.DefaultValues.Button.NodeColor;
+        }
+
         public override void DrawNode()
         {
             DrawNodeBackground();
