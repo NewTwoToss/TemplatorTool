@@ -34,7 +34,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             nodeBackgroundColor = data.DefaultValues.Button.NodeColor;
         }
 
-        public ButtonDrawer(Rect rect, DTossCreator data, IPropertiesButton drawer) 
+        public ButtonDrawer(Rect rect, DTossCreator data, IPropertiesButton drawer)
             : base(rect, data)
         {
             Name = drawer.Name;

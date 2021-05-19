@@ -18,6 +18,9 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 #region [INSPECTOR]
 
         [SerializeField]
+        private string _version = "0.0.0";
+        
+        [SerializeField]
         private GUISkin _skin;
 
         [Space, Header("[DRAW VALUES]"), SerializeField]
@@ -29,6 +32,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 #endregion
 
 #region [GETTERS / SETTERS]
+
+        public string Version => _version;
 
         public GUISkin Skin => _skin;
 
@@ -98,7 +103,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
             nodeLevel2 = new ButtonNode(rect, this);
             nodeLevel1.AddNode(nodeLevel2);
 
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < 10; i++)
             {
                 rect = new Rect(sourceNodePosition.x + nodeShiftHorizontal,
                     sourceNodePosition.y + (4 + i) * nodeShiftVertical, nodeWidth, nodeHeight);

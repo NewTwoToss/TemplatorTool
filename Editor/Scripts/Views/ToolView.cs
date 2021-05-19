@@ -37,9 +37,9 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
 
             var viewRectY = Data.SourceNode.GetLastChildRectY() + 200;
 
-            _scrollPosition = GUI.BeginScrollView(new Rect(0, 0, pRect.width, pRect.height),
+            _scrollPosition = GUI.BeginScrollView(new Rect(0, 22, pRect.width, pRect.height - 22),
                 _scrollPosition,
-                new Rect(0, 0, pRect.width - 20, viewRectY));
+                new Rect(0, 22, pRect.width - 20, viewRectY));
 
             Data.SourceNode.Draw();
             DrawOutline();

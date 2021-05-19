@@ -12,12 +12,18 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
     {
         private bool _initialized;
         private Texture _whiteTexture;
+        private GUIStyle _infoLabelStyle;
 
         public override void DrawGUI(Rect pRect)
         {
             if (!_initialized)
             {
-                _whiteTexture = Resources.Load<Texture>("Textures/white_rect_64");
+                _whiteTexture = Texture2D.whiteTexture;
+                _infoLabelStyle = new GUIStyle
+                {
+                    normal = {textColor = Color.gray},
+                    alignment = TextAnchor.MiddleRight
+                };
                 _initialized = true;
             }
 
@@ -39,6 +45,11 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
             }
 
             GUI.enabled = true;
+
+
+            GUI.Label(new Rect(pRect.width - 220, 0, 220, 24),
+                $"Suib Tool v{Data.Version}",
+                _infoLabelStyle);
         }
     }
 }
