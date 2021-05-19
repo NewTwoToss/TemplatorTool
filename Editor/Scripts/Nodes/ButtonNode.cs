@@ -49,20 +49,20 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             CreateGameUINodes(getProduct);
         }
 
-        private void DrawerForClone(ButtonDrawer drawer) => _drawer = drawer;
-
         public override void MyClone(BaseNodeComponent cloneParent)
         {
             var cloneNode = new ButtonNode(GetCloneRect(), data, _drawer);
-            //cloneNode.DrawerForClone(_drawer);
 
             cloneParent.nodes.Add(cloneNode);
-
-            if (nodes.Count == 0) return;
 
             foreach (var node in nodes)
             {
                 node.MyClone(cloneNode);
+            }
+            
+            foreach (var decorator in decorators)
+            {
+                decorator.MyClone(cloneNode);
             }
         }
     }

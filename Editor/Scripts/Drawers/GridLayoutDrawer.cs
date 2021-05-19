@@ -25,6 +25,12 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             Spacing = Vector2.zero;
         }
 
+        public GridLayoutDrawer(Rect rect, DTossCreator data, IPropertiesGridLayout drawer)
+            : base(rect, data)
+        {
+            Spacing = drawer.Spacing;
+        }
+
         public override void DrawNode()
         {
             DrawNodeBackground();

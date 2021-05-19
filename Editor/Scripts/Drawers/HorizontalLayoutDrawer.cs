@@ -25,6 +25,14 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
         {
             Spacing = 0;
         }
+        
+        public HorizontalLayoutDrawer(Rect rect, 
+            DTossCreator data, 
+            IPropertiesHorizontalLayout drawer) 
+            : base(rect, data)
+        {
+            Spacing = drawer.Spacing;
+        }
 
         public override void DrawNode()
         {

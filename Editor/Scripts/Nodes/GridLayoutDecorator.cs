@@ -3,6 +3,7 @@
 //    Date: 11.05.2021
 // =================================================================================================
 
+using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
 using Plugins.GameUIBuilder.Editor.Scripts.Creators;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
 using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
@@ -24,6 +25,14 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
             _creator = new GridLayoutCreator();
         }
 
+        private GridLayoutDecorator(Rect rect,
+            DTossCreator data,
+            IPropertiesGridLayout drawer) : base(data)
+        {
+            _drawer = new GridLayoutDrawer(rect, data, drawer);
+            _creator = new GridLayoutCreator();
+        }
+
         public override void SetParent(RectTransform parent)
         {
             _creator.Parent = parent;
@@ -38,6 +47,13 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
         public override bool IsDecorator()
         {
             return true;
+        }
+
+        public override void MyClone(BaseNodeComponent cloneParent)
+        {
+            var cloneNode = new GridLayoutDecorator(GetCloneRect(), data, _drawer);
+
+            cloneParent.decorators.Add(cloneNode);
         }
     }
 }

@@ -55,11 +55,14 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
             cloneParent.nodes.Add(cloneNode);
 
-            if (nodes.Count == 0) return;
-
             foreach (var node in nodes)
             {
                 node.MyClone(cloneNode);
+            }
+            
+            foreach (var decorator in decorators)
+            {
+                decorator.MyClone(cloneNode);
             }
         }
     }

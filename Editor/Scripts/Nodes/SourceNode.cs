@@ -59,12 +59,18 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
         {
             var clone = new SourceNode(_drawer.Rect, data)
             {
-                nodes = new List<BaseNodeComponent>()
+                nodes = new List<BaseNodeComponent>(),
+                decorators = new List<BaseNodeComponent>()
             };
 
             foreach (var node in nodes)
             {
                 node.MyClone(clone);
+            }
+            
+            foreach (var decorator in decorators)
+            {
+                decorator.MyClone(clone);
             }
 
             return clone;

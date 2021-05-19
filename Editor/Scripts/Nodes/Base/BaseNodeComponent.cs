@@ -16,7 +16,8 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
     {
         protected readonly DTossCreator data;
 
-        protected readonly List<BaseNodeComponent> decorators;
+        //protected readonly List<BaseNodeComponent> decorators;
+        public List<BaseNodeComponent> decorators;
 
         //protected readonly List<BaseNodeComponent> nodes;
         public List<BaseNodeComponent> nodes;
@@ -223,6 +224,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
             {
                 if (decorator.Index == indexDelete)
                 {
+                    data.UndoRedo.RegisterSnapshot();
                     decorators.Remove(decorator);
                     return;
                 }
