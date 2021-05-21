@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Creators
 {
-    public class RectTransformCreator : IParentable, IProductable, ICreateable 
+    public class RectTransformCreator : IParent, IProduct, ICreator 
     {
         public IPropertiesRectTransform Properties { get; set; }
         

@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Creators
 {
-    public class SourceCreator : IProductable, ICreateable
+    public class SourceCreator : IProduct, ICreator
     {
         public IPropertiesSource Properties { get; set; }
 

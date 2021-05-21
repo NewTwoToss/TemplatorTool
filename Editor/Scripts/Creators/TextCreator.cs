@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Creators
 {
-    public class TextCreator : IParentable, IProductable, ICreateable
+    public class TextCreator : IParent, IProduct, ICreator
     {
         public IPropertiesText Properties { get; set; }
 

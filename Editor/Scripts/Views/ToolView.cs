@@ -19,6 +19,8 @@ namespace Plugins.Templator.Editor.Scripts.Views
         private const string TEXT_MOVE_DOWN = "Move Down";
         private const string TEXT_ADD_RT = "Add RectTransform";
         private const string TEXT_ADD_IMG = "Add Image";
+        private const string TEXT_ADD_BTN = "Add Button";
+        private const string TEXT_ADD_TXT = "Add Text";
 
         private bool _initialized;
         private Texture _backgroundTexture;
@@ -35,13 +37,13 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
             DrawBackground(pRect);
 
-            var viewRectY = Data.SourceNode.GetLastChildRectY() + 200;
+            var viewRectY = Core.SourceNode.GetLastChildRectY() + 200;
 
             _scrollPosition = GUI.BeginScrollView(new Rect(0, 22, pRect.width, pRect.height - 22),
                 _scrollPosition,
                 new Rect(0, 22, pRect.width - 20, viewRectY));
 
-            Data.SourceNode.Draw();
+            Core.SourceNode.Draw();
             DrawOutline();
 
             GUI.EndScrollView();
@@ -65,14 +67,14 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
         private void DrawOutline()
         {
-            if (!Data.IsSelection) return;
+            if (!Core.IsSelection) return;
 
-            var rect = Data.SelectedNode.Drawer.Rect;
+            var rect = Core.SelectedNode.Drawer.Rect;
 
             GUI.color = Color.green;
             GUI.Box(new Rect(rect.x - 2, rect.y - 2, rect.width + 4, rect.height + 4),
                 string.Empty,
-                Data.Skin.GetStyle("NodeSelected"));
+                Core.Skin.GetStyle("NodeSelected"));
             GUI.color = Color.white;
         }
 
@@ -88,24 +90,24 @@ namespace Plugins.Templator.Editor.Scripts.Views
         {
             if (pEvent.button != 0 || pEvent.type != EventType.MouseDown) return;
 
-            Data.IsSelection = false;
-            Data.IsRepaint = false;
+            Core.IsSelection = false;
+            Core.IsRepaint = false;
 
-            var nodeContain = Data
+            var nodeContain = Core
                 .SourceNode
                 .SelectionControl(pEvent.mousePosition, _scrollPosition);
 
             if (!nodeContain) return;
 
-            Data.IsSelection = true;
-            Data.IsRepaint = true;
+            Core.IsSelection = true;
+            Core.IsRepaint = true;
         }
 
         private void ProcessRightClick(Event pEvent)
         {
             if (pEvent.button != 1 || pEvent.type != EventType.MouseDown) return;
 
-            var nodeContain = Data
+            var nodeContain = Core
                 .SourceNode
                 .Contains(pEvent.mousePosition, _scrollPosition);
 
@@ -117,7 +119,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
         private void ContextMenu()
         {
             var menu = new GenericMenu();
-            var currentNode = Data.CurrentNode;
+            var currentNode = Core.CurrentNode;
             var currentNodeIndex = currentNode.Index;
             var isDecorator = currentNode.IsDecorator();
 
@@ -125,7 +127,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
             {
                 if (currentNode.Level != 0)
                 {
-                    if (Data.SourceNode.IsFirst(currentNodeIndex))
+                    if (Core.SourceNode.IsFirst(currentNodeIndex))
                     {
                         menu.AddDisabledItem(new GUIContent(TEXT_MOVE_UP));
                     }
@@ -134,7 +136,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
                         menu.AddItem(new GUIContent(TEXT_MOVE_UP), false, MoveNodeUp);
                     }
 
-                    if (Data.SourceNode.IsLast(currentNodeIndex))
+                    if (Core.SourceNode.IsLast(currentNodeIndex))
                     {
                         menu.AddDisabledItem(new GUIContent(TEXT_MOVE_DOWN));
                     }
@@ -153,17 +155,17 @@ namespace Plugins.Templator.Editor.Scripts.Views
                         false, AddRectTransform);
                     menu.AddItem(new GUIContent(TEXT_ADD_IMG),
                         false, AddImage);
-                    menu.AddItem(new GUIContent("Add Button"),
+                    menu.AddItem(new GUIContent(TEXT_ADD_BTN),
                         false, AddButton);
-                    menu.AddItem(new GUIContent("Add Text"),
+                    menu.AddItem(new GUIContent(TEXT_ADD_TXT),
                         false, AddText);
                 }
                 else
                 {
                     menu.AddDisabledItem(new GUIContent(TEXT_ADD_RT));
                     menu.AddDisabledItem(new GUIContent(TEXT_ADD_IMG));
-                    menu.AddDisabledItem(new GUIContent("Add Button"));
-                    menu.AddDisabledItem(new GUIContent("Add Text"));
+                    menu.AddDisabledItem(new GUIContent(TEXT_ADD_BTN));
+                    menu.AddDisabledItem(new GUIContent(TEXT_ADD_TXT));
                 }
 
                 menu.AddSeparator(string.Empty);
@@ -193,90 +195,92 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
         private void MoveNodeUp()
         {
-            var indexCurrentNode = Data.CurrentNode.Index;
-            Data.SourceNode.MoveNode(indexCurrentNode, true);
-            Data.IsRepaint = true;
+            var indexCurrentNode = Core.CurrentNode.Index;
+            Core.SourceNode.MoveNode(indexCurrentNode, true);
+            Core.IsRepaint = true;
         }
 
         private void MoveNodeDown()
         {
-            var indexCurrentNode = Data.CurrentNode.Index;
-            Data.SourceNode.MoveNode(indexCurrentNode, false);
+            var indexCurrentNode = Core.CurrentNode.Index;
+            Core.SourceNode.MoveNode(indexCurrentNode, false);
         }
 
         private void AddRectTransform()
         {
-            var newNodeRect = Data.CurrentNode.GetRectForNewNode();
-            var newNode = new RectTransformNode(newNodeRect, Data);
+            var newNodeRect = Core.CurrentNode.GetRectForNewNode();
+            var newNode = new RectTransformNode(newNodeRect, Core);
             AddNewNode(newNode, newNodeRect);
         }
 
         private void AddImage()
         {
-            var newNodeRect = Data.CurrentNode.GetRectForNewNode();
-            var newNode = new ImageNode(newNodeRect, Data);
+            var newNodeRect = Core.CurrentNode.GetRectForNewNode();
+            var newNode = new ImageNode(newNodeRect, Core);
             AddNewNode(newNode, newNodeRect);
         }
 
         private void AddButton()
         {
-            var newNodeRect = Data.CurrentNode.GetRectForNewNode();
-            var newNode = new ButtonNode(newNodeRect, Data);
+            var newNodeRect = Core.CurrentNode.GetRectForNewNode();
+            var newNode = new ButtonNode(newNodeRect, Core);
             AddNewNode(newNode, newNodeRect);
         }
 
         private void AddText()
         {
-            var newNodeRect = Data.CurrentNode.GetRectForNewNode();
-            var newNode = new TextNode(newNodeRect, Data);
+            var newNodeRect = Core.CurrentNode.GetRectForNewNode();
+            var newNode = new TextNode(newNodeRect, Core);
             AddNewNode(newNode, newNodeRect);
         }
 
         private void AddNewNode(BaseNodeComponent newNode, Rect newNodeRect)
         {
             var limitShiftY = newNodeRect.y - 2;
-            Data.SourceNode.CheckPositionYAndShiftDown(limitShiftY);
-            Data.CurrentNode.AddNode(newNode);
-            Data.IsRepaint = true;
+            Core.UndoRedo.RegisterSnapshot();
+            Core.SourceNode.CheckPositionYAndShiftDown(limitShiftY);
+            Core.CurrentNode.AddNode(newNode);
+            Core.IsRepaint = true;
         }
 
         private void AddVerticalLayout()
         {
-            var newDecoratorRect = Data.CurrentNode.GetRectForNewDecorator();
-            var newDecorator = new VerticalLayoutDecorator(newDecoratorRect, Data);
+            var newDecoratorRect = Core.CurrentNode.GetRectForNewDecorator();
+            var newDecorator = new VerticalLayoutDecorator(newDecoratorRect, Core);
             AddNewDecorator(newDecorator);
         }
 
         private void AddHorizontalLayout()
         {
-            var newDecoratorRect = Data.CurrentNode.GetRectForNewDecorator();
-            var newDecorator = new HorizontalLayoutDecorator(newDecoratorRect, Data);
+            var newDecoratorRect = Core.CurrentNode.GetRectForNewDecorator();
+            var newDecorator = new HorizontalLayoutDecorator(newDecoratorRect, Core);
             AddNewDecorator(newDecorator);
         }
 
         private void AddGridLayout()
         {
-            var newDecoratorRect = Data.CurrentNode.GetRectForNewDecorator();
-            var newDecorator = new GridLayoutDecorator(newDecoratorRect, Data);
+            var newDecoratorRect = Core.CurrentNode.GetRectForNewDecorator();
+            var newDecorator = new GridLayoutDecorator(newDecoratorRect, Core);
             AddNewDecorator(newDecorator);
         }
 
         private void AddNewDecorator(BaseNodeComponent newDecorator)
         {
-            Data.CurrentNode.AddDecorator(newDecorator);
-            Data.IsRepaint = true;
+            Core.UndoRedo.RegisterSnapshot();
+            Core.CurrentNode.AddDecorator(newDecorator);
+            Core.IsRepaint = true;
         }
 
         private void DeleteNode()
         {
-            var indexDelete = Data.CurrentNode.Index;
-            Data.SourceNode.Delete(indexDelete);
+            var indexDelete = Core.CurrentNode.Index;
+            Core.SourceNode.Delete(indexDelete);
 
-            if (!Data.IsSelection) return;
+            if (!Core.IsSelection) return;
 
-            if (Data.SelectedNode.Index == indexDelete)
+            if (Core.SelectedNode.Index == indexDelete)
             {
-                Data.ResetSelection();
+                Core.ResetSelection();
             }
         }
 

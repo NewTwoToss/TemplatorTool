@@ -1,12 +1,14 @@
 // =================================================================================================
 //    Author: Tomas "NewTwoToss" Szilagyi
-//    Date: 07.05.2021
+//    Date: 09.05.2021
 // =================================================================================================
+
+using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Creators.Contracts
 {
-    public interface ICreateable
+    public interface IParent
     {
-        void CreateUI();
+        public RectTransform Parent { get; }
     }
 }

@@ -10,7 +10,7 @@ namespace Plugins.Templator.Editor.Scripts.Views.Base
 {
     public abstract class BaseView
     {
-        public DTemplatorCore Data { get; set; }
+        public DTemplatorCore Core { get; set; }
 
         public abstract void DrawGUI(Rect pRect);
 
@@ -20,7 +20,7 @@ namespace Plugins.Templator.Editor.Scripts.Views.Base
         
         protected void DrawBoxGUI(Rect rect, string title, TextAnchor titleAlignment)
         {
-            var style = Data.Skin.GetStyle("ViewBase");
+            var style = Core.Skin.GetStyle("ViewBase");
             style.alignment = titleAlignment;
 
             style.contentOffset = titleAlignment switch

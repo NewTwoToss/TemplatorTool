@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Plugins.Templator.Editor.Scripts.Creators
 {
-    public class ImageCreator : IParentable, IProductable, ICreateable
+    public class ImageCreator : IParent, IProduct, ICreator
     {
         public IPropertiesImage Properties { get; set; }
 

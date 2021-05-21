@@ -12,23 +12,23 @@ namespace Plugins.Templator.Editor.Scripts.Views
     {
         public override void DrawGUI(Rect pRect)
         {
-            if (!Data.IsSelection) return;
+            if (!Core.IsSelection) return;
 
             DrawNodeInspector(pRect);
         }
 
         private void DrawNodeInspector(Rect pRect)
         {
-            if (!Data.IsSelection) return;
+            if (!Core.IsSelection) return;
 
-            var currentNode = Data.SelectedNode;
+            var currentNode = Core.SelectedNode;
             var rect = new Rect(pRect.width - 300, 30, 280, 300);
 
             DrawBoxGUI(rect, "Properties", TextAnchor.UpperRight);
 
             GUI.Label(new Rect(rect.x + 5, rect.y, 100, 100),
                 currentNode.Drawer.Type,
-                Data.Skin.GetStyle("NodePropertiesTitle"));
+                Core.Skin.GetStyle("NodePropertiesTitle"));
 
             GUILayout.BeginArea(new Rect(rect.x + 5,
                 rect.y + 40,

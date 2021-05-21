@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Plugins.Templator.Editor.Scripts.Creators
 {
-    public class VerticalLayoutCreator : IParentable, ICreateable
+    public class VerticalLayoutCreator : IParent, ICreator
     {
         public IPropertiesVerticalLayout Properties { get; set; }
 

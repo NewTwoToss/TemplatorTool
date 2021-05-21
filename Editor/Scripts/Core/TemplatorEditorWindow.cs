@@ -89,7 +89,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
         {
             foreach (var view in _views)
             {
-                view.Data = _core;
+                view.Core = _core;
             }
         }
 

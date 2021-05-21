@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Plugins.Templator.Editor.Scripts.Creators
 {
-    public class GridLayoutCreator: IParentable, ICreateable
+    public class GridLayoutCreator: IParent, ICreator
     {
         public IPropertiesGridLayout Properties { get; set; }
 

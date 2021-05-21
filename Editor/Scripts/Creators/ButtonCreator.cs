@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Plugins.Templator.Editor.Scripts.Creators
 {
-    public class ButtonCreator : IParentable, IProductable, ICreateable 
+    public class ButtonCreator : IParent, IProduct, ICreator 
     {
         public IPropertiesButton Properties { get; set; }
         

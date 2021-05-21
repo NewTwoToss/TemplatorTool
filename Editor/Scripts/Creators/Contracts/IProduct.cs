@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Creators.Contracts
 {
-    public interface IProductable
+    public interface IProduct
     {
         RectTransform Product { get; }
     }

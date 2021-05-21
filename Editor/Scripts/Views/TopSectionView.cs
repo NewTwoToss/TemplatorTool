@@ -32,23 +32,23 @@ namespace Plugins.Templator.Editor.Scripts.Views
             GUI.DrawTexture(topSectionRect, _whiteTexture);
             GUI.color = Color.white;
 
-            GUI.enabled = Data.UndoRedo.IsUndoStack;
+            GUI.enabled = Core.UndoRedo.IsUndoStack;
             if (GUI.Button(new Rect(10, 1, 60, 22), "Undo"))
             {
-                Data.UndoRedo.Undo();
+                Core.UndoRedo.Undo();
             }
 
-            GUI.enabled = Data.UndoRedo.IsRedoStack;
+            GUI.enabled = Core.UndoRedo.IsRedoStack;
             if (GUI.Button(new Rect(76, 1, 60, 22), "Redo"))
             {
-                Data.UndoRedo.Redo();
+                Core.UndoRedo.Redo();
             }
 
             GUI.enabled = true;
 
 
             GUI.Label(new Rect(pRect.width - 230, 0, 220, 24),
-                $"Templator v{Data.Version}",
+                $"Templator v{Core.Version}",
                 _infoLabelStyle);
         }
     }

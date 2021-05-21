@@ -46,17 +46,17 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
         private void DrawClearButton(Rect pRect)
         {
-            GUI.enabled = !Data.SourceNode.IsChildCountZero;
+            GUI.enabled = !Core.SourceNode.IsChildCountZero;
             GUI.color = _colorClearButton;
             if (GUI.Button(new Rect(pRect.x + 4, pRect.y + 32, 100, 30), "Clear"))
             {
-                Data.ResetTool();
+                Core.ResetTool();
             }
         }
 
         private void DrawInfoLabels(Rect pRect)
         {
-            var sourceNode = Data.SourceNode;
+            var sourceNode = Core.SourceNode;
             var isFirstError = false;
             _sb.Clear();
 
@@ -79,12 +79,12 @@ namespace Plugins.Templator.Editor.Scripts.Views
             GUI.enabled = true;
             GUI.color = Color.white;
             var rect = new Rect(pRect.x + 104, pRect.y + 32, PANEL_WIDTH - 208, 30);
-            GUI.Label(rect, _sb.ToString(), Data.Skin.GetStyle("ControlPanelLabel"));
+            GUI.Label(rect, _sb.ToString(), Core.Skin.GetStyle("ControlPanelLabel"));
         }
 
         private void DrawCreateButton(Rect pRect)
         {
-            var sourceNode = Data.SourceNode;
+            var sourceNode = Core.SourceNode;
 
             GUI.enabled = sourceNode.IsPossibleCreateProcess;
             GUI.color = _colorCreateButton;
