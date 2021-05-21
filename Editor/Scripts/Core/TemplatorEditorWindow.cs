@@ -13,18 +13,21 @@ namespace Plugins.Templator.Editor.Scripts.Core
 {
     public class TemplatorEditorWindow : EditorWindow
     {
+        private const string CORE_FILE_NAME = "TemplatorCore01";
+        
+        private static DTemplatorCore _core;
         private List<BaseView> _views;
 
         private void OnEnable()
         {
-            Debug.Log("[TOOL] OnEnable()");
+            Debug.Log("[TemplatorCore] OnEnable()");
             InitializeTool();
         }
 
         [InitializeOnLoadMethod]
         public static void OnProjectLoadedInEditor()
         {
-            Debug.Log("[TOOL] OnProjectLoadedInEditor()1");
+            Debug.Log("[TemplatorCore] OnProjectLoadedInEditor()");
             InitializeTool();
         }
 
@@ -38,12 +41,10 @@ namespace Plugins.Templator.Editor.Scripts.Core
         private static void DrawMainWindow()
         {
             var mainWindow = (TemplatorEditorWindow) GetWindow(typeof(TemplatorEditorWindow));
-            mainWindow.titleContent.text = "Templator";
-            mainWindow.titleContent.tooltip = "Game UI Builder for Unity projects";
+            mainWindow.titleContent.text = "Templator Editor";
+            mainWindow.titleContent.tooltip = "Simple UI Builder for Unity projects";
             mainWindow.Show();
         }
-
-        private static TemplatorCore _core;
 
         private static void InitializeTool()
         {
@@ -55,15 +56,14 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
         private static void Initialize()
         {
-            var guidValidatorSettings = AssetDatabase.FindAssets("ValidatorSettings");
+            var guidValidatorSettings = AssetDatabase.FindAssets(CORE_FILE_NAME);
 
             if (guidValidatorSettings.Length == 0) return;
 
             var pathValidatorSettings = AssetDatabase.GUIDToAssetPath(guidValidatorSettings[0]);
 
-            _core = (TemplatorCore) AssetDatabase.LoadAssetAtPath(
-                pathValidatorSettings,
-                typeof(TemplatorCore));
+            _core = (DTemplatorCore) AssetDatabase.LoadAssetAtPath(pathValidatorSettings,
+                typeof(DTemplatorCore));
             _core.Initialize();
         }
 
@@ -83,7 +83,6 @@ namespace Plugins.Templator.Editor.Scripts.Core
             if (!_core.IsRepaint) return;
 
             Repaint();
-            // TODO: Doriesit _rules.IsRepaint = false;
         }
 
         private void InitializeViews()

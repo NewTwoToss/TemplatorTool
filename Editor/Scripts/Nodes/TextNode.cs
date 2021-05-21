@@ -22,16 +22,16 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public TextNode(Rect rect, TemplatorCore data) : base(data)
+        public TextNode(Rect rect, DTemplatorCore core) : base(core)
         {
-            _drawer = new TextDrawer(rect, data);
+            _drawer = new TextDrawer(rect, core);
             _creator = new TextCreator();
         }
         
-        private TextNode(Rect rect, TemplatorCore data, IPropertiesText drawer) 
-            : base(data)
+        private TextNode(Rect rect, DTemplatorCore core, IPropertiesText drawer) 
+            : base(core)
         {
-            _drawer = new TextDrawer(rect, data, drawer);
+            _drawer = new TextDrawer(rect, core, drawer);
             _creator = new TextCreator();
         }
 
@@ -52,7 +52,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
         
         public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var cloneNode = new TextNode(GetCloneRect(), data, _drawer);
+            var cloneNode = new TextNode(GetCloneRect(), core, _drawer);
 
             cloneParent.nodes.Add(cloneNode);
 

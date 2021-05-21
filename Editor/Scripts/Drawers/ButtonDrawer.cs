@@ -27,21 +27,21 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 
 #endregion
 
-        public ButtonDrawer(Rect rect, TemplatorCore data) : base(rect, data)
+        public ButtonDrawer(Rect rect, DTemplatorCore core) : base(rect, core)
         {
             Name = "BtnName";
-            Width = data.DefaultValues.Button.Width;
-            Height = data.DefaultValues.Button.Height;
-            nodeBackgroundColor = data.DefaultValues.Button.NodeColor;
+            Width = core.DefaultValues.Button.Width;
+            Height = core.DefaultValues.Button.Height;
+            nodeBackgroundColor = core.DefaultValues.Button.NodeColor;
         }
 
-        public ButtonDrawer(Rect rect, TemplatorCore data, IPropertiesButton drawer)
-            : base(rect, data)
+        public ButtonDrawer(Rect rect, DTemplatorCore core, IPropertiesButton drawer)
+            : base(rect, core)
         {
             Name = drawer.Name;
             Width = drawer.Width;
             Height = drawer.Height;
-            nodeBackgroundColor = data.DefaultValues.Button.NodeColor;
+            nodeBackgroundColor = core.DefaultValues.Button.NodeColor;
         }
 
         public override void DrawNode()

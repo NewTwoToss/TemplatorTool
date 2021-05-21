@@ -22,16 +22,16 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public ImageNode(Rect rect, TemplatorCore data) : base(data)
+        public ImageNode(Rect rect, DTemplatorCore core) : base(core)
         {
-            _drawer = new ImageDrawer(rect, data);
+            _drawer = new ImageDrawer(rect, core);
             _creator = new ImageCreator();
         }
         
-        private ImageNode(Rect rect, TemplatorCore data, IPropertiesImage drawer) 
-            : base(data)
+        private ImageNode(Rect rect, DTemplatorCore core, IPropertiesImage drawer) 
+            : base(core)
         {
-            _drawer = new ImageDrawer(rect, data, drawer);
+            _drawer = new ImageDrawer(rect, core, drawer);
             _creator = new ImageCreator();
         }
 
@@ -52,7 +52,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var cloneNode = new ImageNode(GetCloneRect(), data, _drawer);
+            var cloneNode = new ImageNode(GetCloneRect(), core, _drawer);
 
             cloneParent.nodes.Add(cloneNode);
 

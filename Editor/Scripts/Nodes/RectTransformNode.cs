@@ -22,16 +22,16 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public RectTransformNode(Rect rect, TemplatorCore data) : base(data)
+        public RectTransformNode(Rect rect, DTemplatorCore core) : base(core)
         {
-            _drawer = new RectTransformDrawer(rect, data);
+            _drawer = new RectTransformDrawer(rect, core);
             _creator = new RectTransformCreator();
         }
         
-        private RectTransformNode(Rect rect, TemplatorCore data, IPropertiesRectTransform drawer) 
-            : base(data)
+        private RectTransformNode(Rect rect, DTemplatorCore core, IPropertiesRectTransform drawer) 
+            : base(core)
         {
-            _drawer = new RectTransformDrawer(rect, data, drawer);
+            _drawer = new RectTransformDrawer(rect, core, drawer);
             _creator = new RectTransformCreator();
         }
 
@@ -52,7 +52,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var cloneNode = new RectTransformNode(GetCloneRect(), data, _drawer);
+            var cloneNode = new RectTransformNode(GetCloneRect(), core, _drawer);
 
             cloneParent.nodes.Add(cloneNode);
 

@@ -12,7 +12,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
     [Serializable]
     public class UndoRedoController
     {
-        private readonly TemplatorCore _data;
+        private readonly DTemplatorCore _data;
         private readonly Stack<SourceNode> _undoStack;
         private readonly Stack<SourceNode> _redoStack;
 
@@ -20,7 +20,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
         
         public bool IsRedoStack => _redoStack.Count != 0;
 
-        public UndoRedoController(TemplatorCore data)
+        public UndoRedoController(DTemplatorCore data)
         {
             _data = data;
             _undoStack = new Stack<SourceNode>();

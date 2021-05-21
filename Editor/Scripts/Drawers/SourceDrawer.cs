@@ -26,7 +26,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 #endregion
 
 
-        public SourceDrawer(Rect rect, TemplatorCore data) : base(rect, data)
+        public SourceDrawer(Rect rect, DTemplatorCore core) : base(rect, core)
         {
             Source = null;
             nodeBackgroundColor = new Color(0.8f, 0.6f, 0.0f);
@@ -45,7 +45,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 
         protected override void DrawBody(string labelText)
         {
-            var styleNodeText = data.Skin.GetStyle("NodeText");
+            var styleNodeText = core.Skin.GetStyle("NodeText");
             var labelPosition = new Vector2(rect.x + 10, rect.y + 20);
             var labelSize = new Vector2(180, 40);
 

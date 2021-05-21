@@ -20,18 +20,18 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public HorizontalLayoutDecorator(Rect rect, TemplatorCore data) : base(data)
+        public HorizontalLayoutDecorator(Rect rect, DTemplatorCore core) : base(core)
         {
-            _drawer = new HorizontalLayoutDrawer(rect, data);
+            _drawer = new HorizontalLayoutDrawer(rect, core);
             _creator = new HorizontalLayoutCreator();
         }
 
         private HorizontalLayoutDecorator(Rect rect,
-            TemplatorCore data,
+            DTemplatorCore core,
             IPropertiesHorizontalLayout drawer)
-            : base(data)
+            : base(core)
         {
-            _drawer = new HorizontalLayoutDrawer(rect, data, drawer);
+            _drawer = new HorizontalLayoutDrawer(rect, core, drawer);
             _creator = new HorizontalLayoutCreator();
         }
 
@@ -53,7 +53,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var cloneNode = new HorizontalLayoutDecorator(GetCloneRect(), data, _drawer);
+            var cloneNode = new HorizontalLayoutDecorator(GetCloneRect(), core, _drawer);
 
             cloneParent.decorators.Add(cloneNode);
         }

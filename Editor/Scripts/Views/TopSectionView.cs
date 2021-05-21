@@ -48,7 +48,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
 
             GUI.Label(new Rect(pRect.width - 230, 0, 220, 24),
-                $"Suib Tool v{Data.Version}",
+                $"Templator v{Data.Version}",
                 _infoLabelStyle);
         }
     }

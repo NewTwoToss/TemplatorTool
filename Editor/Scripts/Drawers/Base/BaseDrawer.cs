@@ -16,12 +16,10 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
         protected const int MAX_TEXT_FIELD_LENGTH = 28;
 
         protected Rect rect;
-        protected readonly TemplatorCore data;
+        protected readonly DTemplatorCore core;
         protected Color nodeBackgroundColor = new Color(1.0f, 1.0f, 1.0f);
         
         public abstract string Type { get; }
-
-        //public Rect Rect => rect;
 
         public Rect Rect
         {
@@ -29,10 +27,10 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
             set => rect = value;
         }
 
-        protected BaseDrawer(Rect rect, TemplatorCore data)
+        protected BaseDrawer(Rect rect, DTemplatorCore core)
         {
             this.rect = rect;
-            this.data = data;
+            this.core = core;
         }
 
         public abstract void DrawNode();
@@ -42,7 +40,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
         protected void DrawNodeBackground()
         {
             GUI.color = nodeBackgroundColor;
-            GUI.Box(rect, string.Empty, data.Skin.GetStyle("NodeBodyBg"));
+            GUI.Box(rect, string.Empty, core.Skin.GetStyle("NodeBodyBg"));
             GUI.color = Color.white;
         }
 
@@ -55,7 +53,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
             GUI.Label(new Rect(new Vector2(rect.x + 24, rect.y),
                     new Vector2(rect.width - 24, 20)),
                 Type,
-                data.Skin.GetStyle("NodeTitle"));
+                core.Skin.GetStyle("NodeTitle"));
 
             GUI.color = Color.white;
         }
@@ -66,12 +64,12 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
             var rectSize = new Vector2(rect.width - 20, 40);
             GUI.Label(new Rect(rectPosition, rectSize),
                 labelText,
-                data.Skin.GetStyle("NodeText"));
+                core.Skin.GetStyle("NodeText"));
         }
 
         public void ShiftUp(int countDeleteNodes)
         {
-            var newRectPositionY = rect.y - countDeleteNodes * data.DrawValues.NodeShiftVertical;
+            var newRectPositionY = rect.y - countDeleteNodes * core.DrawValues.NodeShiftVertical;
             var newRectPosition = new Vector2(rect.x, newRectPositionY);
             var newRect = new Rect(newRectPosition, rect.size);
             rect = newRect;
@@ -79,7 +77,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
 
         public void ShiftDown(int countNodes = 1)
         {
-            var newRectPositionY = rect.y + countNodes * data.DrawValues.NodeShiftVertical;
+            var newRectPositionY = rect.y + countNodes * core.DrawValues.NodeShiftVertical;
             var newRectPosition = new Vector2(rect.x, newRectPositionY);
             var newRect = new Rect(newRectPosition, rect.size);
             rect = newRect;

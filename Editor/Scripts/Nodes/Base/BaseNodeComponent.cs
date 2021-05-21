@@ -15,7 +15,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
     [Serializable]
     public abstract class BaseNodeComponent
     {
-        protected readonly TemplatorCore data;
+        protected readonly DTemplatorCore core;
 
         //protected readonly List<BaseNodeComponent> decorators;
         public List<BaseNodeComponent> decorators;
@@ -29,10 +29,10 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
 
         public abstract BaseDrawer Drawer { get; }
 
-        protected BaseNodeComponent(TemplatorCore data)
+        protected BaseNodeComponent(DTemplatorCore core)
         {
-            this.data = data;
-            Index = data.NodeIndex;
+            this.core = core;
+            Index = core.NodeIndex;
             decorators = new List<BaseNodeComponent>();
             nodes = new List<BaseNodeComponent>();
         }
@@ -73,7 +73,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
         {
             if (Drawer.Rect.Contains(mousePosition + offset))
             {
-                data.SelectedNode = this;
+                core.SelectedNode = this;
                 return true;
             }
 
@@ -83,7 +83,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
                 {
                     if (decorator.SelectionControl(mousePosition, offset))
                     {
-                        data.SelectedNode = decorator;
+                        core.SelectedNode = decorator;
                         return true;
                     }
                 }
@@ -97,7 +97,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
         {
             if (Drawer.Rect.Contains(mousePosition + offset))
             {
-                data.CurrentNode = this;
+                core.CurrentNode = this;
                 return true;
             }
 
@@ -107,7 +107,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
                 {
                     if (decorator.Contains(mousePosition, offset))
                     {
-                        data.CurrentNode = decorator;
+                        core.CurrentNode = decorator;
                         return true;
                     }
                 }
@@ -147,8 +147,8 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
         public Rect GetRectForNewNode()
         {
             var baseRect = Drawer.Rect;
-            var nodeShiftHorizontal = data.DrawValues.NodeShiftHorizontal;
-            var nodeShiftVertical = data.DrawValues.NodeShiftVertical;
+            var nodeShiftHorizontal = core.DrawValues.NodeShiftHorizontal;
+            var nodeShiftVertical = core.DrawValues.NodeShiftVertical;
 
             if (nodes.Count == 0)
             {
@@ -169,14 +169,14 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
         public Rect GetRectForNewDecorator()
         {
             var baseRect = Drawer.Rect;
-            var decoratorShiftHorizontal = data.DrawValues.DecoratorShiftHorizontal;
+            var decoratorShiftHorizontal = core.DrawValues.DecoratorShiftHorizontal;
 
             if (decorators.Count == 0)
             {
                 var position = new Vector2(
                     baseRect.x + baseRect.width + decoratorShiftHorizontal,
                     baseRect.y);
-                var rectNewDecorator = new Rect(position, data.DrawValues.DecoratorSize);
+                var rectNewDecorator = new Rect(position, core.DrawValues.DecoratorSize);
                 return rectNewDecorator;
             }
 
@@ -211,10 +211,10 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
                     var countDeleteNodes = node.GetCountNodes();
                     var shiftLimitY = node.Drawer.Rect.y;
 
-                    data.UndoRedo.RegisterSnapshot();
+                    core.UndoRedo.RegisterSnapshot();
                     nodes.Remove(node);
 
-                    data.SourceNode.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
+                    core.SourceNode.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
                     return;
                 }
 
@@ -225,7 +225,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
             {
                 if (decorator.Index == indexDelete)
                 {
-                    data.UndoRedo.RegisterSnapshot();
+                    core.UndoRedo.RegisterSnapshot();
                     decorators.Remove(decorator);
                     return;
                 }

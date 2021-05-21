@@ -29,23 +29,23 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 
 #endregion
 
-        public TextDrawer(Rect rect, TemplatorCore data) : base(rect, data)
+        public TextDrawer(Rect rect, DTemplatorCore core) : base(rect, core)
         {
             Name = "TxtName";
-            Width = data.DefaultValues.Text.Width;
-            Height = data.DefaultValues.Text.Height;
+            Width = core.DefaultValues.Text.Width;
+            Height = core.DefaultValues.Text.Height;
             Text = "New Text";
-            nodeBackgroundColor = data.DefaultValues.Text.NodeColor;
+            nodeBackgroundColor = core.DefaultValues.Text.NodeColor;
         }
         
-        public TextDrawer(Rect rect, TemplatorCore data, IPropertiesText drawer) 
-            : base(rect, data)
+        public TextDrawer(Rect rect, DTemplatorCore core, IPropertiesText drawer) 
+            : base(rect, core)
         {
             Name = drawer.Name;
             Width = drawer.Width;
             Height = drawer.Height;
             Text = drawer.Text;
-            nodeBackgroundColor = data.DefaultValues.Text.NodeColor;
+            nodeBackgroundColor = core.DefaultValues.Text.NodeColor;
         }
 
         public override void DrawNode()

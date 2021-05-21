@@ -32,10 +32,10 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
 #endregion
 
-        public SourceNode(Rect rect, TemplatorCore data) : base(data)
+        public SourceNode(Rect rect, DTemplatorCore core) : base(core)
         {
             Level = 0;
-            _drawer = new SourceDrawer(rect, data);
+            _drawer = new SourceDrawer(rect, core);
             _creator = new SourceCreator();
         }
 
@@ -58,7 +58,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public SourceNode GetClone()
         {
-            var clone = new SourceNode(_drawer.Rect, data)
+            var clone = new SourceNode(_drawer.Rect, core)
             {
                 nodes = new List<BaseNodeComponent>(),
                 decorators = new List<BaseNodeComponent>()

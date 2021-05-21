@@ -20,17 +20,17 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public GridLayoutDecorator(Rect rect, TemplatorCore data) : base(data)
+        public GridLayoutDecorator(Rect rect, DTemplatorCore core) : base(core)
         {
-            _drawer = new GridLayoutDrawer(rect, data);
+            _drawer = new GridLayoutDrawer(rect, core);
             _creator = new GridLayoutCreator();
         }
 
         private GridLayoutDecorator(Rect rect,
-            TemplatorCore data,
-            IPropertiesGridLayout drawer) : base(data)
+            DTemplatorCore core,
+            IPropertiesGridLayout drawer) : base(core)
         {
-            _drawer = new GridLayoutDrawer(rect, data, drawer);
+            _drawer = new GridLayoutDrawer(rect, core, drawer);
             _creator = new GridLayoutCreator();
         }
 
@@ -52,7 +52,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var cloneNode = new GridLayoutDecorator(GetCloneRect(), data, _drawer);
+            var cloneNode = new GridLayoutDecorator(GetCloneRect(), core, _drawer);
 
             cloneParent.decorators.Add(cloneNode);
         }

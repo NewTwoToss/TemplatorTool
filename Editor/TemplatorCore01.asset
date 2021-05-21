@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a182532574124d0aa9ac426d51775f0a, type: 3}
-  m_Name: ValidatorSettings
+  m_Name: NewTemplatorCore
   m_EditorClassIdentifier: 
   _version: 1.0.0
-  _skin: {fileID: 11400000, guid: 71a1de132a646eb4ca50cccdbf384ada, type: 2}
+  _skin: {fileID: 0}
   _drawValues:
-    _sourceNodePosition: {x: 30, y: 30}
-    _nodeSize: {x: 200, y: 60}
-    _decoratorSize: {x: 160, y: 50}
-    _nodeShiftVertical: 70
-    _nodeShiftHorizontal: 80
+    _sourceNodePosition: {x: 0, y: 0}
+    _nodeSize: {x: 0, y: 0}
+    _decoratorSize: {x: 0, y: 0}
+    _nodeShiftVertical: 80
+    _nodeShiftHorizontal: 40
     _decoratorShiftHorizontal: 20
   _defaultValues:
     _rectTransform:
-      _width: 220
+      _width: 100
       _height: 100
-      _nodeColor: {r: 0.7, g: 0.7, b: 1, a: 1}
+      _nodeColor: {r: 0, g: 0, b: 0, a: 0}
     _image:
       _width: 100
-      _height: 40
-      _nodeColor: {r: 0.8, g: 0.5, b: 0.5, a: 1}
+      _height: 100
+      _nodeColor: {r: 0, g: 0, b: 0, a: 0}
     _text:
       _width: 100
-      _height: 40
-      _nodeColor: {r: 0.2, g: 0.8, b: 1, a: 1}
+      _height: 100
+      _nodeColor: {r: 0, g: 0, b: 0, a: 0}
     _button:
-      _width: 200
-      _height: 50
-      _nodeColor: {r: 0.7, g: 1, b: 1, a: 1}
+      _width: 100
+      _height: 100
+      _nodeColor: {r: 0, g: 0, b: 0, a: 0}

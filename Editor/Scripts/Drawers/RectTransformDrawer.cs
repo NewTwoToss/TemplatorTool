@@ -27,21 +27,21 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 
 #endregion
 
-        public RectTransformDrawer(Rect rect, TemplatorCore data) : base(rect, data)
+        public RectTransformDrawer(Rect rect, DTemplatorCore core) : base(rect, core)
         {
             Name = "RTName";
-            Width = data.DefaultValues.RectTransform.Width;
-            Height = data.DefaultValues.RectTransform.Height;
-            nodeBackgroundColor = data.DefaultValues.RectTransform.NodeColor;
+            Width = core.DefaultValues.RectTransform.Width;
+            Height = core.DefaultValues.RectTransform.Height;
+            nodeBackgroundColor = core.DefaultValues.RectTransform.NodeColor;
         }
         
-        public RectTransformDrawer(Rect rect, TemplatorCore data, IPropertiesRectTransform drawer) 
-            : base(rect, data)
+        public RectTransformDrawer(Rect rect, DTemplatorCore core, IPropertiesRectTransform drawer) 
+            : base(rect, core)
         {
             Name = drawer.Name;
             Width = drawer.Width;
             Height = drawer.Height;
-            nodeBackgroundColor = data.DefaultValues.RectTransform.NodeColor;
+            nodeBackgroundColor = core.DefaultValues.RectTransform.NodeColor;
         }
 
         public override void DrawNode()

@@ -22,15 +22,15 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 #endregion
 
 
-        public VerticalLayoutDrawer(Rect rect, TemplatorCore data) : base(rect, data)
+        public VerticalLayoutDrawer(Rect rect, DTemplatorCore core) : base(rect, core)
         {
             Spacing = 0;
         }
 
         public VerticalLayoutDrawer(Rect rect,
-            TemplatorCore data,
+            DTemplatorCore core,
             IPropertiesVerticalLayout drawer)
-            : base(rect, data)
+            : base(rect, core)
         {
             Spacing = drawer.Spacing;
         }

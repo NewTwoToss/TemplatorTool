@@ -22,16 +22,16 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public ButtonNode(Rect rect, TemplatorCore data) : base(data)
+        public ButtonNode(Rect rect, DTemplatorCore core) : base(core)
         {
-            _drawer = new ButtonDrawer(rect, data);
+            _drawer = new ButtonDrawer(rect, core);
             _creator = new ButtonCreator();
         }
 
-        private ButtonNode(Rect rect, TemplatorCore data, IPropertiesButton drawer) 
-            : base(data)
+        private ButtonNode(Rect rect, DTemplatorCore core, IPropertiesButton drawer) 
+            : base(core)
         {
-            _drawer = new ButtonDrawer(rect, data, drawer);
+            _drawer = new ButtonDrawer(rect, core, drawer);
             _creator = new ButtonCreator();
         }
 
@@ -52,7 +52,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var cloneNode = new ButtonNode(GetCloneRect(), data, _drawer);
+            var cloneNode = new ButtonNode(GetCloneRect(), core, _drawer);
 
             cloneParent.nodes.Add(cloneNode);
 

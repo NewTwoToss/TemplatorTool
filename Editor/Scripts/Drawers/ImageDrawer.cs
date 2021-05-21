@@ -37,17 +37,17 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 
 #endregion
 
-        public ImageDrawer(Rect rect, TemplatorCore data) : base(rect, data)
+        public ImageDrawer(Rect rect, DTemplatorCore core) : base(rect, core)
         {
             Name = "ImgName";
-            Width = data.DefaultValues.Image.Width;
-            Height = data.DefaultValues.Image.Height;
+            Width = core.DefaultValues.Image.Width;
+            Height = core.DefaultValues.Image.Height;
             Color = Color.white;
-            nodeBackgroundColor = data.DefaultValues.Image.NodeColor;
+            nodeBackgroundColor = core.DefaultValues.Image.NodeColor;
         }
         
-        public ImageDrawer(Rect rect, TemplatorCore data, IPropertiesImage drawer) 
-            : base(rect, data)
+        public ImageDrawer(Rect rect, DTemplatorCore core, IPropertiesImage drawer) 
+            : base(rect, core)
         {
             Name = drawer.Name;
             Width = drawer.Width;
@@ -56,7 +56,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             RaycastTarget = drawer.RaycastTarget;
             Maskable = drawer.Maskable;
             SetNativeSize = drawer.SetNativeSize;
-            nodeBackgroundColor = data.DefaultValues.Image.NodeColor;
+            nodeBackgroundColor = core.DefaultValues.Image.NodeColor;
         }
 
         public override void DrawNode()

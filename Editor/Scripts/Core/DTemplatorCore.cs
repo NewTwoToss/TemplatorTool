@@ -9,15 +9,15 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Core
 {
-    [CreateAssetMenu(fileName = "TemplatorCore",
+    [CreateAssetMenu(fileName = "NewTemplatorCore",
         menuName = "TossTool/Templator Core",
         order = 0)]
-    public class TemplatorCore : ScriptableObject
+    public class DTemplatorCore : ScriptableObject
     {
 #region [INSPECTOR]
 
         [SerializeField]
-        private string _version = "0.0.0";
+        private string _version = "1.0.0";
         
         [SerializeField]
         private GUISkin _skin;

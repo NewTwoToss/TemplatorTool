@@ -22,15 +22,15 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 #endregion
 
 
-        public HorizontalLayoutDrawer(Rect rect, TemplatorCore data) : base(rect, data)
+        public HorizontalLayoutDrawer(Rect rect, DTemplatorCore core) : base(rect, core)
         {
             Spacing = 0;
         }
         
         public HorizontalLayoutDrawer(Rect rect, 
-            TemplatorCore data, 
+            DTemplatorCore core, 
             IPropertiesHorizontalLayout drawer) 
-            : base(rect, data)
+            : base(rect, core)
         {
             Spacing = drawer.Spacing;
         }

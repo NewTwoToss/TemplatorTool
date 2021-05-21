@@ -21,13 +21,13 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 
 #endregion
 
-        public GridLayoutDrawer(Rect rect, TemplatorCore data) : base(rect, data)
+        public GridLayoutDrawer(Rect rect, DTemplatorCore core) : base(rect, core)
         {
             Spacing = Vector2.zero;
         }
 
-        public GridLayoutDrawer(Rect rect, TemplatorCore data, IPropertiesGridLayout drawer)
-            : base(rect, data)
+        public GridLayoutDrawer(Rect rect, DTemplatorCore core, IPropertiesGridLayout drawer)
+            : base(rect, core)
         {
             Spacing = drawer.Spacing;
         }

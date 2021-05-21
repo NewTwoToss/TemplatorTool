@@ -10,7 +10,7 @@ namespace Plugins.Templator.Editor.Scripts.Views.Base
 {
     public abstract class BaseView
     {
-        public TemplatorCore Data { get; set; }
+        public DTemplatorCore Data { get; set; }
 
         public abstract void DrawGUI(Rect pRect);
 

@@ -20,17 +20,17 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public VerticalLayoutDecorator(Rect rect, TemplatorCore data) : base(data)
+        public VerticalLayoutDecorator(Rect rect, DTemplatorCore core) : base(core)
         {
-            _drawer = new VerticalLayoutDrawer(rect, data);
+            _drawer = new VerticalLayoutDrawer(rect, core);
             _creator = new VerticalLayoutCreator();
         }
 
         private VerticalLayoutDecorator(Rect rect,
-            TemplatorCore data,
-            IPropertiesVerticalLayout drawer) : base(data)
+            DTemplatorCore core,
+            IPropertiesVerticalLayout drawer) : base(core)
         {
-            _drawer = new VerticalLayoutDrawer(rect, data, drawer);
+            _drawer = new VerticalLayoutDrawer(rect, core, drawer);
             _creator = new VerticalLayoutCreator();
         }
 
@@ -52,7 +52,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public override void MyClone(BaseNodeComponent cloneParent)
         {
-            var cloneNode = new VerticalLayoutDecorator(GetCloneRect(), data, _drawer);
+            var cloneNode = new VerticalLayoutDecorator(GetCloneRect(), core, _drawer);
 
             cloneParent.decorators.Add(cloneNode);
         }
