@@ -3,17 +3,16 @@
 //    Date: 28.04.2021
 // =================================================================================================
 
-using Plugins.GameUIBuilder.Editor.Scripts.Core;
-using Plugins.GameUIBuilder.Editor.Scripts.Nodes;
-using Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base;
+using Plugins.Templator.Editor.Scripts.Nodes;
+using Plugins.Templator.Editor.Scripts.Nodes.Base;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts
+namespace Plugins.Templator.Editor.Scripts.Core
 {
-    [CreateAssetMenu(fileName = "TossCreatorTool",
-        menuName = "TossTool/Create Tool",
+    [CreateAssetMenu(fileName = "TemplatorCore",
+        menuName = "TossTool/Templator Core",
         order = 0)]
-    public class DTossCreator : ScriptableObject
+    public class TemplatorCore : ScriptableObject
     {
 #region [INSPECTOR]
 
@@ -65,7 +64,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
         public void Initialize()
         {
-            Debug.Log("DATA :: CORE :: Init()");
+            Debug.Log("TemplatorCore :: Initialize()");
 
             _nodeIndex = 0;
             SelectedNode = null;

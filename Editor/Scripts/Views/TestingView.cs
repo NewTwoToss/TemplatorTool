@@ -3,10 +3,10 @@
 //    Date: 10.05.2021
 // =================================================================================================
 
-using Plugins.GameUIBuilder.Editor.Scripts.Views.Base;
+using Plugins.Templator.Editor.Scripts.Views.Base;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Views
+namespace Plugins.Templator.Editor.Scripts.Views
 {
     public class TestingView : BaseView
     {

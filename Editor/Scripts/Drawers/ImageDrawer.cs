@@ -4,12 +4,13 @@
 // =================================================================================================
 
 using System;
-using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.ComponentProperties;
+using Plugins.Templator.Editor.Scripts.Core;
+using Plugins.Templator.Editor.Scripts.Drawers.Base;
 using UnityEditor;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
+namespace Plugins.Templator.Editor.Scripts.Drawers
 {
     [Serializable]
     public class ImageDrawer : BaseDrawer, IPropertiesImage
@@ -36,7 +37,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
 #endregion
 
-        public ImageDrawer(Rect rect, DTossCreator data) : base(rect, data)
+        public ImageDrawer(Rect rect, TemplatorCore data) : base(rect, data)
         {
             Name = "ImgName";
             Width = data.DefaultValues.Image.Width;
@@ -45,7 +46,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             nodeBackgroundColor = data.DefaultValues.Image.NodeColor;
         }
         
-        public ImageDrawer(Rect rect, DTossCreator data, IPropertiesImage drawer) 
+        public ImageDrawer(Rect rect, TemplatorCore data, IPropertiesImage drawer) 
             : base(rect, data)
         {
             Name = drawer.Name;

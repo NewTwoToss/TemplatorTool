@@ -3,12 +3,13 @@
 //    Date: 11.05.2021
 // =================================================================================================
 
-using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.ComponentProperties;
+using Plugins.Templator.Editor.Scripts.Core;
+using Plugins.Templator.Editor.Scripts.Drawers.Base;
 using UnityEditor;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
+namespace Plugins.Templator.Editor.Scripts.Drawers
 {
     public class GridLayoutDrawer : BaseDrawer, IPropertiesGridLayout
     {
@@ -20,12 +21,12 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
 #endregion
 
-        public GridLayoutDrawer(Rect rect, DTossCreator data) : base(rect, data)
+        public GridLayoutDrawer(Rect rect, TemplatorCore data) : base(rect, data)
         {
             Spacing = Vector2.zero;
         }
 
-        public GridLayoutDrawer(Rect rect, DTossCreator data, IPropertiesGridLayout drawer)
+        public GridLayoutDrawer(Rect rect, TemplatorCore data, IPropertiesGridLayout drawer)
             : base(rect, data)
         {
             Spacing = drawer.Spacing;

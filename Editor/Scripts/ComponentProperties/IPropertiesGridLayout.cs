@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties
+namespace Plugins.Templator.Editor.Scripts.ComponentProperties
 {
     public interface IPropertiesGridLayout
     {

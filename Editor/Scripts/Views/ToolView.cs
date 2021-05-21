@@ -3,13 +3,13 @@
 //    Date: 27.04.2021
 // =================================================================================================
 
-using Plugins.GameUIBuilder.Editor.Scripts.Nodes;
-using Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base;
-using Plugins.GameUIBuilder.Editor.Scripts.Views.Base;
+using Plugins.Templator.Editor.Scripts.Nodes;
+using Plugins.Templator.Editor.Scripts.Nodes.Base;
+using Plugins.Templator.Editor.Scripts.Views.Base;
 using UnityEditor;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Views
+namespace Plugins.Templator.Editor.Scripts.Views
 {
     public class ToolView : BaseView
     {

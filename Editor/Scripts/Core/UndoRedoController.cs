@@ -5,15 +5,14 @@
 
 using System;
 using System.Collections.Generic;
-using Plugins.GameUIBuilder.Editor.Scripts.Nodes;
-using UnityEngine;
+using Plugins.Templator.Editor.Scripts.Nodes;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts
+namespace Plugins.Templator.Editor.Scripts.Core
 {
     [Serializable]
     public class UndoRedoController
     {
-        private readonly DTossCreator _data;
+        private readonly TemplatorCore _data;
         private readonly Stack<SourceNode> _undoStack;
         private readonly Stack<SourceNode> _redoStack;
 
@@ -21,7 +20,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
         
         public bool IsRedoStack => _redoStack.Count != 0;
 
-        public UndoRedoController(DTossCreator data)
+        public UndoRedoController(TemplatorCore data)
         {
             _data = data;
             _undoStack = new Stack<SourceNode>();
@@ -33,7 +32,6 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
             _redoStack.Clear();
             var clone = _data.SourceNode.GetClone();
             _undoStack.Push(clone);
-            Debug.Log($"_undoStack: {_undoStack.Count}");
         }
 
         public void Undo()

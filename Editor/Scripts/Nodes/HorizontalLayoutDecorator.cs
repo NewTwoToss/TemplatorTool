@@ -3,14 +3,15 @@
 //    Date: 11.05.2021
 // =================================================================================================
 
-using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
-using Plugins.GameUIBuilder.Editor.Scripts.Creators;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
-using Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base;
+using Plugins.Templator.Editor.Scripts.ComponentProperties;
+using Plugins.Templator.Editor.Scripts.Core;
+using Plugins.Templator.Editor.Scripts.Creators;
+using Plugins.Templator.Editor.Scripts.Drawers;
+using Plugins.Templator.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.Nodes.Base;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
+namespace Plugins.Templator.Editor.Scripts.Nodes
 {
     public class HorizontalLayoutDecorator : BaseNodeComponent
     {
@@ -19,14 +20,14 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public HorizontalLayoutDecorator(Rect rect, DTossCreator data) : base(data)
+        public HorizontalLayoutDecorator(Rect rect, TemplatorCore data) : base(data)
         {
             _drawer = new HorizontalLayoutDrawer(rect, data);
             _creator = new HorizontalLayoutCreator();
         }
 
         private HorizontalLayoutDecorator(Rect rect,
-            DTossCreator data,
+            TemplatorCore data,
             IPropertiesHorizontalLayout drawer)
             : base(data)
         {

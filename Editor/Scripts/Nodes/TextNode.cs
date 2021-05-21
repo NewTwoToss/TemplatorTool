@@ -4,14 +4,15 @@
 // =================================================================================================
 
 using System;
-using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
-using Plugins.GameUIBuilder.Editor.Scripts.Creators;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
-using Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base;
+using Plugins.Templator.Editor.Scripts.ComponentProperties;
+using Plugins.Templator.Editor.Scripts.Core;
+using Plugins.Templator.Editor.Scripts.Creators;
+using Plugins.Templator.Editor.Scripts.Drawers;
+using Plugins.Templator.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.Nodes.Base;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
+namespace Plugins.Templator.Editor.Scripts.Nodes
 {
     [Serializable]
     public class TextNode : BaseNodeComponent
@@ -21,13 +22,13 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public TextNode(Rect rect, DTossCreator data) : base(data)
+        public TextNode(Rect rect, TemplatorCore data) : base(data)
         {
             _drawer = new TextDrawer(rect, data);
             _creator = new TextCreator();
         }
         
-        private TextNode(Rect rect, DTossCreator data, IPropertiesText drawer) 
+        private TextNode(Rect rect, TemplatorCore data, IPropertiesText drawer) 
             : base(data)
         {
             _drawer = new TextDrawer(rect, data, drawer);

@@ -4,12 +4,13 @@
 // =================================================================================================
 
 using System;
-using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.ComponentProperties;
+using Plugins.Templator.Editor.Scripts.Core;
+using Plugins.Templator.Editor.Scripts.Drawers.Base;
 using UnityEditor;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
+namespace Plugins.Templator.Editor.Scripts.Drawers
 {
     [Serializable]
     public class SourceDrawer : BaseDrawer, IPropertiesSource
@@ -25,7 +26,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 #endregion
 
 
-        public SourceDrawer(Rect rect, DTossCreator data) : base(rect, data)
+        public SourceDrawer(Rect rect, TemplatorCore data) : base(rect, data)
         {
             Source = null;
             nodeBackgroundColor = new Color(0.8f, 0.6f, 0.0f);

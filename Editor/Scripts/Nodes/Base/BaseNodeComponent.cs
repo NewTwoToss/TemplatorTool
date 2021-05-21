@@ -6,15 +6,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.Core;
+using Plugins.Templator.Editor.Scripts.Drawers.Base;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
+namespace Plugins.Templator.Editor.Scripts.Nodes.Base
 {
     [Serializable]
     public abstract class BaseNodeComponent
     {
-        protected readonly DTossCreator data;
+        protected readonly TemplatorCore data;
 
         //protected readonly List<BaseNodeComponent> decorators;
         public List<BaseNodeComponent> decorators;
@@ -28,7 +29,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base
 
         public abstract BaseDrawer Drawer { get; }
 
-        protected BaseNodeComponent(DTossCreator data)
+        protected BaseNodeComponent(TemplatorCore data)
         {
             this.data = data;
             Index = data.NodeIndex;

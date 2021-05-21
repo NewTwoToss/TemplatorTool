@@ -4,12 +4,13 @@
 // =================================================================================================
 
 using System;
-using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.ComponentProperties;
+using Plugins.Templator.Editor.Scripts.Core;
+using Plugins.Templator.Editor.Scripts.Drawers.Base;
 using UnityEditor;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
+namespace Plugins.Templator.Editor.Scripts.Drawers
 {
     [Serializable]
     public class TextDrawer : BaseDrawer, IPropertiesText
@@ -28,7 +29,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
 #endregion
 
-        public TextDrawer(Rect rect, DTossCreator data) : base(rect, data)
+        public TextDrawer(Rect rect, TemplatorCore data) : base(rect, data)
         {
             Name = "TxtName";
             Width = data.DefaultValues.Text.Width;
@@ -37,7 +38,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             nodeBackgroundColor = data.DefaultValues.Text.NodeColor;
         }
         
-        public TextDrawer(Rect rect, DTossCreator data, IPropertiesText drawer) 
+        public TextDrawer(Rect rect, TemplatorCore data, IPropertiesText drawer) 
             : base(rect, data)
         {
             Name = drawer.Name;

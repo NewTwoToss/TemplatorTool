@@ -5,13 +5,14 @@
 
 using System;
 using System.Collections.Generic;
-using Plugins.GameUIBuilder.Editor.Scripts.Creators;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
-using Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base;
+using Plugins.Templator.Editor.Scripts.Core;
+using Plugins.Templator.Editor.Scripts.Creators;
+using Plugins.Templator.Editor.Scripts.Drawers;
+using Plugins.Templator.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.Nodes.Base;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
+namespace Plugins.Templator.Editor.Scripts.Nodes
 {
     [Serializable]
     public class SourceNode : BaseNodeComponent
@@ -31,7 +32,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
 #endregion
 
-        public SourceNode(Rect rect, DTossCreator data) : base(data)
+        public SourceNode(Rect rect, TemplatorCore data) : base(data)
         {
             Level = 0;
             _drawer = new SourceDrawer(rect, data);

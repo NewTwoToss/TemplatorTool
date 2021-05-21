@@ -3,7 +3,7 @@
 //    Date: 07.05.2021
 // =================================================================================================
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Creators.Contracts
+namespace Plugins.Templator.Editor.Scripts.Creators.Contracts
 {
     public interface ICreateable
     {

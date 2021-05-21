@@ -4,12 +4,13 @@
 // =================================================================================================
 
 using System;
-using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.ComponentProperties;
+using Plugins.Templator.Editor.Scripts.Core;
+using Plugins.Templator.Editor.Scripts.Drawers.Base;
 using UnityEditor;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
+namespace Plugins.Templator.Editor.Scripts.Drawers
 {
     [Serializable]
     public class RectTransformDrawer : BaseDrawer, IPropertiesRectTransform
@@ -26,7 +27,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
 #endregion
 
-        public RectTransformDrawer(Rect rect, DTossCreator data) : base(rect, data)
+        public RectTransformDrawer(Rect rect, TemplatorCore data) : base(rect, data)
         {
             Name = "RTName";
             Width = data.DefaultValues.RectTransform.Width;
@@ -34,7 +35,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             nodeBackgroundColor = data.DefaultValues.RectTransform.NodeColor;
         }
         
-        public RectTransformDrawer(Rect rect, DTossCreator data, IPropertiesRectTransform drawer) 
+        public RectTransformDrawer(Rect rect, TemplatorCore data, IPropertiesRectTransform drawer) 
             : base(rect, data)
         {
             Name = drawer.Name;

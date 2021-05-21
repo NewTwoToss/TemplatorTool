@@ -3,14 +3,15 @@
 //    Date: 06.05.2021
 // =================================================================================================
 
-using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
-using Plugins.GameUIBuilder.Editor.Scripts.Creators;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
-using Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base;
+using Plugins.Templator.Editor.Scripts.ComponentProperties;
+using Plugins.Templator.Editor.Scripts.Core;
+using Plugins.Templator.Editor.Scripts.Creators;
+using Plugins.Templator.Editor.Scripts.Drawers;
+using Plugins.Templator.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.Nodes.Base;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
+namespace Plugins.Templator.Editor.Scripts.Nodes
 {
     public class VerticalLayoutDecorator : BaseNodeComponent
     {
@@ -19,14 +20,14 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public VerticalLayoutDecorator(Rect rect, DTossCreator data) : base(data)
+        public VerticalLayoutDecorator(Rect rect, TemplatorCore data) : base(data)
         {
             _drawer = new VerticalLayoutDrawer(rect, data);
             _creator = new VerticalLayoutCreator();
         }
 
         private VerticalLayoutDecorator(Rect rect,
-            DTossCreator data,
+            TemplatorCore data,
             IPropertiesVerticalLayout drawer) : base(data)
         {
             _drawer = new VerticalLayoutDrawer(rect, data, drawer);

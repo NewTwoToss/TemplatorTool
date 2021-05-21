@@ -3,7 +3,7 @@
 //    Date: 07.05.2021
 // =================================================================================================
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties
+namespace Plugins.Templator.Editor.Scripts.ComponentProperties
 {
     public interface IPropertiesRectTransform
     {

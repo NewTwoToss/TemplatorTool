@@ -3,13 +3,14 @@
 //    Date: 27.04.2021
 // =================================================================================================
 
+using Plugins.Templator.Editor.Scripts.Core;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Views.Base
+namespace Plugins.Templator.Editor.Scripts.Views.Base
 {
     public abstract class BaseView
     {
-        public DTossCreator Data { get; set; }
+        public TemplatorCore Data { get; set; }
 
         public abstract void DrawGUI(Rect pRect);
 

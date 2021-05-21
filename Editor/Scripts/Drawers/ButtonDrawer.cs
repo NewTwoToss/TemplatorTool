@@ -4,12 +4,13 @@
 // =================================================================================================
 
 using System;
-using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.ComponentProperties;
+using Plugins.Templator.Editor.Scripts.Core;
+using Plugins.Templator.Editor.Scripts.Drawers.Base;
 using UnityEditor;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
+namespace Plugins.Templator.Editor.Scripts.Drawers
 {
     [Serializable]
     public class ButtonDrawer : BaseDrawer, IPropertiesButton
@@ -26,7 +27,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
 
 #endregion
 
-        public ButtonDrawer(Rect rect, DTossCreator data) : base(rect, data)
+        public ButtonDrawer(Rect rect, TemplatorCore data) : base(rect, data)
         {
             Name = "BtnName";
             Width = data.DefaultValues.Button.Width;
@@ -34,7 +35,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Drawers
             nodeBackgroundColor = data.DefaultValues.Button.NodeColor;
         }
 
-        public ButtonDrawer(Rect rect, DTossCreator data, IPropertiesButton drawer)
+        public ButtonDrawer(Rect rect, TemplatorCore data, IPropertiesButton drawer)
             : base(rect, data)
         {
             Name = drawer.Name;

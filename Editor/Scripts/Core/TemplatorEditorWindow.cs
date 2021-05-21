@@ -4,14 +4,14 @@
 // =================================================================================================
 
 using System.Collections.Generic;
-using Plugins.GameUIBuilder.Editor.Scripts.Views;
-using Plugins.GameUIBuilder.Editor.Scripts.Views.Base;
+using Plugins.Templator.Editor.Scripts.Views;
+using Plugins.Templator.Editor.Scripts.Views.Base;
 using UnityEditor;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts
+namespace Plugins.Templator.Editor.Scripts.Core
 {
-    public class GameUIBuilderEditor : EditorWindow
+    public class TemplatorEditorWindow : EditorWindow
     {
         private List<BaseView> _views;
 
@@ -37,13 +37,13 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
         private static void DrawMainWindow()
         {
-            var mainWindow = (GameUIBuilderEditor) GetWindow(typeof(GameUIBuilderEditor));
-            mainWindow.titleContent.text = "Game UI Builder";
+            var mainWindow = (TemplatorEditorWindow) GetWindow(typeof(TemplatorEditorWindow));
+            mainWindow.titleContent.text = "Templator";
             mainWindow.titleContent.tooltip = "Game UI Builder for Unity projects";
             mainWindow.Show();
         }
 
-        private static DTossCreator _core;
+        private static TemplatorCore _core;
 
         private static void InitializeTool()
         {
@@ -61,9 +61,9 @@ namespace Plugins.GameUIBuilder.Editor.Scripts
 
             var pathValidatorSettings = AssetDatabase.GUIDToAssetPath(guidValidatorSettings[0]);
 
-            _core = (DTossCreator) AssetDatabase.LoadAssetAtPath(
+            _core = (TemplatorCore) AssetDatabase.LoadAssetAtPath(
                 pathValidatorSettings,
-                typeof(DTossCreator));
+                typeof(TemplatorCore));
             _core.Initialize();
         }
 

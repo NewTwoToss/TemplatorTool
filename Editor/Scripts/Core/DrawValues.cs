@@ -6,7 +6,7 @@
 using System;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Core
+namespace Plugins.Templator.Editor.Scripts.Core
 {
     [Serializable]
     public class DrawValues

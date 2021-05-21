@@ -4,14 +4,15 @@
 // =================================================================================================
 
 using System;
-using Plugins.GameUIBuilder.Editor.Scripts.ComponentProperties;
-using Plugins.GameUIBuilder.Editor.Scripts.Creators;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers;
-using Plugins.GameUIBuilder.Editor.Scripts.Drawers.Base;
-using Plugins.GameUIBuilder.Editor.Scripts.Nodes.Base;
+using Plugins.Templator.Editor.Scripts.ComponentProperties;
+using Plugins.Templator.Editor.Scripts.Core;
+using Plugins.Templator.Editor.Scripts.Creators;
+using Plugins.Templator.Editor.Scripts.Drawers;
+using Plugins.Templator.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.Nodes.Base;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
+namespace Plugins.Templator.Editor.Scripts.Nodes
 {
     [Serializable]
     public class ButtonNode : BaseNodeComponent
@@ -21,13 +22,13 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Nodes
 
         public override BaseDrawer Drawer => _drawer;
 
-        public ButtonNode(Rect rect, DTossCreator data) : base(data)
+        public ButtonNode(Rect rect, TemplatorCore data) : base(data)
         {
             _drawer = new ButtonDrawer(rect, data);
             _creator = new ButtonCreator();
         }
 
-        private ButtonNode(Rect rect, DTossCreator data, IPropertiesButton drawer) 
+        private ButtonNode(Rect rect, TemplatorCore data, IPropertiesButton drawer) 
             : base(data)
         {
             _drawer = new ButtonDrawer(rect, data, drawer);

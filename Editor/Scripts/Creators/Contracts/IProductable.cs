@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Creators.Contracts
+namespace Plugins.Templator.Editor.Scripts.Creators.Contracts
 {
     public interface IProductable
     {

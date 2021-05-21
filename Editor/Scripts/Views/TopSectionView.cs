@@ -3,10 +3,10 @@
 //    Date: 17.05.2021
 // =================================================================================================
 
-using Plugins.GameUIBuilder.Editor.Scripts.Views.Base;
+using Plugins.Templator.Editor.Scripts.Views.Base;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Views
+namespace Plugins.Templator.Editor.Scripts.Views
 {
     public class TopSectionView : BaseView
     {
@@ -47,7 +47,7 @@ namespace Plugins.GameUIBuilder.Editor.Scripts.Views
             GUI.enabled = true;
 
 
-            GUI.Label(new Rect(pRect.width - 220, 0, 220, 24),
+            GUI.Label(new Rect(pRect.width - 230, 0, 220, 24),
                 $"Suib Tool v{Data.Version}",
                 _infoLabelStyle);
         }

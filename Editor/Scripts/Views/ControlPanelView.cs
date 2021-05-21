@@ -4,10 +4,10 @@
 // =================================================================================================
 
 using System.Text;
-using Plugins.GameUIBuilder.Editor.Scripts.Views.Base;
+using Plugins.Templator.Editor.Scripts.Views.Base;
 using UnityEngine;
 
-namespace Plugins.GameUIBuilder.Editor.Scripts.Views
+namespace Plugins.Templator.Editor.Scripts.Views
 {
     public class ControlPanelView : BaseView
     {
