@@ -11,14 +11,16 @@ namespace Plugins.Templator.Editor.Scripts.Views
     public class TopSectionView : BaseView
     {
         private bool _initialized;
-        private Texture _whiteTexture;
+        private Texture _backgroundTexture;
+        private Color _backgroundColor;
         private GUIStyle _infoLabelStyle;
 
         public override void DrawGUI(Rect pRect)
         {
             if (!_initialized)
             {
-                _whiteTexture = Texture2D.whiteTexture;
+                _backgroundTexture = Texture2D.whiteTexture;
+                _backgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.8f);
                 _infoLabelStyle = new GUIStyle
                 {
                     normal = {textColor = Color.gray},
@@ -28,8 +30,8 @@ namespace Plugins.Templator.Editor.Scripts.Views
             }
 
             var topSectionRect = new Rect(0, 0, pRect.width, 24);
-            GUI.color = new Color(0.1f, 0.1f, 0.1f, 0.8f);
-            GUI.DrawTexture(topSectionRect, _whiteTexture);
+            GUI.color = _backgroundColor;
+            GUI.DrawTexture(topSectionRect, _backgroundTexture);
             GUI.color = Color.white;
 
             GUI.enabled = Core.UndoRedo.IsUndoStack;
@@ -45,7 +47,6 @@ namespace Plugins.Templator.Editor.Scripts.Views
             }
 
             GUI.enabled = true;
-
 
             GUI.Label(new Rect(pRect.width - 230, 0, 220, 24),
                 $"Templator v{Core.Version}",

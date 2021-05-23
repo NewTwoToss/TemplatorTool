@@ -26,7 +26,6 @@ namespace Plugins.Templator.Editor.Scripts.Views
                 _colorCreateButton = new Color(0.0f, 1.0f, 0.0f);
                 _sb = new StringBuilder();
                 _initialized = true;
-                return;
             }
 
             if (Application.isPlaying) return;

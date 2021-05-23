@@ -3,6 +3,7 @@
 //    Date: 27.04.2021
 // =================================================================================================
 
+using System.Collections.Generic;
 using Plugins.Templator.Editor.Scripts.Nodes;
 using Plugins.Templator.Editor.Scripts.Nodes.Base;
 using Plugins.Templator.Editor.Scripts.Views.Base;
@@ -13,7 +14,8 @@ namespace Plugins.Templator.Editor.Scripts.Views
 {
     public class ToolView : BaseView
     {
-        private const int MAX_LEVEL_CREATE_COMPONENTS = 5;
+        private const int MAX_LEVEL_CREATE_NODES = 5;
+        private const int MAX_CHILD_COUNT = 12;
 
         private const string TEXT_MOVE_UP = "Move Up";
         private const string TEXT_MOVE_DOWN = "Move Down";
@@ -21,9 +23,14 @@ namespace Plugins.Templator.Editor.Scripts.Views
         private const string TEXT_ADD_IMG = "Add Image";
         private const string TEXT_ADD_BTN = "Add Button";
         private const string TEXT_ADD_TXT = "Add Text";
+        private const string TEXT_ADD_VER_LAYOUT = "Add Vertical Layout";
+        private const string TEXT_ADD_HOR_LAYOUT = "Add Horizontal Layout";
+        private const string TEXT_ADD_GRID_LAYOUT = "Add Grid Layout";
 
         private bool _initialized;
         private Texture _backgroundTexture;
+        private Texture _separatorTexture;
+        private Color _separatorColor;
         private Vector2 _scrollPosition;
 
         public override void DrawGUI(Rect pRect)
@@ -31,22 +38,42 @@ namespace Plugins.Templator.Editor.Scripts.Views
             if (!_initialized)
             {
                 _backgroundTexture = Resources.Load<Texture>("Textures/graph_background");
+                _separatorTexture = Texture2D.whiteTexture;
+                _separatorColor = new Color(0.1f, 0.1f, 0.1f, 0.5f);
                 _scrollPosition = Vector2.zero;
                 _initialized = true;
             }
 
             DrawBackground(pRect);
 
-            var viewRectY = Core.SourceNode.GetLastChildRectY() + 200;
+            var sourceNode = Core.SourceNode;
+            var viewRectY = sourceNode.GetLastChildRectY() + 200;
 
             _scrollPosition = GUI.BeginScrollView(new Rect(0, 22, pRect.width, pRect.height - 22),
                 _scrollPosition,
                 new Rect(0, 22, pRect.width - 20, viewRectY));
 
-            Core.SourceNode.Draw();
+            DrawSeparators(sourceNode.Nodes, pRect);
+            sourceNode.Draw();
             DrawOutline();
 
             GUI.EndScrollView();
+        }
+
+        private void DrawSeparators(IReadOnlyList<BaseNodeComponent> nodes, Rect pRect)
+        {
+            for (var i = 0; i < nodes.Count; i++)
+            {
+                if (i % 2 != 0) continue;
+
+                var separatorRectY = nodes[i].Drawer.Rect.y - 4;
+                var separatorRectHeight = nodes[i].GetLastChildRectY() - separatorRectY;
+                separatorRectHeight += Core.DrawValues.NodeSize.y + 2;
+                var separatorRect = new Rect(0, separatorRectY, pRect.width, separatorRectHeight);
+                GUI.color = _separatorColor;
+                GUI.DrawTexture(separatorRect, _separatorTexture);
+                GUI.color = Color.white;
+            }
         }
 
         private void DrawBackground(Rect pRect)
@@ -149,16 +176,15 @@ namespace Plugins.Templator.Editor.Scripts.Views
                     menu.AddSeparator(string.Empty);
                 }
 
-                if (currentNode.Level < MAX_LEVEL_CREATE_COMPONENTS)
+                var isCreateLevel = currentNode.Level < MAX_LEVEL_CREATE_NODES;
+                var isChildCount = currentNode.Nodes.Count < MAX_CHILD_COUNT;
+
+                if (isCreateLevel && isChildCount)
                 {
-                    menu.AddItem(new GUIContent(TEXT_ADD_RT),
-                        false, AddRectTransform);
-                    menu.AddItem(new GUIContent(TEXT_ADD_IMG),
-                        false, AddImage);
-                    menu.AddItem(new GUIContent(TEXT_ADD_BTN),
-                        false, AddButton);
-                    menu.AddItem(new GUIContent(TEXT_ADD_TXT),
-                        false, AddText);
+                    menu.AddItem(new GUIContent(TEXT_ADD_RT), false, AddRectTransform);
+                    menu.AddItem(new GUIContent(TEXT_ADD_IMG), false, AddImage);
+                    menu.AddItem(new GUIContent(TEXT_ADD_BTN), false, AddButton);
+                    menu.AddItem(new GUIContent(TEXT_ADD_TXT), false, AddText);
                 }
                 else
                 {
@@ -170,12 +196,18 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
                 menu.AddSeparator(string.Empty);
 
-                menu.AddItem(new GUIContent("Add Vertical Layout"),
-                    false, AddVerticalLayout);
-                menu.AddItem(new GUIContent("Add Horizontal Layout"),
-                    false, AddHorizontalLayout);
-                menu.AddItem(new GUIContent("Add Grid Layout"),
-                    false, AddGridLayout);
+                if (currentNode.Decorators.Count == 0)
+                {
+                    menu.AddItem(new GUIContent(TEXT_ADD_VER_LAYOUT), false, AddVerticalLayout);
+                    menu.AddItem(new GUIContent(TEXT_ADD_HOR_LAYOUT), false, AddHorizontalLayout);
+                    menu.AddItem(new GUIContent(TEXT_ADD_GRID_LAYOUT), false, AddGridLayout);
+                }
+                else
+                {
+                    menu.AddDisabledItem(new GUIContent(TEXT_ADD_VER_LAYOUT));
+                    menu.AddDisabledItem(new GUIContent(TEXT_ADD_HOR_LAYOUT));
+                    menu.AddDisabledItem(new GUIContent(TEXT_ADD_GRID_LAYOUT));
+                }
             }
 
             if (currentNode.CanBeDeleted())
