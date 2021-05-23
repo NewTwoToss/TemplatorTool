@@ -49,7 +49,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
             GUI.color = _colorClearButton;
             if (GUI.Button(new Rect(pRect.x + 4, pRect.y + 32, 100, 30), "Clear"))
             {
-                Core.ResetTool();
+                Core.ClearHierarchy();
             }
         }
 

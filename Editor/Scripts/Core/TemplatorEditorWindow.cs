@@ -27,11 +27,11 @@ namespace Plugins.Templator.Editor.Scripts.Core
         [InitializeOnLoadMethod]
         public static void OnProjectLoadedInEditor()
         {
-            Debug.Log("[TemplatorCore] OnProjectLoadedInEditor()");
+            Debug.Log("[Templator] OnProjectLoadedInEditor()");
             InitializeTool();
         }
 
-        [MenuItem("Toss Tools/Game UI Builder")]
+        [MenuItem("Tools/Templator")]
         private static void UnityMenuGameUIBuilder()
         {
             InitializeTool();
@@ -50,7 +50,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
         {
             if (!(_core is null)) return;
 
-            Debug.Log("[TOOL] InitializeTool()");
+            Debug.Log("[Templator] InitializeTool()");
             Initialize();
         }
 

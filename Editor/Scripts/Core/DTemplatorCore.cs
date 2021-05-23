@@ -9,16 +9,16 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Core
 {
-    [CreateAssetMenu(fileName = "NewTemplatorCore",
-        menuName = "TossTool/Templator Core",
-        order = 0)]
+    /*[CreateAssetMenu(fileName = "NewTemplatorCore",
+       menuName = "SkyTossTools/Templator Core",
+       order = 0)] */
     public class DTemplatorCore : ScriptableObject
     {
 #region [INSPECTOR]
 
         [SerializeField]
         private string _version = "1.0.0";
-        
+
         [SerializeField]
         private GUISkin _skin;
 
@@ -51,7 +51,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
         public DrawValues DrawValues => _drawValues;
 
         public DefaultValues DefaultValues => _defaultValues;
-        
+
         public UndoRedoController UndoRedo { get; private set; }
 
 #endregion
@@ -66,18 +66,12 @@ namespace Plugins.Templator.Editor.Scripts.Core
         {
             Debug.Log("TemplatorCore :: Initialize()");
 
-            _nodeIndex = 0;
-            SelectedNode = null;
-            CurrentNode = null;
-            IsSelection = false;
-            IsRepaint = false;
-
+            ResetValues();
             UndoRedo = new UndoRedoController(this);
-
-            CreateNodes();
+            GenerateBasicHierarchy();
         }
 
-        private void CreateNodes()
+        private void GenerateBasicHierarchy()
         {
             SourceNode = new SourceNode(_drawValues.SourceNodeRect, this);
 
@@ -118,10 +112,27 @@ namespace Plugins.Templator.Editor.Scripts.Core
             Initialize();
         }
 
+        public void ClearHierarchy()
+        {
+            UndoRedo.RegisterSnapshot();
+            SourceNode.Clear();
+            ResetValues();
+            GenerateBasicHierarchy();
+        }
+
         public void ResetSelection()
         {
             IsSelection = false;
             SelectedNode = null;
+        }
+
+        private void ResetValues()
+        {
+            _nodeIndex = 0;
+            SelectedNode = null;
+            CurrentNode = null;
+            IsSelection = false;
+            IsRepaint = false;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
     public class ToolView : BaseView
     {
         private const int MAX_LEVEL_CREATE_NODES = 5;
-        private const int MAX_CHILD_COUNT = 12;
+        private const int MAX_NODE_CHILDREN_COUNT = 12;
 
         private const string TEXT_MOVE_UP = "Move Up";
         private const string TEXT_MOVE_DOWN = "Move Down";
@@ -53,6 +53,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
                 _scrollPosition,
                 new Rect(0, 22, pRect.width - 20, viewRectY));
 
+            ShortcutsHandler();
             DrawSeparators(sourceNode.Nodes, pRect);
             sourceNode.Draw();
             DrawOutline();
@@ -60,19 +61,18 @@ namespace Plugins.Templator.Editor.Scripts.Views
             GUI.EndScrollView();
         }
 
-        private void DrawSeparators(IReadOnlyList<BaseNodeComponent> nodes, Rect pRect)
+        private void ShortcutsHandler()
         {
-            for (var i = 0; i < nodes.Count; i++)
-            {
-                if (i % 2 != 0) continue;
+            if (!Event.current.control || Event.current.type != EventType.KeyDown)
+                return;
 
-                var separatorRectY = nodes[i].Drawer.Rect.y - 4;
-                var separatorRectHeight = nodes[i].GetLastChildRectY() - separatorRectY;
-                separatorRectHeight += Core.DrawValues.NodeSize.y + 2;
-                var separatorRect = new Rect(0, separatorRectY, pRect.width, separatorRectHeight);
-                GUI.color = _separatorColor;
-                GUI.DrawTexture(separatorRect, _separatorTexture);
-                GUI.color = Color.white;
+            switch (Event.current.keyCode)
+            {
+                case KeyCode.D:
+                    Debug.Log("Stlacil som Ctrl + D!");
+                    break;
+                case KeyCode.X:
+                    break;
             }
         }
 
@@ -90,6 +90,22 @@ namespace Plugins.Templator.Editor.Scripts.Views
                 new Rect(0, 0, width / widthTexture, height / heightTexture),
                 true);
             GUI.color = Color.white;
+        }
+
+        private void DrawSeparators(IReadOnlyList<BaseNodeComponent> nodes, Rect pRect)
+        {
+            for (var i = 0; i < nodes.Count; i++)
+            {
+                if (i % 2 != 0) continue;
+
+                var separatorRectY = nodes[i].Drawer.Rect.y - 4;
+                var separatorRectHeight = nodes[i].GetLastChildRectY() - separatorRectY;
+                separatorRectHeight += Core.DrawValues.NodeSize.y + 2;
+                var separatorRect = new Rect(0, separatorRectY, pRect.width, separatorRectHeight);
+                GUI.color = _separatorColor;
+                GUI.DrawTexture(separatorRect, _separatorTexture);
+                GUI.color = Color.white;
+            }
         }
 
         private void DrawOutline()
@@ -177,7 +193,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
                 }
 
                 var isCreateLevel = currentNode.Level < MAX_LEVEL_CREATE_NODES;
-                var isChildCount = currentNode.Nodes.Count < MAX_CHILD_COUNT;
+                var isChildCount = currentNode.Nodes.Count < MAX_NODE_CHILDREN_COUNT;
 
                 if (isCreateLevel && isChildCount)
                 {
