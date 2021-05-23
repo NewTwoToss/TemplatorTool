@@ -54,7 +54,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
         {
             var cloneNode = new TextNode(GetCloneRect(), core, _drawer);
 
-            cloneParent.nodes.Add(cloneNode);
+            cloneParent.Nodes.Add(cloneNode);
 
             foreach (var node in nodes)
             {

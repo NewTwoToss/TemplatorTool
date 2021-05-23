@@ -16,24 +16,36 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
     public abstract class BaseNodeComponent
     {
         protected readonly DTemplatorCore core;
+        protected List<BaseNodeComponent> decorators;
+        protected List<BaseNodeComponent> nodes;
 
-        //protected readonly List<BaseNodeComponent> decorators;
-        public List<BaseNodeComponent> decorators;
-
-        //protected readonly List<BaseNodeComponent> nodes;
-        public List<BaseNodeComponent> nodes;
+#region [GETTERS / SETTERS]
 
         public int Index { get; set; }
 
         public int Level { get; set; }
 
+        public List<BaseNodeComponent> Nodes
+        {
+            get => nodes;
+            set => nodes = value;
+        }
+
+        public List<BaseNodeComponent> Decorators
+        {
+            get => decorators;
+            set => decorators = value;
+        }
+
         public abstract BaseDrawer Drawer { get; }
+
+#endregion
 
         protected BaseNodeComponent(DTemplatorCore core)
         {
             this.core = core;
             Index = core.NodeIndex;
-            decorators = new List<BaseNodeComponent>();
+            decorators = new List<BaseNodeComponent>(1);
             nodes = new List<BaseNodeComponent>();
         }
 

@@ -60,8 +60,8 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
         {
             var clone = new SourceNode(_drawer.Rect, core)
             {
-                nodes = new List<BaseNodeComponent>(),
-                decorators = new List<BaseNodeComponent>()
+                Nodes = new List<BaseNodeComponent>(),
+                Decorators = new List<BaseNodeComponent>()
             };
 
             foreach (var node in nodes)

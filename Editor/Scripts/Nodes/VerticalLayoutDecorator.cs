@@ -54,7 +54,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
         {
             var cloneNode = new VerticalLayoutDecorator(GetCloneRect(), core, _drawer);
 
-            cloneParent.decorators.Add(cloneNode);
+            cloneParent.Decorators.Add(cloneNode);
         }
     }
 }
