@@ -98,12 +98,20 @@ namespace Plugins.Templator.Editor.Scripts.Views
             {
                 if (i % 2 != 0) continue;
 
-                var separatorRectY = nodes[i].Drawer.Rect.y - 4;
+                var separatorRectX = nodes[i].Drawer.Rect.x - 20;
+                var separatorRectY = nodes[i].Drawer.Rect.y - 8;
+                var separatorRectWidth = pRect.width - 2 * separatorRectX;
                 var separatorRectHeight = nodes[i].GetLastChildRectY() - separatorRectY;
-                separatorRectHeight += Core.DrawValues.NodeSize.y + 2;
-                var separatorRect = new Rect(0, separatorRectY, pRect.width, separatorRectHeight);
-                GUI.color = _separatorColor;
-                GUI.DrawTexture(separatorRect, _separatorTexture);
+                separatorRectHeight += Core.DrawValues.NodeSize.y + 4;
+                var separatorRect = new Rect(separatorRectX,
+                    separatorRectY,
+                    separatorRectWidth,
+                    separatorRectHeight);
+                //GUI.color = _separatorColor;
+                //GUI.color = new Color(0.9f, 0.9f, 0.9f, 0.6f);
+                GUI.color = new Color(0.8f, 0.6f, 0.0f, 0.4f);
+                //GUI.DrawTexture(separatorRect, _separatorTexture);
+                GUI.Box(separatorRect, string.Empty, Core.Skin.GetStyle("GraphBox"));
                 GUI.color = Color.white;
             }
         }

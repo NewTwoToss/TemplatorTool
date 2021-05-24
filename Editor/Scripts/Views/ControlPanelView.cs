@@ -61,7 +61,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
             if (sourceNode.IsSourceNull)
             {
-                _sb.Append("Source Node Parent = Null !");
+                _sb.Append("Source Node Reference = Null [!]");
                 isFirstError = true;
             }
 
@@ -72,7 +72,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
                     _sb.Append("\n");
                 }
 
-                _sb.Append("Source Node Child Count = 0 !");
+                _sb.Append("Source Node Child Count = 0 [!]");
             }
 
             GUI.enabled = true;

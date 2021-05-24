@@ -64,7 +64,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
         public void Initialize()
         {
-            Debug.Log("TemplatorCore :: Initialize()");
+            Debug.Log("Templator] Initialize()");
 
             ResetValues();
             UndoRedo = new UndoRedoController(this);
@@ -75,7 +75,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
         {
             SourceNode = new SourceNode(_drawValues.SourceNodeRect, this);
 
-            var sourceNodePosition = _drawValues.SourceNodePosition;
+            /*var sourceNodePosition = _drawValues.SourceNodePosition;
             var nodeWidth = _drawValues.NodeSize.x;
             var nodeHeight = _drawValues.NodeSize.y;
             var nodeShiftHorizontal = _drawValues.NodeShiftHorizontal;
@@ -102,7 +102,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
                     sourceNodePosition.y + (4 + i) * nodeShiftVertical, nodeWidth, nodeHeight);
                 nodeLevel1 = new RectTransformNode(rect, this);
                 SourceNode.AddNode(nodeLevel1);
-            }
+            }*/
         }
 
         public void ResetTool()

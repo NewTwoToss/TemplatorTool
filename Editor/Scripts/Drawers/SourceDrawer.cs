@@ -40,7 +40,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             var icon = new GUIContent(EditorGUIUtility.IconContent("d_PlayButton On")).image;
             DrawNodeTitle(icon);
 
-            DrawBody("Ref.: NULL!");
+            DrawBody("Ref.: NULL");
         }
 
         protected override void DrawBody(string labelText)
