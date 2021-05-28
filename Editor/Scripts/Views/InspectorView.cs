@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Views
 {
-    public class ToolInspectorView : BaseView
+    public class InspectorView : BaseView
     {
         public override void DrawGUI(Rect pRect)
         {

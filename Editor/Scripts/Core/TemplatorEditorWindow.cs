@@ -96,8 +96,8 @@ namespace Plugins.Templator.Editor.Scripts.Core
         private void CreateViews()
         {
             _views = new List<BaseView>();
-            CreateView<ToolView>();
-            CreateView<ToolInspectorView>();
+            CreateView<MainView>();
+            CreateView<InspectorView>();
             CreateView<TopSectionView>();
             CreateView<ControlPanelView>();
             //CreateView<TestingView>();

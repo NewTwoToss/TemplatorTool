@@ -3,7 +3,9 @@
 //    Date: 17.05.2021
 // =================================================================================================
 
+using System.Text;
 using Plugins.Templator.Editor.Scripts.Views.Base;
+using UnityEditor;
 using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Views
@@ -12,8 +14,10 @@ namespace Plugins.Templator.Editor.Scripts.Views
     {
         private bool _initialized;
         private Texture _backgroundTexture;
+        private Texture _shortcutsIcon;
         private Color _backgroundColor;
         private GUIStyle _infoLabelStyle;
+        private StringBuilder _infoShortcuts;
 
         public override void DrawGUI(Rect pRect)
         {
@@ -21,11 +25,22 @@ namespace Plugins.Templator.Editor.Scripts.Views
             {
                 _backgroundTexture = Texture2D.whiteTexture;
                 _backgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.8f);
+                _shortcutsIcon = new GUIContent(EditorGUIUtility.IconContent("console.infoicon.sml")).image;
                 _infoLabelStyle = new GUIStyle
                 {
                     normal = {textColor = Color.gray},
                     alignment = TextAnchor.MiddleRight
                 };
+
+                _infoShortcuts = new StringBuilder();
+                _infoShortcuts.Append("[Ctrl + R] Add RectTransform");
+                _infoShortcuts.Append("\n---------------------------------\n");
+                _infoShortcuts.Append("[Ctrl + I] Add Image ");
+                _infoShortcuts.Append("\n---------------------------------\n");
+                _infoShortcuts.Append("[Ctrl + B] Add Button");
+                _infoShortcuts.Append("\n---------------------------------\n");
+                _infoShortcuts.Append("[Ctrl + T] Add Text");
+
                 _initialized = true;
             }
 
@@ -48,7 +63,10 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
             GUI.enabled = true;
 
-            GUI.Label(new Rect(pRect.width - 230, 0, 220, 24),
+            GUI.Label(new Rect(pRect.width - 150, 2, 20, 20),
+                new GUIContent(_shortcutsIcon, _infoShortcuts.ToString()));
+
+            GUI.Label(new Rect(pRect.width - 130, 0, 120, 24),
                 $"Templator v{Core.Version}",
                 _infoLabelStyle);
         }

@@ -12,8 +12,10 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Views
 {
-    public class ToolView : BaseView
+    public class MainView : BaseView
     {
+#region [CONSTANS]
+
         private const int MAX_LEVEL_CREATE_NODES = 5;
         private const int MAX_NODE_CHILDREN_COUNT = 12;
 
@@ -27,19 +29,23 @@ namespace Plugins.Templator.Editor.Scripts.Views
         private const string TEXT_ADD_HOR_LAYOUT = "Add Horizontal Layout";
         private const string TEXT_ADD_GRID_LAYOUT = "Add Grid Layout";
 
+#endregion
+
+#region [PRIVATE]
+
         private bool _initialized;
         private Texture _backgroundTexture;
-        private Texture _separatorTexture;
         private Color _separatorColor;
         private Vector2 _scrollPosition;
+
+#endregion
 
         public override void DrawGUI(Rect pRect)
         {
             if (!_initialized)
             {
                 _backgroundTexture = Resources.Load<Texture>("Textures/graph_background");
-                _separatorTexture = Texture2D.whiteTexture;
-                _separatorColor = new Color(0.1f, 0.1f, 0.1f, 0.5f);
+                _separatorColor = new Color(0.8f, 0.6f, 0.0f, 0.4f);
                 _scrollPosition = Vector2.zero;
                 _initialized = true;
             }
@@ -63,15 +69,24 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
         private void ShortcutsHandler()
         {
-            if (!Event.current.control || Event.current.type != EventType.KeyDown)
+            // TODO: Vymysliet klavesove skratky
+            //if (!Event.current.control || Event.current.type != EventType.KeyDown)
+            if (!Event.current.alt || Event.current.type != EventType.KeyDown)
                 return;
 
             switch (Event.current.keyCode)
             {
-                case KeyCode.D:
-                    Debug.Log("Stlacil som Ctrl + D!");
+                case KeyCode.R:
+                    AddRectTransformViaShortcut();
                     break;
-                case KeyCode.X:
+                case KeyCode.I:
+                    AddImageViaShortcut();
+                    break;
+                case KeyCode.T:
+                    AddTextViaShortcut();
+                    break;
+                case KeyCode.B:
+                    AddButtonViaShortcut();
                     break;
             }
         }
@@ -107,10 +122,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
                     separatorRectY,
                     separatorRectWidth,
                     separatorRectHeight);
-                //GUI.color = _separatorColor;
-                //GUI.color = new Color(0.9f, 0.9f, 0.9f, 0.6f);
-                GUI.color = new Color(0.8f, 0.6f, 0.0f, 0.4f);
-                //GUI.DrawTexture(separatorRect, _separatorTexture);
+                GUI.color = _separatorColor;
                 GUI.Box(separatorRect, string.Empty, Core.Skin.GetStyle("GraphBox"));
                 GUI.color = Color.white;
             }
@@ -205,10 +217,10 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
                 if (isCreateLevel && isChildCount)
                 {
-                    menu.AddItem(new GUIContent(TEXT_ADD_RT), false, AddRectTransform);
-                    menu.AddItem(new GUIContent(TEXT_ADD_IMG), false, AddImage);
-                    menu.AddItem(new GUIContent(TEXT_ADD_BTN), false, AddButton);
-                    menu.AddItem(new GUIContent(TEXT_ADD_TXT), false, AddText);
+                    menu.AddItem(new GUIContent(TEXT_ADD_RT), false, AddRectTransformViaMenu);
+                    menu.AddItem(new GUIContent(TEXT_ADD_IMG), false, AddImageViaMenu);
+                    menu.AddItem(new GUIContent(TEXT_ADD_BTN), false, AddButtonViaMenu);
+                    menu.AddItem(new GUIContent(TEXT_ADD_TXT), false, AddTextViaMenu);
                 }
                 else
                 {
@@ -262,40 +274,101 @@ namespace Plugins.Templator.Editor.Scripts.Views
             Core.SourceNode.MoveNode(indexCurrentNode, false);
         }
 
-        private void AddRectTransform()
+        private void AddRectTransformViaMenu()
         {
-            var newNodeRect = Core.CurrentNode.GetRectForNewNode();
-            var newNode = new RectTransformNode(newNodeRect, Core);
-            AddNewNode(newNode, newNodeRect);
+            var newNode = CreateRectTransformNode();
+            AddNewNode(newNode);
         }
 
-        private void AddImage()
+        private void AddRectTransformViaShortcut()
         {
-            var newNodeRect = Core.CurrentNode.GetRectForNewNode();
-            var newNode = new ImageNode(newNodeRect, Core);
-            AddNewNode(newNode, newNodeRect);
+            if (!Core.IsSelection) return;
+
+            var newNode = CreateRectTransformNode();
+            AddNewNode(newNode, true);
         }
 
-        private void AddButton()
+        private void AddImageViaShortcut()
         {
-            var newNodeRect = Core.CurrentNode.GetRectForNewNode();
-            var newNode = new ButtonNode(newNodeRect, Core);
-            AddNewNode(newNode, newNodeRect);
+            if (!Core.IsSelection) return;
+
+            var newNode = CreateImageNode();
+            AddNewNode(newNode, true);
         }
 
-        private void AddText()
+        private void AddTextViaShortcut()
         {
-            var newNodeRect = Core.CurrentNode.GetRectForNewNode();
-            var newNode = new TextNode(newNodeRect, Core);
-            AddNewNode(newNode, newNodeRect);
+            if (!Core.IsSelection) return;
+
+            var newNode = CreateTextNode();
+            AddNewNode(newNode, true);
         }
 
-        private void AddNewNode(BaseNodeComponent newNode, Rect newNodeRect)
+        private void AddButtonViaShortcut()
         {
-            var limitShiftY = newNodeRect.y - 2;
+            if (!Core.IsSelection) return;
+
+            var newNode = CreateButtonNode();
+            AddNewNode(newNode, true);
+        }
+
+        private RectTransformNode CreateRectTransformNode()
+        {
+            var newNodeRect = Core.SelectedNode.GetRectForNewNode();
+            return new RectTransformNode(newNodeRect, Core);
+        }
+
+        private ImageNode CreateImageNode()
+        {
+            var newNodeRect = Core.SelectedNode.GetRectForNewNode();
+            return new ImageNode(newNodeRect, Core);
+        }
+
+        private TextNode CreateTextNode()
+        {
+            var newNodeRect = Core.SelectedNode.GetRectForNewNode();
+            return new TextNode(newNodeRect, Core);
+        }
+
+        private ButtonNode CreateButtonNode()
+        {
+            var newNodeRect = Core.SelectedNode.GetRectForNewNode();
+            return new ButtonNode(newNodeRect, Core);
+        }
+
+        private void AddImageViaMenu()
+        {
+            var newNode = CreateImageNode();
+            AddNewNode(newNode);
+        }
+
+        private void AddButtonViaMenu()
+        {
+            var newNode = CreateButtonNode();
+            AddNewNode(newNode);
+        }
+
+        private void AddTextViaMenu()
+        {
+            var newNode = CreateTextNode();
+            AddNewNode(newNode);
+        }
+
+        private void AddNewNode(BaseNodeComponent newNode, bool isShortcut = false)
+        {
+            var limitShiftY = newNode.Drawer.Rect.y - 2;
             Core.UndoRedo.RegisterSnapshot();
             Core.SourceNode.CheckPositionYAndShiftDown(limitShiftY);
-            Core.CurrentNode.AddNode(newNode);
+
+            if (isShortcut)
+            {
+                Core.SelectedNode.AddNode(newNode);
+            }
+            else
+            {
+                Core.CurrentNode.AddNode(newNode);
+            }
+
             Core.IsRepaint = true;
         }
 
