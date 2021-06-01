@@ -18,6 +18,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
         protected Rect rect;
         protected readonly DTemplatorCore core;
         protected Color nodeBackgroundColor = new Color(1.0f, 1.0f, 1.0f);
+        private GUIStyle _styleSeparator;
         
         public abstract string Type { get; }
 
@@ -31,6 +32,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
         {
             this.rect = rect;
             this.core = core;
+            _styleSeparator = core.Skin.GetStyle("InspectorSeparator");
         }
 
         public abstract void DrawNode();
@@ -86,5 +88,12 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
         protected void GUISpaceSmall() => GUILayout.Space(4);
 
         protected void GUISpaceBig() => GUILayout.Space(10);
+
+        protected void GUISeparator()
+        {
+            GUILayout.Label("----------------------------------",
+                _styleSeparator, 
+                GUILayout.Height(32));
+        }
     }
 }

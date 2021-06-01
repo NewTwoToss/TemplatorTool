@@ -70,22 +70,21 @@ namespace Plugins.Templator.Editor.Scripts.Views
         private void ShortcutsHandler()
         {
             // TODO: Vymysliet klavesove skratky
-            //if (!Event.current.control || Event.current.type != EventType.KeyDown)
-            if (!Event.current.alt || Event.current.type != EventType.KeyDown)
+            if (!Event.current.control || Event.current.type != EventType.KeyDown)
                 return;
 
             switch (Event.current.keyCode)
             {
-                case KeyCode.R:
+                case KeyCode.Keypad0:
                     AddRectTransformViaShortcut();
                     break;
-                case KeyCode.I:
+                case KeyCode.Keypad1:
                     AddImageViaShortcut();
                     break;
-                case KeyCode.T:
+                case KeyCode.Keypad2:
                     AddTextViaShortcut();
                     break;
-                case KeyCode.B:
+                case KeyCode.Keypad3:
                     AddButtonViaShortcut();
                     break;
             }

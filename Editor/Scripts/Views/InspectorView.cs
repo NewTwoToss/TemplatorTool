@@ -14,15 +14,16 @@ namespace Plugins.Templator.Editor.Scripts.Views
         {
             if (!Core.IsSelection) return;
 
-            DrawNodeInspector(pRect);
+            DrawInspector(pRect);
         }
 
-        private void DrawNodeInspector(Rect pRect)
+        private void DrawInspector(Rect pRect)
         {
             if (!Core.IsSelection) return;
 
             var currentNode = Core.SelectedNode;
-            var rect = new Rect(pRect.width - 300, 30, 280, 300);
+            // TODO: Hodnotu 400 - spravit dynamicku? Node Height
+            var rect = new Rect(pRect.width - 300, 30, 280, 400);
 
             DrawBoxGUI(rect, "Properties", TextAnchor.UpperRight);
 

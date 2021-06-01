@@ -28,7 +28,11 @@ namespace Plugins.Templator.Editor.Scripts.Creators
             rt.localPosition = Vector3.zero;
             rt.localScale = Vector3.one;
             rt.sizeDelta = new Vector2(Properties.Width, Properties.Height);
-            rt.pivot = PivotUtilities.GetPivotByIndex(Properties.IndexPivot);
+            
+            var indexAnchor = Properties.IndexAnchor;
+            rt.anchorMin = CreatorUtilities.GetAnchorMinByIndex(indexAnchor);
+            rt.anchorMax = CreatorUtilities.GetAnchorMaxByIndex(indexAnchor);
+            rt.pivot = CreatorUtilities.GetPivotByIndex(Properties.IndexPivot);
 
             go.AddComponent<Image>();
             go.AddComponent<Button>();

@@ -13,6 +13,8 @@ namespace Plugins.Templator.Editor.Scripts.ComponentProperties
 
         int Height { get; }
 
+        int IndexAnchor { get; }
+        
         int IndexPivot { get; }
     }
 }

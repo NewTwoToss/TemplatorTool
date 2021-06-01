@@ -92,7 +92,14 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             SourceImage = (Sprite) EditorGUILayout.ObjectField(SourceImage, typeof(Sprite), true);
             GUILayout.EndHorizontal();
 
-            GUISpaceSmall();
+            GUISeparator();
+            
+            GUILayout.BeginHorizontal();
+            AnchorsSelectorDrawer.Draw();
+            PivotSelectorDrawer.Draw();
+            GUILayout.EndHorizontal();
+
+            GUISeparator();
 
             Color = EditorGUILayout.ColorField("Color", Color);
 

@@ -24,7 +24,9 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
         public int Width { get; private set; }
 
         public int Height { get; private set; }
-        
+
+        public int IndexAnchor { get; private set; }
+
         public int IndexPivot { get; private set; }
 
 #endregion
@@ -35,6 +37,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Width = core.DefaultValues.Button.Width;
             Height = core.DefaultValues.Button.Height;
             nodeBackgroundColor = core.DefaultValues.Button.NodeColor;
+            
         }
 
         public ButtonDrawer(Rect rect, DTemplatorCore core, IPropertiesButton drawer)
@@ -68,13 +71,14 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 
             Width = Mathf.Clamp(EditorGUILayout.IntField("Width", Width), 2, MAX_NUMBER_VALUE);
 
-            GUISpaceSmall();
-            
             Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
 
-            GUISpaceBig();
-
-            IndexPivot = PivotSelectorDrawer.DrawPivot();
+            GUISeparator();
+            
+            GUILayout.BeginHorizontal();
+            IndexAnchor = AnchorsSelectorDrawer.Draw();
+            IndexPivot = PivotSelectorDrawer.Draw();
+            GUILayout.EndHorizontal();
         }
     }
 }
