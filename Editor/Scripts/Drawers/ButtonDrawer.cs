@@ -24,6 +24,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
         public int Width { get; private set; }
 
         public int Height { get; private set; }
+        
+        public int IndexPivot { get; private set; }
 
 #endregion
 
@@ -67,8 +69,12 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Width = Mathf.Clamp(EditorGUILayout.IntField("Width", Width), 2, MAX_NUMBER_VALUE);
 
             GUISpaceSmall();
-
+            
             Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
+
+            GUISpaceBig();
+
+            IndexPivot = PivotSelectorDrawer.DrawPivot();
         }
     }
 }

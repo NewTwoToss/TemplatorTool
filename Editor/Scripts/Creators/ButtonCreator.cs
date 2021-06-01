@@ -5,17 +5,18 @@
 
 using Plugins.Templator.Editor.Scripts.ComponentProperties;
 using Plugins.Templator.Editor.Scripts.Creators.Contracts;
+using Plugins.Templator.Editor.Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Plugins.Templator.Editor.Scripts.Creators
 {
-    public class ButtonCreator : IParent, IProduct, ICreator 
+    public class ButtonCreator : IParent, IProduct, ICreator
     {
         public IPropertiesButton Properties { get; set; }
-        
+
         public RectTransform Parent { get; set; }
-        
+
         public RectTransform Product { get; private set; }
 
         public void CreateUI()
@@ -27,6 +28,7 @@ namespace Plugins.Templator.Editor.Scripts.Creators
             rt.localPosition = Vector3.zero;
             rt.localScale = Vector3.one;
             rt.sizeDelta = new Vector2(Properties.Width, Properties.Height);
+            rt.pivot = PivotUtilities.GetPivotByIndex(Properties.IndexPivot);
 
             go.AddComponent<Image>();
             go.AddComponent<Button>();

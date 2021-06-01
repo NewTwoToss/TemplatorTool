@@ -4,6 +4,7 @@
 // =================================================================================================
 
 using System.Collections.Generic;
+using Plugins.Templator.Editor.Scripts.Drawers;
 using Plugins.Templator.Editor.Scripts.Views;
 using Plugins.Templator.Editor.Scripts.Views.Base;
 using UnityEditor;
@@ -14,7 +15,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
     public class TemplatorEditorWindow : EditorWindow
     {
         private const string CORE_FILE_NAME = "TemplatorCore01";
-        
+
         private static DTemplatorCore _core;
         private List<BaseView> _views;
 
@@ -69,8 +70,11 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
         private void OnGUI()
         {
-            if (_views is null || _core is null)
+            if (_core is null) return;
+
+            if (_views is null)
             {
+                PivotSelectorDrawer.Load(_core.Skin);
                 CreateViews();
                 InitializeViews();
                 return;
