@@ -4,7 +4,6 @@
 // =================================================================================================
 
 using System;
-using System.Globalization;
 using Plugins.Templator.Editor.Scripts.Core;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
     {
         protected const int MAX_NUMBER_VALUE = 9_999;
         protected const int MAX_TEXT_FIELD_LENGTH = 24;
-        protected const int MAX_TEXT_AREA_LENGTH = 100;
+        protected const int MAX_TEXT_AREA_LENGTH = 32;
 
         protected Rect rect;
         protected readonly DTemplatorCore core;

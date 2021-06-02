@@ -17,8 +17,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
     public class TextDrawer : BaseDrawer, IPropertiesText
     {
         public override string Type => "Text (TMP)";
-        
-        public override float InspectorHeight => 360.0f;
+
+        public override float InspectorHeight => 320.0f;
 
 #region [INSPECTOR]
 
@@ -87,8 +87,10 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             GUISeparator();
 
             GUILayout.BeginHorizontal();
-            IndexAnchor = AnchorsSelectorDrawer.Draw();
-            IndexPivot = PivotSelectorDrawer.Draw();
+            {
+                IndexAnchor = AnchorsSelectorDrawer.Draw();
+                IndexPivot = PivotSelectorDrawer.Draw();
+            }
             GUILayout.EndHorizontal();
 
             GUISeparator();
@@ -96,20 +98,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             GUILayout.BeginHorizontal();
             {
                 GUILayout.Label("Text");
-                // TODO: Vyriesit TextArea Settings
-                var myStyle = new GUIStyle(EditorStyles.textArea)
-                {
-                    wordWrap = true
-                };
-                Text = GUILayout.TextArea(Text,
-                    MAX_TEXT_AREA_LENGTH,
-                    myStyle,
-                    GUILayout.ExpandHeight(true),
-                    GUILayout.MaxHeight(60));
-                /*GUILayout.Width(200),
-                GUILayout.MinHeight(30),
-                GUILayout.ExpandHeight(true),
-                GUILayout.MaxHeight(60));*/
+                Text = GUILayout.TextField(Text, MAX_TEXT_AREA_LENGTH, GUILayout.Width(200));
             }
             GUILayout.EndHorizontal();
 
