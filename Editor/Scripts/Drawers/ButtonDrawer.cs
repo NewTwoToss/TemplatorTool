@@ -65,7 +65,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
         {
             GUILayout.BeginHorizontal();
             GUILayout.Label("Name");
-            Name = GUILayout.TextField(Name, MAX_TEXT_FIELD_LENGTH);
+            Name = GUILayout.TextField(Name, MAX_TEXT_FIELD_LENGTH, GUILayout.Width(200));
             GUILayout.EndHorizontal();
 
             GUISpaceBig();

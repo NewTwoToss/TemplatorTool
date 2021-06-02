@@ -81,7 +81,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
         {
             GUILayout.BeginHorizontal();
             GUILayout.Label("Name");
-            Name = GUILayout.TextField(Name, 25);
+            Name = GUILayout.TextField(Name, MAX_TEXT_FIELD_LENGTH, GUILayout.Width(200));
             GUILayout.EndHorizontal();
 
             GUISpaceBig();
@@ -105,7 +105,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             
             Color = EditorGUILayout.ColorField("Color", Color);
 
-            GUISpaceSmall();
+            GUISpaceBig();
 
             RaycastTarget = EditorGUILayout.Toggle("Raycast Target", RaycastTarget);
             Maskable = EditorGUILayout.Toggle("Maskable", Maskable);

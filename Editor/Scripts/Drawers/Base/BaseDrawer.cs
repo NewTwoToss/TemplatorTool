@@ -13,7 +13,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
     public abstract class BaseDrawer
     {
         protected const int MAX_NUMBER_VALUE = 9_999;
-        protected const int MAX_TEXT_FIELD_LENGTH = 28;
+        protected const int MAX_TEXT_FIELD_LENGTH = 24;
         protected const int MAX_TEXT_AREA_LENGTH = 100;
 
         protected Rect rect;
