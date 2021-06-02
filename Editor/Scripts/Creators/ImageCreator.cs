@@ -5,6 +5,7 @@
 
 using Plugins.Templator.Editor.Scripts.ComponentProperties;
 using Plugins.Templator.Editor.Scripts.Creators.Contracts;
+using Plugins.Templator.Editor.Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,11 @@ namespace Plugins.Templator.Editor.Scripts.Creators
             rt.localScale = Vector3.one;
             rt.sizeDelta = new Vector2(Properties.Width, Properties.Height);
 
+            var indexAnchor = Properties.IndexAnchor;
+            rt.anchorMin = CreatorUtilities.GetAnchorMinByIndex(indexAnchor);
+            rt.anchorMax = CreatorUtilities.GetAnchorMaxByIndex(indexAnchor);
+            rt.pivot = CreatorUtilities.GetPivotByIndex(Properties.IndexPivot);
+
             var img = go.AddComponent<Image>();
             img.sprite = Properties.SourceImage;
             img.color = Properties.Color;
@@ -35,7 +41,9 @@ namespace Plugins.Templator.Editor.Scripts.Creators
             img.maskable = Properties.Maskable;
 
             if (Properties.SetNativeSize)
+            {
                 img.SetNativeSize();
+            }
 
             Product = rt;
         }

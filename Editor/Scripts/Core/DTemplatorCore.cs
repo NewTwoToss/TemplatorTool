@@ -75,7 +75,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
         {
             SourceNode = new SourceNode(_drawValues.SourceNodeRect, this);
 
-            /*var sourceNodePosition = _drawValues.SourceNodePosition;
+            var sourceNodePosition = _drawValues.SourceNodePosition;
             var nodeWidth = _drawValues.NodeSize.x;
             var nodeHeight = _drawValues.NodeSize.y;
             var nodeShiftHorizontal = _drawValues.NodeShiftHorizontal;
@@ -96,7 +96,12 @@ namespace Plugins.Templator.Editor.Scripts.Core
             nodeLevel2 = new ButtonNode(rect, this);
             nodeLevel1.AddNode(nodeLevel2);
 
-            for (var i = 0; i < 10; i++)
+            rect = new Rect(sourceNodePosition.x + 2 * nodeShiftHorizontal,
+                sourceNodePosition.y + 4 * nodeShiftVertical, nodeWidth, nodeHeight);
+            nodeLevel2 = new ImageNode(rect, this);
+            nodeLevel1.AddNode(nodeLevel2);
+
+            /*for (var i = 0; i < 10; i++)
             {
                 rect = new Rect(sourceNodePosition.x + nodeShiftHorizontal,
                     sourceNodePosition.y + (4 + i) * nodeShiftVertical, nodeWidth, nodeHeight);

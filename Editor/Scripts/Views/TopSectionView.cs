@@ -25,7 +25,9 @@ namespace Plugins.Templator.Editor.Scripts.Views
             {
                 _backgroundTexture = Texture2D.whiteTexture;
                 _backgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.8f);
-                _shortcutsIcon = new GUIContent(EditorGUIUtility.IconContent("console.infoicon.sml")).image;
+                _shortcutsIcon = new GUIContent(EditorGUIUtility
+                    .IconContent("console.infoicon.sml"))
+                    .image;
                 _infoLabelStyle = new GUIStyle
                 {
                     normal = {textColor = Color.gray},
@@ -33,13 +35,13 @@ namespace Plugins.Templator.Editor.Scripts.Views
                 };
 
                 _infoShortcuts = new StringBuilder();
-                _infoShortcuts.Append("[Ctrl + R] Add RectTransform");
+                _infoShortcuts.Append("[Ctrl + Keypad0] Add RectTransform");
                 _infoShortcuts.Append("\n---------------------------------\n");
-                _infoShortcuts.Append("[Ctrl + I] Add Image ");
+                _infoShortcuts.Append("[Ctrl + Keypad1] Add Image ");
                 _infoShortcuts.Append("\n---------------------------------\n");
-                _infoShortcuts.Append("[Ctrl + B] Add Button");
+                _infoShortcuts.Append("[Ctrl + Keypad2] Add Text");
                 _infoShortcuts.Append("\n---------------------------------\n");
-                _infoShortcuts.Append("[Ctrl + T] Add Text");
+                _infoShortcuts.Append("[Ctrl + Keypad3] Add Button");
 
                 _initialized = true;
             }

@@ -14,6 +14,10 @@ namespace Plugins.Templator.Editor.Scripts.ComponentProperties
         int Width { get; }
 
         int Height { get; }
+        
+        int IndexAnchor { get; }
+        
+        int IndexPivot { get; }
 
         Sprite SourceImage { get; }
 

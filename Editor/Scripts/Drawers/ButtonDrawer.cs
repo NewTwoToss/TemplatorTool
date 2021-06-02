@@ -45,6 +45,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Name = drawer.Name;
             Width = drawer.Width;
             Height = drawer.Height;
+            IndexAnchor = drawer.IndexAnchor;
+            IndexPivot = drawer.IndexPivot;
             nodeBackgroundColor = core.DefaultValues.Button.NodeColor;
         }
 
@@ -77,16 +79,6 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             IndexAnchor = AnchorsSelectorDrawer.Draw();
             IndexPivot = PivotSelectorDrawer.Draw();
             GUILayout.EndHorizontal();
-        }
-
-        public IPropertiesButton GetProperties()
-        {
-            var propertiesButton = new PropertiesButton
-            {
-                Name = Name
-            };
-
-            return propertiesButton;
         }
     }
 }

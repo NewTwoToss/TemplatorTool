@@ -14,6 +14,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
     {
         protected const int MAX_NUMBER_VALUE = 9_999;
         protected const int MAX_TEXT_FIELD_LENGTH = 28;
+        protected const int MAX_TEXT_AREA_LENGTH = 100;
 
         protected Rect rect;
         protected readonly DTemplatorCore core;
@@ -91,7 +92,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
 
         protected void GUISeparator()
         {
-            GUILayout.Label("----------------------------------",
+            GUILayout.Label("------------------------------------",
                 _styleSeparator, 
                 GUILayout.Height(32));
         }

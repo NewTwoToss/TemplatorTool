@@ -69,7 +69,6 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
         private void ShortcutsHandler()
         {
-            // TODO: Vymysliet klavesove skratky
             if (!Event.current.control || Event.current.type != EventType.KeyDown)
                 return;
 

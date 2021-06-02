@@ -24,6 +24,10 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
         public int Width { get; private set; }
 
         public int Height { get; private set; }
+        
+        public int IndexAnchor { get; private set; }
+
+        public int IndexPivot { get; private set; }
 
         public Sprite SourceImage { get; private set; }
 
@@ -52,6 +56,9 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Name = drawer.Name;
             Width = drawer.Width;
             Height = drawer.Height;
+            IndexAnchor = drawer.IndexAnchor;
+            IndexPivot = drawer.IndexPivot;
+            SourceImage = drawer.SourceImage;
             Color = drawer.Color;
             RaycastTarget = drawer.RaycastTarget;
             Maskable = drawer.Maskable;
@@ -80,39 +87,28 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             GUISpaceBig();
 
             Width = Mathf.Clamp(EditorGUILayout.IntField("Width", Width), 2, MAX_NUMBER_VALUE);
-
-            GUISpaceSmall();
-
             Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
 
-            GUISpaceSmall();
+            GUISeparator();
+            
+            GUILayout.BeginHorizontal();
+            IndexAnchor = AnchorsSelectorDrawer.Draw();
+            IndexPivot = PivotSelectorDrawer.Draw();
+            GUILayout.EndHorizontal();
+
+            GUISeparator();
 
             GUILayout.BeginHorizontal();
             GUILayout.Label("Source Image");
             SourceImage = (Sprite) EditorGUILayout.ObjectField(SourceImage, typeof(Sprite), true);
             GUILayout.EndHorizontal();
-
-            GUISeparator();
             
-            GUILayout.BeginHorizontal();
-            AnchorsSelectorDrawer.Draw();
-            PivotSelectorDrawer.Draw();
-            GUILayout.EndHorizontal();
-
-            GUISeparator();
-
             Color = EditorGUILayout.ColorField("Color", Color);
 
             GUISpaceSmall();
 
             RaycastTarget = EditorGUILayout.Toggle("Raycast Target", RaycastTarget);
-            
-            GUISpaceSmall();
-
             Maskable = EditorGUILayout.Toggle("Maskable", Maskable);
-            
-            GUISpaceSmall();
-
             SetNativeSize = EditorGUILayout.Toggle("Set Native Size", SetNativeSize);
         }
     }

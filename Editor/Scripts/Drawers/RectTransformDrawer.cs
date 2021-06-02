@@ -24,6 +24,10 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
         public int Width { get; private set; }
 
         public int Height { get; private set; }
+        
+        public int IndexAnchor { get; private set; }
+
+        public int IndexPivot { get; private set; }
 
 #endregion
 
@@ -41,6 +45,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Name = drawer.Name;
             Width = drawer.Width;
             Height = drawer.Height;
+            IndexAnchor = drawer.IndexAnchor;
+            IndexPivot = drawer.IndexPivot;
             nodeBackgroundColor = core.DefaultValues.RectTransform.NodeColor;
         }
 
@@ -68,6 +74,11 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
             
             GUISeparator();
+            
+            GUILayout.BeginHorizontal();
+            IndexAnchor = AnchorsSelectorDrawer.Draw();
+            IndexPivot = PivotSelectorDrawer.Draw();
+            GUILayout.EndHorizontal();
         }
     }
 }

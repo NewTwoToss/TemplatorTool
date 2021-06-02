@@ -5,6 +5,7 @@
 
 using Plugins.Templator.Editor.Scripts.ComponentProperties;
 using Plugins.Templator.Editor.Scripts.Creators.Contracts;
+using Plugins.Templator.Editor.Scripts.Utilities;
 using TMPro;
 using UnityEngine;
 
@@ -27,9 +28,15 @@ namespace Plugins.Templator.Editor.Scripts.Creators
             rt.localPosition = Vector3.zero;
             rt.localScale = Vector3.one;
             rt.sizeDelta = new Vector2(Properties.Width, Properties.Height);
+            
+            var indexAnchor = Properties.IndexAnchor;
+            rt.anchorMin = CreatorUtilities.GetAnchorMinByIndex(indexAnchor);
+            rt.anchorMax = CreatorUtilities.GetAnchorMaxByIndex(indexAnchor);
+            rt.pivot = CreatorUtilities.GetPivotByIndex(Properties.IndexPivot);
 
             var txt = go.AddComponent<TextMeshProUGUI>();
             txt.text = Properties.Text;
+            txt.color = Properties.Color;
 
             Product = rt;
         }

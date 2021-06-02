@@ -25,7 +25,13 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 
         public int Height { get; private set; }
 
+        public int IndexAnchor { get; private set; }
+
+        public int IndexPivot { get; private set; }
+
         public string Text { get; private set; }
+
+        public Color Color { get; private set; }
 
 #endregion
 
@@ -35,16 +41,20 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Width = core.DefaultValues.Text.Width;
             Height = core.DefaultValues.Text.Height;
             Text = "New Text";
+            Color = Color.white;
             nodeBackgroundColor = core.DefaultValues.Text.NodeColor;
         }
-        
-        public TextDrawer(Rect rect, DTemplatorCore core, IPropertiesText drawer) 
+
+        public TextDrawer(Rect rect, DTemplatorCore core, IPropertiesText drawer)
             : base(rect, core)
         {
             Name = drawer.Name;
             Width = drawer.Width;
             Height = drawer.Height;
+            IndexAnchor = drawer.IndexAnchor;
+            IndexPivot = drawer.IndexPivot;
             Text = drawer.Text;
+            Color = drawer.Color;
             nodeBackgroundColor = core.DefaultValues.Text.NodeColor;
         }
 
@@ -69,17 +79,40 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             GUISpaceBig();
 
             Width = Mathf.Clamp(EditorGUILayout.IntField("Width", Width), 2, MAX_NUMBER_VALUE);
-
-            GUISpaceSmall();
-
             Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
 
-            GUISpaceSmall();
+            GUISeparator();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Text");
-            Text = GUILayout.TextField(Text, MAX_TEXT_FIELD_LENGTH);
+            IndexAnchor = AnchorsSelectorDrawer.Draw();
+            IndexPivot = PivotSelectorDrawer.Draw();
             GUILayout.EndHorizontal();
+
+            GUISeparator();
+
+            GUILayout.BeginHorizontal();
+            {
+                GUILayout.Label("Text");
+                // TODO: Vyriesit TextArea Settings
+                var myStyle = new GUIStyle(EditorStyles.textArea)
+                {
+                    wordWrap = true
+                };
+                Text = GUILayout.TextArea(Text,
+                    MAX_TEXT_AREA_LENGTH,
+                    myStyle,
+                    GUILayout.ExpandHeight(true),
+                    GUILayout.MaxHeight(60));
+                /*GUILayout.Width(200),
+                GUILayout.MinHeight(30),
+                GUILayout.ExpandHeight(true),
+                GUILayout.MaxHeight(60));*/
+            }
+            GUILayout.EndHorizontal();
+
+            GUISpaceSmall();
+
+            Color = EditorGUILayout.ColorField("Color", Color);
         }
     }
 }
