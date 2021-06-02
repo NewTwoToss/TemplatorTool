@@ -7,6 +7,7 @@ using System;
 using Plugins.Templator.Editor.Scripts.ComponentProperties;
 using Plugins.Templator.Editor.Scripts.Core;
 using Plugins.Templator.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.Drawers.Selectors;
 using UnityEditor;
 using UnityEngine;
 

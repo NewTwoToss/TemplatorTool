@@ -7,6 +7,7 @@ using System;
 using Plugins.Templator.Editor.Scripts.ComponentProperties;
 using Plugins.Templator.Editor.Scripts.Core;
 using Plugins.Templator.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.Drawers.Selectors;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
     public class ImageDrawer : BaseDrawer, IPropertiesImage
     {
         public override string Type => "Image";
+        
+        public override float InspectorHeight => 400.0f;
 
 #region [INSPECTOR]
 
@@ -102,6 +105,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             GUILayout.Label("Source Image");
             SourceImage = (Sprite) EditorGUILayout.ObjectField(SourceImage, typeof(Sprite), true);
             GUILayout.EndHorizontal();
+            
+            GUISpaceSmall();
             
             Color = EditorGUILayout.ColorField("Color", Color);
 

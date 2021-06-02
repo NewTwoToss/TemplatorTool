@@ -14,6 +14,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
     public class VerticalLayoutDrawer : BaseDrawer, IPropertiesVerticalLayout
     {
         public override string Type => "Vertical Layout";
+        
+        public override float InspectorHeight => 80.0f;
 
 #region [INSPECTOR]
 

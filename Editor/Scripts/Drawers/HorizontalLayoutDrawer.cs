@@ -14,6 +14,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
     public class HorizontalLayoutDrawer : BaseDrawer, IPropertiesHorizontalLayout
     {
         public override string Type => "Horizontal Layout";
+        
+        public override float InspectorHeight => 80.0f;
 
 #region [INSPECTOR]
 

@@ -14,6 +14,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
     public class GridLayoutDrawer : BaseDrawer, IPropertiesGridLayout
     {
         public override string Type => "Grid Layout";
+        
+        public override float InspectorHeight => 100.0f;
 
 #region [INSPECTOR]
 

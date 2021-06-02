@@ -4,6 +4,7 @@
 // =================================================================================================
 
 using System;
+using System.Globalization;
 using Plugins.Templator.Editor.Scripts.Core;
 using UnityEngine;
 
@@ -20,7 +21,9 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
         protected readonly DTemplatorCore core;
         protected Color nodeBackgroundColor = new Color(1.0f, 1.0f, 1.0f);
         private GUIStyle _styleSeparator;
-        
+
+#region [GETTERS / SETTERS]
+
         public abstract string Type { get; }
 
         public Rect Rect
@@ -28,6 +31,10 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
             get => rect;
             set => rect = value;
         }
+
+        public virtual float InspectorHeight => 240.0f;
+
+#endregion
 
         protected BaseDrawer(Rect rect, DTemplatorCore core)
         {
@@ -93,7 +100,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
         protected void GUISeparator()
         {
             GUILayout.Label("------------------------------------",
-                _styleSeparator, 
+                _styleSeparator,
                 GUILayout.Height(32));
         }
     }

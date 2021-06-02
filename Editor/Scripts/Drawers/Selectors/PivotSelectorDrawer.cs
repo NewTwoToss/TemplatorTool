@@ -1,13 +1,13 @@
 // =================================================================================================
 //    Author: Tomas "NewTwoToss" Szilagyi
-//    Date: 01.06.2021
+//    Date: 30.05.2021
 // =================================================================================================
 
 using UnityEngine;
 
-namespace Plugins.Templator.Editor.Scripts.Drawers
+namespace Plugins.Templator.Editor.Scripts.Drawers.Selectors
 {
-    public static class AnchorsSelectorDrawer
+    public static class PivotSelectorDrawer
     {
         private static GUIStyle _styleButton;
         private static int _indexPivot = 4; // 4 = Index of Middle Center Pivot 
@@ -16,7 +16,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
         public static void Load(GUISkin toolSkin)
         {
             _styleButton = toolSkin.GetStyle("button");
-
+            
             _contents = new GUIContent[9];
 
             var icon = Resources.Load<Texture2D>("Textures/PivotIcons/PivotIconTopLeft");
@@ -50,7 +50,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
         public static int Draw()
         {
             GUILayout.BeginVertical();
-            GUILayout.Label("Anchors");
+            GUILayout.Label("Pivot");
             _indexPivot = GUILayout.SelectionGrid(_indexPivot,
                 _contents,
                 3,

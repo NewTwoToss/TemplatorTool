@@ -22,8 +22,8 @@ namespace Plugins.Templator.Editor.Scripts.Views
             if (!Core.IsSelection) return;
 
             var currentNode = Core.SelectedNode;
-            // TODO: Hodnotu 400 - spravit dynamicku? Node Height
-            var rect = new Rect(pRect.width - 300, 30, 280, 400);
+            var inspectorHeight = currentNode.Drawer.InspectorHeight;
+            var rect = new Rect(pRect.width - 300, 30, 280, inspectorHeight);
 
             DrawBoxGUI(rect, "Properties", TextAnchor.UpperRight);
 

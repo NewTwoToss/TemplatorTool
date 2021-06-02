@@ -7,6 +7,7 @@ using System;
 using Plugins.Templator.Editor.Scripts.ComponentProperties;
 using Plugins.Templator.Editor.Scripts.Core;
 using Plugins.Templator.Editor.Scripts.Drawers.Base;
+using Plugins.Templator.Editor.Scripts.Drawers.Selectors;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
     public class TextDrawer : BaseDrawer, IPropertiesText
     {
         public override string Type => "Text (TMP)";
+        
+        public override float InspectorHeight => 360.0f;
 
 #region [INSPECTOR]
 
