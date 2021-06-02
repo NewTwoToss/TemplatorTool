@@ -44,10 +44,10 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
         {
             _creator.Properties = _drawer;
             _creator.CreateUI();
-            var getProduct = _creator.Product;
+            var product = _creator.Product;
 
-            CreateDecorators(getProduct);
-            CreateGameUINodes(getProduct);
+            CreateDecorators(product);
+            CreateGameUINodes(product);
         }
 
         public override void MyClone(BaseNodeComponent cloneParent)

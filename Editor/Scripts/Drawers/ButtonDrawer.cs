@@ -37,7 +37,6 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Width = core.DefaultValues.Button.Width;
             Height = core.DefaultValues.Button.Height;
             nodeBackgroundColor = core.DefaultValues.Button.NodeColor;
-            
         }
 
         public ButtonDrawer(Rect rect, DTemplatorCore core, IPropertiesButton drawer)
@@ -70,15 +69,24 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             GUISpaceBig();
 
             Width = Mathf.Clamp(EditorGUILayout.IntField("Width", Width), 2, MAX_NUMBER_VALUE);
-
             Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
 
             GUISeparator();
-            
+
             GUILayout.BeginHorizontal();
             IndexAnchor = AnchorsSelectorDrawer.Draw();
             IndexPivot = PivotSelectorDrawer.Draw();
             GUILayout.EndHorizontal();
+        }
+
+        public IPropertiesButton GetProperties()
+        {
+            var propertiesButton = new PropertiesButton
+            {
+                Name = Name
+            };
+
+            return propertiesButton;
         }
     }
 }

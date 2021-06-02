@@ -65,10 +65,9 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             GUISpaceBig();
 
             Width = Mathf.Clamp(EditorGUILayout.IntField("Width", Width), 2, MAX_NUMBER_VALUE);
-
-            GUISpaceSmall();
-
             Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
+            
+            GUISeparator();
         }
     }
 }
