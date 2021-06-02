@@ -26,8 +26,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
                 _backgroundTexture = Texture2D.whiteTexture;
                 _backgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.8f);
                 _shortcutsIcon = new GUIContent(EditorGUIUtility
-                    .IconContent("console.infoicon.sml"))
-                    .image;
+                        .IconContent("console.infoicon.sml")).image;
                 _infoLabelStyle = new GUIStyle
                 {
                     normal = {textColor = Color.gray},
@@ -42,6 +41,8 @@ namespace Plugins.Templator.Editor.Scripts.Views
                 _infoShortcuts.Append("[Ctrl + Keypad2] Add Text");
                 _infoShortcuts.Append("\n---------------------------------\n");
                 _infoShortcuts.Append("[Ctrl + Keypad3] Add Button");
+                _infoShortcuts.Append("\n---------------------------------\n");
+                _infoShortcuts.Append("[Ctrl + Del] Delete Node");
 
                 _initialized = true;
             }

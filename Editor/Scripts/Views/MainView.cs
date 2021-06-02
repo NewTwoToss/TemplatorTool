@@ -86,6 +86,9 @@ namespace Plugins.Templator.Editor.Scripts.Views
                 case KeyCode.Keypad3:
                     AddButtonViaShortcut();
                     break;
+                case KeyCode.Delete:
+                    DeleteNodeViaShortcut();
+                    break;
             }
         }
 
@@ -174,10 +177,10 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
             if (!nodeContain) return;
 
-            ContextMenu();
+            NodeContextMenu();
         }
 
-        private void ContextMenu()
+        private void NodeContextMenu()
         {
             var menu = new GenericMenu();
             var currentNode = Core.CurrentNode;
@@ -251,7 +254,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
                     menu.AddSeparator(string.Empty);
                 }
 
-                menu.AddItem(new GUIContent("Delete Node"), false, DeleteNode);
+                menu.AddItem(new GUIContent("Delete Node"), false, DeleteNodeViaMenu);
             }
 
             menu.ShowAsContext();
@@ -272,9 +275,11 @@ namespace Plugins.Templator.Editor.Scripts.Views
             Core.SourceNode.MoveNode(indexCurrentNode, false);
         }
 
+#region [RECT TRANSFORM]
+
         private void AddRectTransformViaMenu()
         {
-            var newNode = CreateRectTransformNode();
+            var newNode = CreateRectTransformNode(Core.CurrentNode);
             AddNewNode(newNode);
         }
 
@@ -282,75 +287,89 @@ namespace Plugins.Templator.Editor.Scripts.Views
         {
             if (!Core.IsSelection) return;
 
-            var newNode = CreateRectTransformNode();
+            var newNode = CreateRectTransformNode(Core.SelectedNode);
             AddNewNode(newNode, true);
+        }
+
+        private RectTransformNode CreateRectTransformNode(BaseNodeComponent parent)
+        {
+            var newNodeRect = parent.GetRectForNewNode();
+            return new RectTransformNode(newNodeRect, Core);
+        }
+
+#endregion
+
+#region [IMAGE]
+
+        private void AddImageViaMenu()
+        {
+            var newNode = CreateImageNode(Core.CurrentNode);
+            AddNewNode(newNode);
         }
 
         private void AddImageViaShortcut()
         {
             if (!Core.IsSelection) return;
 
-            var newNode = CreateImageNode();
+            var newNode = CreateImageNode(Core.SelectedNode);
             AddNewNode(newNode, true);
+        }
+
+        private ImageNode CreateImageNode(BaseNodeComponent parent)
+        {
+            var newNodeRect = parent.GetRectForNewNode();
+            return new ImageNode(newNodeRect, Core);
+        }
+
+#endregion
+
+#region [TEXT]
+
+        private void AddTextViaMenu()
+        {
+            var newNode = CreateTextNode(Core.CurrentNode);
+            AddNewNode(newNode);
         }
 
         private void AddTextViaShortcut()
         {
             if (!Core.IsSelection) return;
 
-            var newNode = CreateTextNode();
+            var newNode = CreateTextNode(Core.SelectedNode);
             AddNewNode(newNode, true);
+        }
+
+        private TextNode CreateTextNode(BaseNodeComponent parent)
+        {
+            var newNodeRect = parent.GetRectForNewNode();
+            return new TextNode(newNodeRect, Core);
+        }
+
+#endregion
+
+#region [BUTTON]
+
+        private void AddButtonViaMenu()
+        {
+            var newNode = CreateButtonNode(Core.CurrentNode);
+            AddNewNode(newNode);
         }
 
         private void AddButtonViaShortcut()
         {
             if (!Core.IsSelection) return;
 
-            var newNode = CreateButtonNode();
+            var newNode = CreateButtonNode(Core.SelectedNode);
             AddNewNode(newNode, true);
         }
 
-        private RectTransformNode CreateRectTransformNode()
+        private ButtonNode CreateButtonNode(BaseNodeComponent parent)
         {
-            var newNodeRect = Core.SelectedNode.GetRectForNewNode();
-            return new RectTransformNode(newNodeRect, Core);
-        }
-
-        private ImageNode CreateImageNode()
-        {
-            var newNodeRect = Core.SelectedNode.GetRectForNewNode();
-            return new ImageNode(newNodeRect, Core);
-        }
-
-        private TextNode CreateTextNode()
-        {
-            var newNodeRect = Core.SelectedNode.GetRectForNewNode();
-            return new TextNode(newNodeRect, Core);
-        }
-
-        private ButtonNode CreateButtonNode()
-        {
-            var newNodeRect = Core.SelectedNode.GetRectForNewNode();
+            var newNodeRect = parent.GetRectForNewNode();
             return new ButtonNode(newNodeRect, Core);
         }
 
-        private void AddImageViaMenu()
-        {
-            var newNode = CreateImageNode();
-            AddNewNode(newNode);
-        }
-
-        private void AddButtonViaMenu()
-        {
-            var newNode = CreateButtonNode();
-            AddNewNode(newNode);
-        }
-
-        private void AddTextViaMenu()
-        {
-            var newNode = CreateTextNode();
-            AddNewNode(newNode);
-        }
+#endregion
 
         private void AddNewNode(BaseNodeComponent newNode, bool isShortcut = false)
         {
@@ -398,12 +417,25 @@ namespace Plugins.Templator.Editor.Scripts.Views
             Core.IsRepaint = true;
         }
 
-        private void DeleteNode()
+        private void DeleteNodeViaMenu()
         {
             var indexDelete = Core.CurrentNode.Index;
             Core.SourceNode.Delete(indexDelete);
 
             if (!Core.IsSelection) return;
+
+            if (Core.SelectedNode.Index == indexDelete)
+            {
+                Core.ResetSelection();
+            }
+        }
+
+        private void DeleteNodeViaShortcut()
+        {
+            if (!Core.IsSelection) return;
+            
+            var indexDelete = Core.SelectedNode.Index;
+            Core.SourceNode.Delete(indexDelete);
 
             if (Core.SelectedNode.Index == indexDelete)
             {
