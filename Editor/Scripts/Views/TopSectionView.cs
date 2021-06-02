@@ -35,13 +35,13 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
                 _infoShortcuts = new StringBuilder();
                 _infoShortcuts.Append("[Ctrl + Keypad0] Add RectTransform");
-                _infoShortcuts.Append("\n---------------------------------\n");
+                _infoShortcuts.Append("\n\n---------------------------------\n\n");
                 _infoShortcuts.Append("[Ctrl + Keypad1] Add Image ");
-                _infoShortcuts.Append("\n---------------------------------\n");
+                _infoShortcuts.Append("\n\n---------------------------------\n\n");
                 _infoShortcuts.Append("[Ctrl + Keypad2] Add Text");
-                _infoShortcuts.Append("\n---------------------------------\n");
+                _infoShortcuts.Append("\n\n---------------------------------\n\n");
                 _infoShortcuts.Append("[Ctrl + Keypad3] Add Button");
-                _infoShortcuts.Append("\n---------------------------------\n");
+                _infoShortcuts.Append("\n\n---------------------------------\n\n");
                 _infoShortcuts.Append("[Ctrl + Del] Delete Node");
 
                 _initialized = true;
