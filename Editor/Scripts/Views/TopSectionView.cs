@@ -26,11 +26,12 @@ namespace Plugins.Templator.Editor.Scripts.Views
                 _backgroundTexture = Texture2D.whiteTexture;
                 _backgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.8f);
                 _shortcutsIcon = new GUIContent(EditorGUIUtility
-                        .IconContent("console.infoicon.sml")).image;
+                        //.IconContent("console.infoicon.sml")).image;
+                        .IconContent("d__Help")).image;
                 _infoLabelStyle = new GUIStyle
                 {
                     normal = {textColor = Color.gray},
-                    alignment = TextAnchor.MiddleRight
+                    alignment = TextAnchor.MiddleLeft
                 };
 
                 _infoShortcuts = new StringBuilder();
@@ -66,10 +67,10 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
             GUI.enabled = true;
 
-            GUI.Label(new Rect(pRect.width - 150, 2, 20, 20),
+            GUI.Label(new Rect(pRect.width - 144, 2, 20, 20),
                 new GUIContent(_shortcutsIcon, _infoShortcuts.ToString()));
 
-            GUI.Label(new Rect(pRect.width - 130, 0, 120, 24),
+            GUI.Label(new Rect(pRect.width - 120, 0, 110, 24),
                 $"Templator v{Core.Version}",
                 _infoLabelStyle);
         }

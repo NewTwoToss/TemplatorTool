@@ -75,6 +75,8 @@ namespace Plugins.Templator.Editor.Scripts.Core
         {
             SourceNode = new SourceNode(_drawValues.SourceNodeRect, this);
 
+            // TESTING NODES
+            /* 
             var sourceNodePosition = _drawValues.SourceNodePosition;
             var nodeWidth = _drawValues.NodeSize.x;
             var nodeHeight = _drawValues.NodeSize.y;
@@ -100,14 +102,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
                 sourceNodePosition.y + 4 * nodeShiftVertical, nodeWidth, nodeHeight);
             nodeLevel2 = new ImageNode(rect, this);
             nodeLevel1.AddNode(nodeLevel2);
-
-            /*for (var i = 0; i < 10; i++)
-            {
-                rect = new Rect(sourceNodePosition.x + nodeShiftHorizontal,
-                    sourceNodePosition.y + (4 + i) * nodeShiftVertical, nodeWidth, nodeHeight);
-                nodeLevel1 = new RectTransformNode(rect, this);
-                SourceNode.AddNode(nodeLevel1);
-            }*/
+            */
         }
 
         public void ResetTool()

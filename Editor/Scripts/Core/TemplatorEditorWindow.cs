@@ -21,20 +21,20 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
         private void OnEnable()
         {
-            Debug.Log("[TemplatorCore] OnEnable()");
+            //Debug.Log("[Templator] OnEnable()");
             InitializeTool();
         }
 
         private void OnDisable()
         {
-            Debug.Log("[TemplatorCore] OnDisable()");
+            //Debug.Log("[Templator] OnDisable()");
             _core!.UndoRedo.ResetMechanics();
         }
 
         [InitializeOnLoadMethod]
         public static void OnProjectLoadedInEditor()
         {
-            Debug.Log("[Templator] OnProjectLoadedInEditor()");
+            //Debug.Log("[Templator] OnProjectLoadedInEditor()");
             InitializeTool();
         }
 
@@ -57,7 +57,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
         {
             if (!(_core is null)) return;
 
-            Debug.Log("[Templator] InitializeTool()");
+            //Debug.Log("[Templator] InitializeTool()");
             Initialize();
         }
 
