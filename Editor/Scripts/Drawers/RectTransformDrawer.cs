@@ -35,6 +35,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Name = "RTName";
             Width = core.DefaultValues.RectTransform.Width;
             Height = core.DefaultValues.RectTransform.Height;
+            IndexAnchor = 4;
+            IndexPivot = 4;
             nodeBackgroundColor = core.DefaultValues.RectTransform.NodeColor;
         }
         

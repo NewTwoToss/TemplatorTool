@@ -47,7 +47,12 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Name = "ImgName";
             Width = core.DefaultValues.Image.Width;
             Height = core.DefaultValues.Image.Height;
+            IndexAnchor = 4;
+            IndexPivot = 4;
             Color = Color.white;
+            RaycastTarget = false;
+            Maskable = false;
+            SetNativeSize = false;
             nodeBackgroundColor = core.DefaultValues.Image.NodeColor;
         }
         

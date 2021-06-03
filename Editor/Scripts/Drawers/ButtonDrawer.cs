@@ -35,6 +35,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Name = "BtnName";
             Width = core.DefaultValues.Button.Width;
             Height = core.DefaultValues.Button.Height;
+            IndexAnchor = 4;
+            IndexPivot = 4;
             nodeBackgroundColor = core.DefaultValues.Button.NodeColor;
         }
 

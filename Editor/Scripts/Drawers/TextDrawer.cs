@@ -41,6 +41,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Name = "TxtName";
             Width = core.DefaultValues.Text.Width;
             Height = core.DefaultValues.Text.Height;
+            IndexAnchor = 4;
+            IndexPivot = 4;
             Text = "New Text";
             Color = Color.white;
             nodeBackgroundColor = core.DefaultValues.Text.NodeColor;

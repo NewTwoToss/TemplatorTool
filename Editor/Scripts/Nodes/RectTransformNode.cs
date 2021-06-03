@@ -3,7 +3,6 @@
 //    Date: 02.05.2021
 // =================================================================================================
 
-using System;
 using Plugins.Templator.Editor.Scripts.ComponentProperties;
 using Plugins.Templator.Editor.Scripts.Core;
 using Plugins.Templator.Editor.Scripts.Creators;
@@ -14,10 +13,9 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Nodes
 {
-    [Serializable]
     public class RectTransformNode : BaseNodeComponent
     {
-        private RectTransformDrawer _drawer;
+        private readonly RectTransformDrawer _drawer;
         private readonly RectTransformCreator _creator;
 
         public override BaseDrawer Drawer => _drawer;

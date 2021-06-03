@@ -3,7 +3,6 @@
 //    Date: 30.04.2021
 // =================================================================================================
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Plugins.Templator.Editor.Scripts.Core;
@@ -12,7 +11,6 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Nodes.Base
 {
-    [Serializable]
     public abstract class BaseNodeComponent
     {
         protected readonly DTemplatorCore core;

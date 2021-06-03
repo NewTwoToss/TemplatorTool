@@ -3,7 +3,6 @@
 //    Date: 10.05.2021
 // =================================================================================================
 
-using System;
 using Plugins.Templator.Editor.Scripts.ComponentProperties;
 using Plugins.Templator.Editor.Scripts.Core;
 using Plugins.Templator.Editor.Scripts.Creators;
@@ -14,10 +13,9 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Nodes
 {
-    [Serializable]
     public class ImageNode : BaseNodeComponent
     {
-        private ImageDrawer _drawer;
+        private readonly ImageDrawer _drawer;
         private readonly ImageCreator _creator;
 
         public override BaseDrawer Drawer => _drawer;

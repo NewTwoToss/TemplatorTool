@@ -16,6 +16,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
         private readonly Color _errorColor;
 
         public override string Type => "Source (Main Parent)";
+        
+        public override float InspectorHeight => 80.0f;
 
 #region [INSPECTOR]
 

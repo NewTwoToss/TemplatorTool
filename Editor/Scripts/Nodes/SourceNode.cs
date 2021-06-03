@@ -3,7 +3,6 @@
 //    Date: 30.04.2021
 // =================================================================================================
 
-using System;
 using System.Collections.Generic;
 using Plugins.Templator.Editor.Scripts.Core;
 using Plugins.Templator.Editor.Scripts.Creators;
@@ -14,7 +13,6 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Nodes
 {
-    [Serializable]
     public class SourceNode : BaseNodeComponent
     {
         private readonly SourceDrawer _drawer;
