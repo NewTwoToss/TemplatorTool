@@ -4,7 +4,6 @@
 // =================================================================================================
 
 using System.Collections.Generic;
-using Plugins.Templator.Editor.Scripts.Drawers;
 using Plugins.Templator.Editor.Scripts.Drawers.Selectors;
 using Plugins.Templator.Editor.Scripts.Views;
 using Plugins.Templator.Editor.Scripts.Views.Base;
@@ -24,6 +23,12 @@ namespace Plugins.Templator.Editor.Scripts.Core
         {
             Debug.Log("[TemplatorCore] OnEnable()");
             InitializeTool();
+        }
+
+        private void OnDisable()
+        {
+            Debug.Log("[TemplatorCore] OnDisable()");
+            _core!.UndoRedo.ResetMechanics();
         }
 
         [InitializeOnLoadMethod]

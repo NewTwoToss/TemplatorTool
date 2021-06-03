@@ -44,7 +44,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
         {
             if (!_initialized)
             {
-                _backgroundTexture = Resources.Load<Texture>("Textures/graph_background");
+                _backgroundTexture = Resources.Load<Texture>("Textures/GraphBackground");
                 _separatorColor = new Color(0.8f, 0.6f, 0.0f, 0.4f);
                 _scrollPosition = Vector2.zero;
                 _initialized = true;
