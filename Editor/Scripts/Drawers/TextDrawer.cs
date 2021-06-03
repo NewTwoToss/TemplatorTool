@@ -3,7 +3,6 @@
 //    Date: 11.05.2021
 // =================================================================================================
 
-using System;
 using Plugins.Templator.Editor.Scripts.ComponentProperties;
 using Plugins.Templator.Editor.Scripts.Core;
 using Plugins.Templator.Editor.Scripts.Drawers.Base;
@@ -13,7 +12,6 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Drawers
 {
-    [Serializable]
     public class TextDrawer : BaseDrawer, IPropertiesText
     {
         public override string Type => "Text (TMP)";

@@ -3,7 +3,6 @@
 //    Date: 02.05.2021
 // =================================================================================================
 
-using System;
 using Plugins.Templator.Editor.Scripts.ComponentProperties;
 using Plugins.Templator.Editor.Scripts.Core;
 using Plugins.Templator.Editor.Scripts.Drawers.Base;
@@ -13,7 +12,6 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Drawers
 {
-    [Serializable]
     public class ButtonDrawer : BaseDrawer, IPropertiesButton
     {
         public override string Type => "Button";

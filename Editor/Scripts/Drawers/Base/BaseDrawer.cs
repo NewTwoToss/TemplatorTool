@@ -3,13 +3,11 @@
 //    Date: 01.05.2021
 // =================================================================================================
 
-using System;
 using Plugins.Templator.Editor.Scripts.Core;
 using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Drawers.Base
 {
-    [Serializable]
     public abstract class BaseDrawer
     {
         protected const int MAX_NUMBER_VALUE = 9_999;
@@ -19,17 +17,13 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Base
         protected Rect rect;
         protected readonly DTemplatorCore core;
         protected Color nodeBackgroundColor = new Color(1.0f, 1.0f, 1.0f);
-        private GUIStyle _styleSeparator;
+        private readonly GUIStyle _styleSeparator;
 
 #region [GETTERS / SETTERS]
 
         public abstract string Type { get; }
 
-        public Rect Rect
-        {
-            get => rect;
-            set => rect = value;
-        }
+        public Rect Rect => rect;
 
         public virtual float InspectorHeight => 240.0f;
 

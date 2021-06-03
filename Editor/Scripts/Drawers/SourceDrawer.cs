@@ -3,7 +3,6 @@
 //    Date: 01.05.2021
 // =================================================================================================
 
-using System;
 using Plugins.Templator.Editor.Scripts.ComponentProperties;
 using Plugins.Templator.Editor.Scripts.Core;
 using Plugins.Templator.Editor.Scripts.Drawers.Base;
@@ -12,7 +11,6 @@ using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Drawers
 {
-    [Serializable]
     public class SourceDrawer : BaseDrawer, IPropertiesSource
     {
         private readonly Color _errorColor;

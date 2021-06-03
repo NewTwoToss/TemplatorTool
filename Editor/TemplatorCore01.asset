@@ -23,18 +23,18 @@ MonoBehaviour:
     _decoratorShiftHorizontal: 20
   _defaultValues:
     _rectTransform:
-      _width: 220
+      _width: 100
       _height: 100
       _nodeColor: {r: 0.7, g: 0.7, b: 1, a: 1}
     _image:
       _width: 100
-      _height: 40
+      _height: 100
       _nodeColor: {r: 0.8, g: 0.5, b: 0.5, a: 1}
     _text:
-      _width: 100
-      _height: 40
-      _nodeColor: {r: 0.2, g: 0.8, b: 1, a: 1}
-    _button:
       _width: 200
       _height: 50
+      _nodeColor: {r: 0.2, g: 0.8, b: 1, a: 1}
+    _button:
+      _width: 160
+      _height: 40
       _nodeColor: {r: 0.7, g: 1, b: 1, a: 1}
