@@ -64,7 +64,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
         public void Initialize()
         {
-            Debug.Log("Templator] Initialize()");
+            //Debug.Log("[Templator] Initialize()");
 
             ResetValues();
             UndoRedo = new UndoRedoController(this);
