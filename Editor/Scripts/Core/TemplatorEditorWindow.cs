@@ -80,8 +80,6 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
             if (_views is null)
             {
-                AnchorsSelectorDrawer.Load(_core.Skin);
-                PivotSelectorDrawer.Load(_core.Skin);
                 CreateViews();
                 InitializeViews();
                 return;

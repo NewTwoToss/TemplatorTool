@@ -18,6 +18,9 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 
         public override float InspectorHeight => 320.0f;
 
+        private readonly AnchorsSelectorDrawer _anchorsSelectorDrawer;
+        private readonly PivotSelectorDrawer _pivotSelectorDrawer;
+
 #region [INSPECTOR]
 
         public string Name { get; private set; }
@@ -46,6 +49,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Text = "New Text";
             Color = Color.white;
             nodeBackgroundColor = core.DefaultValues.Text.NodeColor;
+            _anchorsSelectorDrawer = new AnchorsSelectorDrawer(core);
+            _pivotSelectorDrawer = new PivotSelectorDrawer(core);
         }
 
         public TextDrawer(Rect rect, DTemplatorCore core, IPropertiesText drawer)
@@ -59,6 +64,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Text = drawer.Text;
             Color = drawer.Color;
             nodeBackgroundColor = core.DefaultValues.Text.NodeColor;
+            _anchorsSelectorDrawer = new AnchorsSelectorDrawer(core);
+            _pivotSelectorDrawer = new PivotSelectorDrawer(core);
         }
 
         public override void DrawNode()
@@ -88,8 +95,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 
             GUILayout.BeginHorizontal();
             {
-                IndexAnchor = AnchorsSelectorDrawer.Draw();
-                IndexPivot = PivotSelectorDrawer.Draw();
+                IndexAnchor = _anchorsSelectorDrawer.Draw(IndexAnchor);
+                IndexPivot = _pivotSelectorDrawer.Draw(IndexPivot);
             }
             GUILayout.EndHorizontal();
 

@@ -16,8 +16,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
     {
         public override string Type => "Button";
 
-        private readonly AnchorsSelectorDrawerNew _anchorsSelectorDrawer;
-        private readonly PivotSelectorDrawerNew _pivotSelectorDrawer;
+        private readonly AnchorsSelectorDrawer _anchorsSelectorDrawer;
+        private readonly PivotSelectorDrawer _pivotSelectorDrawer;
 
 #region [INSPECTOR]
 
@@ -41,9 +41,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             IndexAnchor = 4;
             IndexPivot = 4;
             nodeBackgroundColor = core.DefaultValues.Button.NodeColor;
-
-            _anchorsSelectorDrawer = new AnchorsSelectorDrawerNew(core);
-            _pivotSelectorDrawer = new PivotSelectorDrawerNew(core);
+            _anchorsSelectorDrawer = new AnchorsSelectorDrawer(core);
+            _pivotSelectorDrawer = new PivotSelectorDrawer(core);
         }
 
         public ButtonDrawer(Rect rect, DTemplatorCore core, IPropertiesButton drawer)
@@ -55,6 +54,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             IndexAnchor = drawer.IndexAnchor;
             IndexPivot = drawer.IndexPivot;
             nodeBackgroundColor = core.DefaultValues.Button.NodeColor;
+            _anchorsSelectorDrawer = new AnchorsSelectorDrawer(core);
+            _pivotSelectorDrawer = new PivotSelectorDrawer(core);
         }
 
         public override void DrawNode()
@@ -83,8 +84,10 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             GUISeparator();
 
             GUILayout.BeginHorizontal();
-            IndexAnchor = _anchorsSelectorDrawer.Draw(IndexAnchor);
-            IndexPivot = _pivotSelectorDrawer.Draw(IndexPivot);
+            {
+                IndexAnchor = _anchorsSelectorDrawer.Draw(IndexAnchor);
+                IndexPivot = _pivotSelectorDrawer.Draw(IndexPivot);
+            }
             GUILayout.EndHorizontal();
         }
     }
