@@ -16,6 +16,9 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
     {
         public override string Type => "Button";
 
+        private readonly AnchorsSelectorDrawerNew _anchorsSelectorDrawer;
+        private readonly PivotSelectorDrawerNew _pivotSelectorDrawer;
+
 #region [INSPECTOR]
 
         public string Name { get; private set; }
@@ -38,6 +41,9 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             IndexAnchor = 4;
             IndexPivot = 4;
             nodeBackgroundColor = core.DefaultValues.Button.NodeColor;
+
+            _anchorsSelectorDrawer = new AnchorsSelectorDrawerNew(core);
+            _pivotSelectorDrawer = new PivotSelectorDrawerNew(core);
         }
 
         public ButtonDrawer(Rect rect, DTemplatorCore core, IPropertiesButton drawer)
@@ -77,8 +83,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             GUISeparator();
 
             GUILayout.BeginHorizontal();
-            IndexAnchor = AnchorsSelectorDrawer.Draw();
-            IndexPivot = PivotSelectorDrawer.Draw();
+            IndexAnchor = _anchorsSelectorDrawer.Draw(IndexAnchor);
+            IndexPivot = _pivotSelectorDrawer.Draw(IndexPivot);
             GUILayout.EndHorizontal();
         }
     }

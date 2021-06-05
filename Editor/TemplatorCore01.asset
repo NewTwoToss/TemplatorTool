@@ -38,3 +38,24 @@ MonoBehaviour:
       _width: 160
       _height: 40
       _nodeColor: {r: 0.7, g: 1, b: 1, a: 1}
+  _toolIcons:
+    _anchorSelector:
+    - {fileID: 2800000, guid: 4ce3f8b20aba1024089de4a690c9e782, type: 3}
+    - {fileID: 2800000, guid: 47d6df8067662d84298faa9a3ee95c94, type: 3}
+    - {fileID: 2800000, guid: 903d1838c4100144e8e4e925943c9655, type: 3}
+    - {fileID: 2800000, guid: a30961c4cafb18849978a3d4d0127aac, type: 3}
+    - {fileID: 2800000, guid: 4fc8f47d7ba19c747a79b0a44f8cafd7, type: 3}
+    - {fileID: 2800000, guid: 16a8ba6029e65d541ab10f7333fb22e4, type: 3}
+    - {fileID: 2800000, guid: 96360a4418fbabe4eafe67a987800167, type: 3}
+    - {fileID: 2800000, guid: 91be2345c42a1f04d8d98106629ef92d, type: 3}
+    - {fileID: 2800000, guid: f30901f5bf2b3e141a47e8ff7f461c63, type: 3}
+    _pivotSelector:
+    - {fileID: 2800000, guid: 4f6420e8db98be84db2b2b81f2ccd76a, type: 3}
+    - {fileID: 2800000, guid: 6f5021b9a174c0b4fb804bbabf5e9084, type: 3}
+    - {fileID: 2800000, guid: 4951455302b30454c97dbb3d04727e02, type: 3}
+    - {fileID: 2800000, guid: 5c80cbcfc4ae9be4bb45550f42e75bd8, type: 3}
+    - {fileID: 2800000, guid: 272cb9b444bf62646b41ca735c336de2, type: 3}
+    - {fileID: 2800000, guid: 9a83a6484824bc6419ee37189b17da87, type: 3}
+    - {fileID: 2800000, guid: 387579054f9c00841ad36aca0ab2324e, type: 3}
+    - {fileID: 2800000, guid: cfedfd184a40e6c499ea69fad1709f46, type: 3}
+    - {fileID: 2800000, guid: 8ad18db8dcee0a04c8b6c3ceabeed5e6, type: 3}

@@ -28,6 +28,9 @@ namespace Plugins.Templator.Editor.Scripts.Core
         [Space, Header("[DEFAULT VALUES]"), SerializeField]
         private DefaultValues _defaultValues;
 
+        [Space, Header("[ICONS]"), SerializeField]
+        private ToolIcons _toolIcons;
+
 #endregion
 
 #region [GETTERS / SETTERS]
@@ -53,6 +56,8 @@ namespace Plugins.Templator.Editor.Scripts.Core
         public DefaultValues DefaultValues => _defaultValues;
 
         public UndoRedoController UndoRedo { get; private set; }
+
+        public ToolIcons Icons => _toolIcons;
 
 #endregion
 
@@ -138,7 +143,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
         public void CreateTemplate01()
         {
             ClearHierarchy();
-            
+
             var sourceNodePosition = _drawValues.SourceNodePosition;
             var nodeWidth = _drawValues.NodeSize.x;
             var nodeHeight = _drawValues.NodeSize.y;
@@ -165,11 +170,11 @@ namespace Plugins.Templator.Editor.Scripts.Core
             nodeLevel2 = new ImageNode(rect, this);
             nodeLevel1.AddNode(nodeLevel2);
         }
-        
+
         public void CreateTemplate02()
         {
             ClearHierarchy();
-            
+
             var sourceNodePosition = _drawValues.SourceNodePosition;
             var nodeWidth = _drawValues.NodeSize.x;
             var nodeHeight = _drawValues.NodeSize.y;
