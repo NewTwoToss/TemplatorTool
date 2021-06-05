@@ -134,5 +134,68 @@ namespace Plugins.Templator.Editor.Scripts.Core
             IsSelection = false;
             IsRepaint = false;
         }
+
+        public void CreateTemplate01()
+        {
+            ClearHierarchy();
+            
+            var sourceNodePosition = _drawValues.SourceNodePosition;
+            var nodeWidth = _drawValues.NodeSize.x;
+            var nodeHeight = _drawValues.NodeSize.y;
+            var nodeShiftHorizontal = _drawValues.NodeShiftHorizontal;
+            var nodeShiftVertical = _drawValues.NodeShiftVertical;
+
+            var rect = new Rect(sourceNodePosition.x + nodeShiftHorizontal,
+                sourceNodePosition.y + nodeShiftVertical, nodeWidth, nodeHeight);
+            var nodeLevel1 = new RectTransformNode(rect, this);
+            SourceNode.AddNode(nodeLevel1);
+
+            rect = new Rect(sourceNodePosition.x + 2 * nodeShiftHorizontal,
+                sourceNodePosition.y + 2 * nodeShiftVertical, nodeWidth, nodeHeight);
+            BaseNodeComponent nodeLevel2 = new TextNode(rect, this);
+            nodeLevel1.AddNode(nodeLevel2);
+
+            rect = new Rect(sourceNodePosition.x + 2 * nodeShiftHorizontal,
+                sourceNodePosition.y + 3 * nodeShiftVertical, nodeWidth, nodeHeight);
+            nodeLevel2 = new ButtonNode(rect, this);
+            nodeLevel1.AddNode(nodeLevel2);
+
+            rect = new Rect(sourceNodePosition.x + 2 * nodeShiftHorizontal,
+                sourceNodePosition.y + 4 * nodeShiftVertical, nodeWidth, nodeHeight);
+            nodeLevel2 = new ImageNode(rect, this);
+            nodeLevel1.AddNode(nodeLevel2);
+        }
+        
+        public void CreateTemplate02()
+        {
+            ClearHierarchy();
+            
+            var sourceNodePosition = _drawValues.SourceNodePosition;
+            var nodeWidth = _drawValues.NodeSize.x;
+            var nodeHeight = _drawValues.NodeSize.y;
+            var nodeShiftHorizontal = _drawValues.NodeShiftHorizontal;
+            var nodeShiftVertical = _drawValues.NodeShiftVertical;
+
+            var rect = new Rect(sourceNodePosition.x + nodeShiftHorizontal,
+                sourceNodePosition.y + nodeShiftVertical, nodeWidth, nodeHeight);
+            var nodeLevel1 = new RectTransformNode(rect, this);
+            SourceNode.AddNode(nodeLevel1);
+
+            rect = new Rect(sourceNodePosition.x + 2 * nodeShiftHorizontal,
+                sourceNodePosition.y + 2 * nodeShiftVertical, nodeWidth, nodeHeight);
+            BaseNodeComponent nodeLevel2 = new TextNode(rect, this);
+            nodeLevel1.AddNode(nodeLevel2);
+
+            rect = new Rect(sourceNodePosition.x + 2 * nodeShiftHorizontal,
+                sourceNodePosition.y + 3 * nodeShiftVertical, nodeWidth, nodeHeight);
+            nodeLevel2 = new ButtonNode(rect, this);
+            nodeLevel1.AddNode(nodeLevel2);
+
+            /*
+            rect = new Rect(sourceNodePosition.x + 2 * nodeShiftHorizontal,
+                sourceNodePosition.y + 4 * nodeShiftVertical, nodeWidth, nodeHeight);
+            nodeLevel2 = new ImageNode(rect, this);
+            nodeLevel1.AddNode(nodeLevel2);*/
+        }
     }
 }
