@@ -55,12 +55,14 @@ namespace Plugins.Templator.Editor.Scripts.Views
             GUI.enabled = Core.UndoRedo.IsUndoStack;
             if (GUI.Button(new Rect(10, 1, 60, 22), "Undo"))
             {
+                Core.ResetSelection();
                 Core.UndoRedo.Undo();
             }
 
             GUI.enabled = Core.UndoRedo.IsRedoStack;
             if (GUI.Button(new Rect(76, 1, 60, 22), "Redo"))
             {
+                Core.ResetSelection();
                 Core.UndoRedo.Redo();
             }
 

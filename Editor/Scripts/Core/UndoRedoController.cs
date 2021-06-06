@@ -16,9 +16,13 @@ namespace Plugins.Templator.Editor.Scripts.Core
         private readonly Stack<SourceNode> _undoStack;
         private readonly Stack<SourceNode> _redoStack;
 
+#region [GETTERS]
+
         public bool IsUndoStack => _undoStack.Count != 0;
         
         public bool IsRedoStack => _redoStack.Count != 0;
+
+#endregion
 
         public UndoRedoController(DTemplatorCore data)
         {
