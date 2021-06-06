@@ -33,7 +33,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Selectors
         public int Draw(int indexSelectedButton)
         {
             GUILayout.BeginVertical();
-            GUILayout.Label("Anchors 123");
+            GUILayout.Label("Anchors");
             indexSelectedButton = GUILayout.SelectionGrid(indexSelectedButton,
                 _contents,
                 3,
