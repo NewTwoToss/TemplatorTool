@@ -4,7 +4,6 @@
 // =================================================================================================
 
 using System.Collections.Generic;
-using Plugins.Templator.Editor.Scripts.Drawers.Selectors;
 using Plugins.Templator.Editor.Scripts.Views;
 using Plugins.Templator.Editor.Scripts.Views.Base;
 using UnityEditor;
