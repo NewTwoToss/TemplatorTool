@@ -4,7 +4,6 @@
 // =================================================================================================
 
 using System.Collections.Generic;
-using Plugins.Templator.Editor.Scripts.Drawers.Selectors;
 using Plugins.Templator.Editor.Scripts.Views;
 using Plugins.Templator.Editor.Scripts.Views.Base;
 using UnityEditor;
@@ -83,8 +82,6 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
             if (_views is null)
             {
-                AnchorsSelectorDrawer.Load(_core.Skin);
-                PivotSelectorDrawer.Load(_core.Skin);
                 CreateViews();
                 InitializeViews();
                 return;

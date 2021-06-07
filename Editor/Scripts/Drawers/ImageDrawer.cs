@@ -15,8 +15,11 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
     public class ImageDrawer : BaseDrawer, IPropertiesImage
     {
         public override string Type => "Image";
-        
+
         public override float InspectorHeight => 400.0f;
+
+        private readonly AnchorsSelectorDrawer _anchorsSelectorDrawer;
+        private readonly PivotSelectorDrawer _pivotSelectorDrawer;
 
 #region [INSPECTOR]
 
@@ -25,7 +28,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
         public int Width { get; private set; }
 
         public int Height { get; private set; }
-        
+
         public int IndexAnchor { get; private set; }
 
         public int IndexPivot { get; private set; }
@@ -35,9 +38,9 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
         public Color Color { get; private set; }
 
         public bool RaycastTarget { get; private set; }
-        
+
         public bool Maskable { get; private set; }
-        
+
         public bool SetNativeSize { get; private set; }
 
 #endregion
@@ -54,9 +57,11 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Maskable = false;
             SetNativeSize = false;
             nodeBackgroundColor = core.DefaultValues.Image.NodeColor;
+            _anchorsSelectorDrawer = new AnchorsSelectorDrawer(core);
+            _pivotSelectorDrawer = new PivotSelectorDrawer(core);
         }
-        
-        public ImageDrawer(Rect rect, DTemplatorCore core, IPropertiesImage drawer) 
+
+        public ImageDrawer(Rect rect, DTemplatorCore core, IPropertiesImage drawer)
             : base(rect, core)
         {
             Name = drawer.Name;
@@ -70,6 +75,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Maskable = drawer.Maskable;
             SetNativeSize = drawer.SetNativeSize;
             nodeBackgroundColor = core.DefaultValues.Image.NodeColor;
+            _anchorsSelectorDrawer = new AnchorsSelectorDrawer(core);
+            _pivotSelectorDrawer = new PivotSelectorDrawer(core);
         }
 
         public override void DrawNode()
@@ -96,21 +103,26 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
 
             GUISeparator();
-            
+
             GUILayout.BeginHorizontal();
-            IndexAnchor = AnchorsSelectorDrawer.Draw();
-            IndexPivot = PivotSelectorDrawer.Draw();
+            {
+                IndexAnchor = _anchorsSelectorDrawer.Draw(IndexAnchor);
+                IndexPivot = _pivotSelectorDrawer.Draw(IndexPivot);
+            }
             GUILayout.EndHorizontal();
 
             GUISeparator();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Source Image");
-            SourceImage = (Sprite) EditorGUILayout.ObjectField(SourceImage, typeof(Sprite), true);
+            {
+                GUILayout.Label("Source Image");
+                SourceImage = (Sprite) EditorGUILayout
+                    .ObjectField(SourceImage, typeof(Sprite), true);
+            }
             GUILayout.EndHorizontal();
-            
+
             GUISpaceSmall();
-            
+
             Color = EditorGUILayout.ColorField("Color", Color);
 
             GUISpaceBig();

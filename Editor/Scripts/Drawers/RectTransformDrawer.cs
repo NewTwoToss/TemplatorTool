@@ -16,6 +16,9 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
     {
         public override string Type => "Rect Transform";
 
+        private readonly AnchorsSelectorDrawer _anchorsSelectorDrawer;
+        private readonly PivotSelectorDrawer _pivotSelectorDrawer;
+
 #region [INSPECTOR]
 
         public string Name { get; private set; }
@@ -23,7 +26,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
         public int Width { get; private set; }
 
         public int Height { get; private set; }
-        
+
         public int IndexAnchor { get; private set; }
 
         public int IndexPivot { get; private set; }
@@ -38,9 +41,11 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             IndexAnchor = 4;
             IndexPivot = 4;
             nodeBackgroundColor = core.DefaultValues.RectTransform.NodeColor;
+            _anchorsSelectorDrawer = new AnchorsSelectorDrawer(core);
+            _pivotSelectorDrawer = new PivotSelectorDrawer(core);
         }
-        
-        public RectTransformDrawer(Rect rect, DTemplatorCore core, IPropertiesRectTransform drawer) 
+
+        public RectTransformDrawer(Rect rect, DTemplatorCore core, IPropertiesRectTransform drawer)
             : base(rect, core)
         {
             Name = drawer.Name;
@@ -49,6 +54,8 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
             IndexAnchor = drawer.IndexAnchor;
             IndexPivot = drawer.IndexPivot;
             nodeBackgroundColor = core.DefaultValues.RectTransform.NodeColor;
+            _anchorsSelectorDrawer = new AnchorsSelectorDrawer(core);
+            _pivotSelectorDrawer = new PivotSelectorDrawer(core);
         }
 
         public override void DrawNode()
@@ -73,12 +80,14 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 
             Width = Mathf.Clamp(EditorGUILayout.IntField("Width", Width), 2, MAX_NUMBER_VALUE);
             Height = Mathf.Clamp(EditorGUILayout.IntField("Height", Height), 2, MAX_NUMBER_VALUE);
-            
+
             GUISeparator();
-            
+
             GUILayout.BeginHorizontal();
-            IndexAnchor = AnchorsSelectorDrawer.Draw();
-            IndexPivot = PivotSelectorDrawer.Draw();
+            {
+                IndexAnchor = _anchorsSelectorDrawer.Draw(IndexAnchor);
+                IndexPivot = _pivotSelectorDrawer.Draw(IndexPivot);
+            }
             GUILayout.EndHorizontal();
         }
     }

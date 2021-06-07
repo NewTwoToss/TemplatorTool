@@ -244,14 +244,14 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
             }
         }
 
-        public int GetCountNodes()
+        private int GetCountNodes()
         {
             if (nodes.Count == 0) return 1;
 
             return 1 + nodes.Sum(node => node.GetCountNodes());
         }
 
-        public void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
+        private void CheckPositionYAndShiftUp(float shiftLimitY, int countDeleteNodes)
         {
             if (Drawer.Rect.y > shiftLimitY)
             {
@@ -270,7 +270,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
                 node.CheckPositionYAndShiftUp(shiftLimitY, countDeleteNodes);
         }
 
-        public void ShiftUpNodeWithChildren(int countNodes)
+        private void ShiftUpNodeWithChildren(int countNodes)
         {
             ShiftUp(countNodes);
 
@@ -307,7 +307,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
                 node.CheckPositionYAndShiftDown(shiftLimitY);
         }
 
-        public void ShiftDownNodeWithChildren(int countNodes)
+        private void ShiftDownNodeWithChildren(int countNodes)
         {
             ShiftDown(countNodes);
 

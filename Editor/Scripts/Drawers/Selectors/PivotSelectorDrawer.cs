@@ -1,57 +1,40 @@
 // =================================================================================================
 //    Author: Tomas "NewTwoToss" Szilagyi
-//    Date: 30.05.2021
+//    Date: 05.06.2021
 // =================================================================================================
 
+using Plugins.Templator.Editor.Scripts.Core;
 using UnityEngine;
 
 namespace Plugins.Templator.Editor.Scripts.Drawers.Selectors
 {
-    public static class PivotSelectorDrawer
+    public class PivotSelectorDrawer
     {
-        private static GUIStyle _styleButton;
-        private static int _indexPivot = 4; // 4 = Index of Middle Center Pivot 
-        private static GUIContent[] _contents;
+        private readonly GUIStyle _styleButton;
+        private readonly GUIContent[] _contents;
 
-        public static void Load(GUISkin toolSkin)
+        public PivotSelectorDrawer(DTemplatorCore core)
         {
-            _styleButton = toolSkin.GetStyle("button");
-            
+            var icons = core.Icons.PivotSelector;
+            _styleButton = core.Skin.GetStyle("button");
             _contents = new GUIContent[9];
 
-            var icon = Resources.Load<Texture2D>("Textures/PivotIcons/PivotIconTopLeft");
-            _contents[0] = new GUIContent(icon, "Top Left");
-
-            icon = Resources.Load<Texture2D>("Textures/PivotIcons/PivotIconTopCenter");
-            _contents[1] = new GUIContent(icon, "Top Center");
-
-            icon = Resources.Load<Texture2D>("Textures/PivotIcons/PivotIconTopRight");
-            _contents[2] = new GUIContent(icon, "Top Right");
-
-            icon = Resources.Load<Texture2D>("Textures/PivotIcons/PivotIconMiddleLeft");
-            _contents[3] = new GUIContent(icon, "Middle Left");
-
-            icon = Resources.Load<Texture2D>("Textures/PivotIcons/PivotIconMiddleCenter");
-            _contents[4] = new GUIContent(icon, "Middle Center");
-
-            icon = Resources.Load<Texture2D>("Textures/PivotIcons/PivotIconMiddleRight");
-            _contents[5] = new GUIContent(icon, "Middle Right");
-
-            icon = Resources.Load<Texture2D>("Textures/PivotIcons/PivotIconBottomLeft");
-            _contents[6] = new GUIContent(icon, "Bottom Left");
-
-            icon = Resources.Load<Texture2D>("Textures/PivotIcons/PivotIconBottomCenter");
-            _contents[7] = new GUIContent(icon, "Bottom Center");
-
-            icon = Resources.Load<Texture2D>("Textures/PivotIcons/PivotIconBottomRight");
-            _contents[8] = new GUIContent(icon, "Bottom Right");
+            _contents[0] = new GUIContent(icons[0], "Top Left");
+            _contents[1] = new GUIContent(icons[1], "Top Center");
+            _contents[2] = new GUIContent(icons[2], "Top Right");
+            _contents[3] = new GUIContent(icons[3], "Middle Left");
+            _contents[4] = new GUIContent(icons[4], "Middle Center");
+            _contents[5] = new GUIContent(icons[5], "Middle Right");
+            _contents[6] = new GUIContent(icons[6], "Bottom Left");
+            _contents[7] = new GUIContent(icons[7], "Bottom Center");
+            _contents[8] = new GUIContent(icons[8], "Bottom Right");
         }
 
-        public static int Draw()
+        public int Draw(int indexSelectedButton)
         {
             GUILayout.BeginVertical();
             GUILayout.Label("Pivot");
-            _indexPivot = GUILayout.SelectionGrid(_indexPivot,
+            indexSelectedButton = GUILayout.SelectionGrid(indexSelectedButton,
                 _contents,
                 3,
                 _styleButton,
@@ -59,7 +42,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers.Selectors
                 GUILayout.Height(60));
             GUILayout.EndVertical();
 
-            return _indexPivot;
+            return indexSelectedButton;
         }
     }
 }

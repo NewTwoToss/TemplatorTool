@@ -26,8 +26,7 @@ namespace Plugins.Templator.Editor.Scripts.Views
                 _backgroundTexture = Texture2D.whiteTexture;
                 _backgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.8f);
                 _shortcutsIcon = new GUIContent(EditorGUIUtility
-                        //.IconContent("console.infoicon.sml")).image;
-                        .IconContent("d__Help")).image;
+                    .IconContent("d__Help")).image;
                 _infoLabelStyle = new GUIStyle
                 {
                     normal = {textColor = Color.gray},
@@ -56,14 +55,44 @@ namespace Plugins.Templator.Editor.Scripts.Views
             GUI.enabled = Core.UndoRedo.IsUndoStack;
             if (GUI.Button(new Rect(10, 1, 60, 22), "Undo"))
             {
+                Core.ResetSelection();
                 Core.UndoRedo.Undo();
             }
 
             GUI.enabled = Core.UndoRedo.IsRedoStack;
             if (GUI.Button(new Rect(76, 1, 60, 22), "Redo"))
             {
+                Core.ResetSelection();
                 Core.UndoRedo.Redo();
             }
+
+#region [TEMPLATE BUTTONS]
+
+            GUI.enabled = true;
+
+            if (GUI.Button(new Rect(200, 1, 90, 22), "Template 01"))
+            {
+                Core.CreateTemplate01();
+            }
+
+            GUI.enabled = false;
+
+            if (GUI.Button(new Rect(296, 1, 90, 22), "Template 02"))
+            {
+                Core.CreateTemplate02();
+            }
+
+            if (GUI.Button(new Rect(392, 1, 90, 22), "Template 03"))
+            {
+                Core.CreateTemplate02();
+            }
+
+            if (GUI.Button(new Rect(488, 1, 90, 22), "Template 04"))
+            {
+                Core.CreateTemplate02();
+            }
+
+#endregion
 
             GUI.enabled = true;
 
