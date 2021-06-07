@@ -20,7 +20,10 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
         private void OnEnable()
         {
-            Debug.Log($"[Templator] OnEnable() :: {_core.name}");
+            Debug.Log(_core is null
+                ? "[Templator] OnEnable() :: _core = NULL"
+                : $"[Templator] OnEnable() :: {_core.name}");
+            
             InitializeTool();
         }
 
