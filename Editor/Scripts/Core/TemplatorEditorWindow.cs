@@ -47,6 +47,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
         private static void UnityMenuGameUIBuilder()
         {
             InitializeTool();
+            _core.Initialize();
             DrawMainWindow();
         }
 
@@ -63,10 +64,10 @@ namespace Plugins.Templator.Editor.Scripts.Core
             if (!(_core is null)) return;
 
             Debug.Log("[Templator] InitializeTool() :: _core = NULL!");
-            Initialize();
+            InitializeCore();
         }
 
-        private static void Initialize()
+        private static void InitializeCore()
         {
             var guidValidatorSettings = AssetDatabase.FindAssets(CORE_FILE_NAME);
 
@@ -76,7 +77,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
             _core = (DTemplatorCore) AssetDatabase.LoadAssetAtPath(pathValidatorSettings,
                 typeof(DTemplatorCore));
-            _core.Initialize();
+            //_core.Initialize();
         }
 
         private void OnGUI()
