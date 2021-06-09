@@ -47,7 +47,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
         private static void UnityMenuGameUIBuilder()
         {
             InitializeTool();
-            _core.Initialize();
+            //_core.Initialize();
             DrawMainWindow();
         }
 
