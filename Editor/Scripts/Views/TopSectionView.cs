@@ -75,21 +75,21 @@ namespace Plugins.Templator.Editor.Scripts.Views
                 Core.CreateTemplate01();
             }
 
-            GUI.enabled = false;
+            //GUI.enabled = false;
 
             if (GUI.Button(new Rect(296, 1, 90, 22), "Template 02"))
             {
-                Core.CreateTemplate02();
+                //Core.CreateTemplate02();
             }
 
             if (GUI.Button(new Rect(392, 1, 90, 22), "Template 03"))
             {
-                Core.CreateTemplate02();
+                //Core.CreateTemplate02();
             }
 
             if (GUI.Button(new Rect(488, 1, 90, 22), "Template 04"))
             {
-                Core.CreateTemplate02();
+                //Core.CreateTemplate02();
             }
 
 #endregion
