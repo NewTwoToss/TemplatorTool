@@ -11,9 +11,8 @@ Templator is<br>
  
  :x: <b>NOT</b> tool for creating big and complex UI systems
  
-## Test Test :star:
-[User](https://github.com/NewTwoToss)<br>
-[Repo](https://github.com/NewTwoToss/BuilderPrototype)
+## Inspiration
+:star2: [Dash](https://github.com/pshtif/Dash) - Animation System for Unity
 
 ## Node Categories
 :arrow_right: Source - Main Parent
