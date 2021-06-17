@@ -1,19 +1,35 @@
 # Templator Tool
-Unity Tool for Creating Game UI with Nodes + Decorators
+Templator is an Unity editor tool for creating fast and simple templates.
+Template is a group of nodes that represent UI components, e.g., RectTransform, Image, and Button.
 
-## Test 02
+Templator is<br>
+ :heavy_check_mark: tool for fast iterations
+  1. Create template - nodes with custom settings
+  2. Select main parent - any RectTrasform (part of Hierarchy)
+  3. Adjust Components in Unity editor after creation
+  4. GoTo step 1 :arrow_heading_up:
+ 
+ :x: <b>NOT</b> tool for creating big and complex UI systems
 
-### Test 03 :smile:
-:heavy_check_mark: sdfsdf <br>
-:x: sdfsdfsdf
+## Node Categories
+:arrow_right: Source - Main Parent
 
-Components
+:arrow_right: Components
   * RectTransform
   * Image
   * Text (TMP)
   * Button
 
-Decorators
+:arrow_right: Decorators
   * Horizontal Layout
   * Vertical Layout
   * Grid Layout
+
+## Basic Layout
+![alt Test](http://dev.unobex.eu/images/BasicLayout.png)
+
+## Example 01
+![alt Test](http://dev.unobex.eu/images/Example01.png)
+
+## Example 02
+![alt Test](http://dev.unobex.eu/images/Example02.png)
