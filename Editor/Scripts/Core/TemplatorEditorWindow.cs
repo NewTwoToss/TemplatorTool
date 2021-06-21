@@ -4,7 +4,6 @@
 // =================================================================================================
 
 using System.Collections.Generic;
-using Plugins.Templator.Editor.Scripts.Nodes;
 using Plugins.Templator.Editor.Scripts.Views;
 using Plugins.Templator.Editor.Scripts.Views.Base;
 using UnityEditor;
@@ -23,32 +22,27 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
         private void OnEnable()
         {
-            Debug.Log(_core is null
+            /*Debug.Log(_core is null
                 ? "[Templator] OnEnable() :: _core = NULL"
-                : $"[Templator] OnEnable() :: {_core.name}");
+                : $"[Templator] OnEnable() :: {_core.name}");*/
 
-            EditorSceneManager.sceneClosing += EditorSceneManagerOnsceneClosing;
+            EditorSceneManager.sceneClosing += OnSceneClosing;
 
             InitializeTool();
         }
 
-        private void EditorSceneManagerOnsceneClosing(Scene scene, bool removingscene)
-        {
-            _core.SourceNode.SetParentReferenceToNull();
-        }
-
         private void OnDisable()
         {
-            Debug.Log("[Templator] OnDisable()");
+            //Debug.Log("[Templator] OnDisable()");
             _core!.DisableEditor();
         }
 
         [InitializeOnLoadMethod]
         public static void OnProjectLoadedInEditor()
         {
-            Debug.Log(_core is null
+            /*Debug.Log(_core is null
                 ? "[Templator] OnProjectLoadedInEditor() :: _core = NULL"
-                : $"[Templator] OnProjectLoadedInEditor() :: {_core.name}");
+                : $"[Templator] OnProjectLoadedInEditor() :: {_core.name}");*/
 
             InitializeTool();
         }
@@ -57,7 +51,6 @@ namespace Plugins.Templator.Editor.Scripts.Core
         private static void UnityMenuGameUIBuilder()
         {
             InitializeTool();
-            //_core.Initialize();
             DrawMainWindow();
         }
 
@@ -73,7 +66,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
         {
             if (!(_core is null)) return;
 
-            Debug.Log("[Templator] InitializeTool() :: _core = NULL!");
+            //Debug.Log("[Templator] InitializeTool() :: _core = NULL!");
             InitializeCore();
         }
 
@@ -88,10 +81,10 @@ namespace Plugins.Templator.Editor.Scripts.Core
             _core = (DTemplatorCore) AssetDatabase.LoadAssetAtPath(pathValidatorSettings,
                 typeof(DTemplatorCore));
 
-            if (!(_core is null))
+            /*if (!(_core is null))
             {
                 Debug.Log($"[Templator] InitializeCore() :: {_core.name}");
-            }
+            }*/
         }
 
         private void OnGUI()
@@ -135,6 +128,11 @@ namespace Plugins.Templator.Editor.Scripts.Core
         private void CreateView<T>() where T : BaseView, new()
         {
             _views.Add(new T());
+        }
+        
+        private void OnSceneClosing(Scene scene, bool removingscene)
+        {
+            _core.SourceNode.SetParentReferenceToNull();
         }
     }
 }

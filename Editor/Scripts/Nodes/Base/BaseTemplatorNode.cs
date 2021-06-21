@@ -19,20 +19,20 @@ namespace Plugins.Templator.Editor.Scripts.Nodes.Base
 
 #region [GETTERS / SETTERS]
 
-        public int Index { get; set; }
+        public int Index { get; }
 
-        public int Level { get; set; }
+        public int Level { get; protected set; }
 
         public List<BaseNodeComponent> Nodes
         {
             get => nodes;
-            set => nodes = value;
+            protected set => nodes = value;
         }
 
         public List<BaseNodeComponent> Decorators
         {
             get => decorators;
-            set => decorators = value;
+            protected set => decorators = value;
         }
 
         public abstract BaseDrawer Drawer { get; }

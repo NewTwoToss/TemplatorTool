@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a182532574124d0aa9ac426d51775f0a, type: 3}
   m_Name: TemplatorCore01
   m_EditorClassIdentifier: 
-  _version: 0.2.5
+  _version: 0.2.6
   _skin: {fileID: 11400000, guid: 71a1de132a646eb4ca50cccdbf384ada, type: 2}
   _drawValues:
     _sourceNodePosition: {x: 30, y: 32}

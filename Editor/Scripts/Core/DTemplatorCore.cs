@@ -69,8 +69,6 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
         public void OnEnable()
         {
-            Debug.Log("[Templator] DTemplatorCore OnEnable()");
-
             ResetValues();
             UndoRedo = new UndoRedoController(this);
             GenerateBasicHierarchy();
