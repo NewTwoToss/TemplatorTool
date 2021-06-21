@@ -21,7 +21,7 @@ namespace Plugins.Templator.Editor.Scripts.Drawers
 
 #region [INSPECTOR]
 
-        public RectTransform Source { get; private set; }
+        public RectTransform Source { get; set; }
 
 #endregion
 

@@ -4,10 +4,13 @@
 // =================================================================================================
 
 using System.Collections.Generic;
+using Plugins.Templator.Editor.Scripts.Nodes;
 using Plugins.Templator.Editor.Scripts.Views;
 using Plugins.Templator.Editor.Scripts.Views.Base;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Plugins.Templator.Editor.Scripts.Core
 {
@@ -23,14 +26,21 @@ namespace Plugins.Templator.Editor.Scripts.Core
             Debug.Log(_core is null
                 ? "[Templator] OnEnable() :: _core = NULL"
                 : $"[Templator] OnEnable() :: {_core.name}");
-            
+
+            EditorSceneManager.sceneClosing += EditorSceneManagerOnsceneClosing;
+
             InitializeTool();
+        }
+
+        private void EditorSceneManagerOnsceneClosing(Scene scene, bool removingscene)
+        {
+            _core.SourceNode.SetParentReferenceToNull();
         }
 
         private void OnDisable()
         {
             Debug.Log("[Templator] OnDisable()");
-            _core!.UndoRedo.ResetMechanics();
+            _core!.DisableEditor();
         }
 
         [InitializeOnLoadMethod]
@@ -77,7 +87,11 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
             _core = (DTemplatorCore) AssetDatabase.LoadAssetAtPath(pathValidatorSettings,
                 typeof(DTemplatorCore));
-            //_core.Initialize();
+
+            if (!(_core is null))
+            {
+                Debug.Log($"[Templator] InitializeCore() :: {_core.name}");
+            }
         }
 
         private void OnGUI()

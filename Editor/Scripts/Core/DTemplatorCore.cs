@@ -69,21 +69,12 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
         public void OnEnable()
         {
-            Debug.Log("[Templator] Core Initialize()");
+            Debug.Log("[Templator] DTemplatorCore OnEnable()");
 
             ResetValues();
             UndoRedo = new UndoRedoController(this);
             GenerateBasicHierarchy();
         }
-
-        /*public void Initialize()
-        {
-            Debug.Log("[Templator] Core Initialize()");
-
-            ResetValues();
-            UndoRedo = new UndoRedoController(this);
-            GenerateBasicHierarchy();
-        }*/
 
         private void GenerateBasicHierarchy()
         {
@@ -112,6 +103,15 @@ namespace Plugins.Templator.Editor.Scripts.Core
             IsSelection = false;
             IsRepaint = false;
         }
+
+        public void DisableEditor()
+        {
+            ResetSelection();
+            SourceNode.SetParentReferenceToNull();
+            UndoRedo.ResetMechanics();
+        }
+
+#region [TEMPLATE METHODS]
 
         public void CreateTemplate01()
         {
@@ -175,5 +175,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
             nodeLevel2 = new ImageNode(rect, this);
             nodeLevel1.AddNode(nodeLevel2);*/
         }
+
+#endregion
     }
 }

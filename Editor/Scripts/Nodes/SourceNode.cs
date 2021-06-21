@@ -49,6 +49,8 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
 
         public void Clear() => nodes.Clear();
 
+        public void SetParentReferenceToNull() => _drawer.Source = null;
+
         public override bool CanBeDeleted()
         {
             return false;
@@ -66,7 +68,7 @@ namespace Plugins.Templator.Editor.Scripts.Nodes
             {
                 node.MyClone(clone);
             }
-            
+
             foreach (var decorator in decorators)
             {
                 decorator.MyClone(clone);

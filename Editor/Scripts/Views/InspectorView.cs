@@ -19,8 +19,6 @@ namespace Plugins.Templator.Editor.Scripts.Views
 
         private void DrawInspector(Rect pRect)
         {
-            if (!Core.IsSelection) return;
-
             var currentNode = Core.SelectedNode;
             var inspectorHeight = currentNode.Drawer.InspectorHeight;
             var rect = new Rect(pRect.width - 300, 30, 280, inspectorHeight);
