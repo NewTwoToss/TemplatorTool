@@ -12,8 +12,8 @@ Templator is<br>
  :x: <b>NOT</b> tool for creating big and complex UI systems
  
 ## Inspiration
-:star2: [Dash](https://github.com/pshtif/Dash) - Animation System for Unity<br>
-(*Graphics + Display methods of Nodes and Views*)
+:star2: [DASH](https://github.com/pshtif/Dash) - Animation System for Unity<br>
+(*Graphics + Display methods of Views and Nodes*)
 
 ## Node Categories
 :arrow_right: Source - Main Parent
