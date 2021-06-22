@@ -6,7 +6,7 @@ Templator is<br>
  :heavy_check_mark: tool for fast iterations
   1. Create template - nodes with custom settings
   2. Select main parent - any RectTrasform (part of Hierarchy)
-  3. Adjust Components in Unity editor after creation
+  3. Adjust components in Unity editor after creation
   4. GoTo step 1 :arrow_heading_up:
  
  :x: <b>NOT</b> tool for creating big and complex UI systems
@@ -36,3 +36,16 @@ Templator is<br>
 
 ## Example 02
 ![Templator Example 02](http://dev.unobex.eu/images/Example02.png)
+
+## :hammer: ToDo: Templates
+### :triangular_ruler: Template 01
+  RectTransform<br>
+  :wavy_dash: Image<br>
+  :wavy_dash: :wavy_dash: Button
+  
+### :triangular_ruler: Template 02
+  RectTransform<br>
+  :wavy_dash: Image<br>
+  :wavy_dash: :wavy_dash: Button<br>
+  :wavy_dash: :wavy_dash: :wavy_dash: RectTransform<br>
+  :wavy_dash: :wavy_dash: :wavy_dash: RectTransform
