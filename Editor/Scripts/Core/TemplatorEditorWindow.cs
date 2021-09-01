@@ -1,5 +1,5 @@
 // =================================================================================================
-//    Author: Tomas "NewTwoToss" Szilagyi
+//    Author: Tomas "SkyToss" Szilagyi
 //    Date: 26.04.2021
 // =================================================================================================
 
@@ -47,7 +47,7 @@ namespace Plugins.Templator.Editor.Scripts.Core
             InitializeTool();
         }
 
-        [MenuItem("Tools/Templator")]
+        [MenuItem("Tools/SkyToss/Templator")]
         private static void UnityMenuGameUIBuilder()
         {
             InitializeTool();
