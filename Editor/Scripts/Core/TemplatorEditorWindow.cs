@@ -22,28 +22,18 @@ namespace Plugins.Templator.Editor.Scripts.Core
 
         private void OnEnable()
         {
-            /*Debug.Log(_core is null
-                ? "[Templator] OnEnable() :: _core = NULL"
-                : $"[Templator] OnEnable() :: {_core.name}");*/
-
             EditorSceneManager.sceneClosing += OnSceneClosing;
-
             InitializeTool();
         }
 
         private void OnDisable()
         {
-            //Debug.Log("[Templator] OnDisable()");
             _core!.DisableEditor();
         }
 
         [InitializeOnLoadMethod]
         public static void OnProjectLoadedInEditor()
         {
-            /*Debug.Log(_core is null
-                ? "[Templator] OnProjectLoadedInEditor() :: _core = NULL"
-                : $"[Templator] OnProjectLoadedInEditor() :: {_core.name}");*/
-
             InitializeTool();
         }
 
@@ -57,8 +47,8 @@ namespace Plugins.Templator.Editor.Scripts.Core
         private static void DrawMainWindow()
         {
             var mainWindow = (TemplatorEditorWindow) GetWindow(typeof(TemplatorEditorWindow));
-            mainWindow.titleContent.text = "Templator Editor";
-            mainWindow.titleContent.tooltip = "Simple UI Builder for Unity projects";
+            mainWindow.titleContent.text = "Templator";
+            mainWindow.titleContent.tooltip = "Simple UI Builder";
             mainWindow.Show();
         }
 
@@ -66,7 +56,6 @@ namespace Plugins.Templator.Editor.Scripts.Core
         {
             if (!(_core is null)) return;
 
-            //Debug.Log("[Templator] InitializeTool() :: _core = NULL!");
             InitializeCore();
         }
 
